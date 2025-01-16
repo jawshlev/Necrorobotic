@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b62pbuqkj4ign"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmxuq"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_o0y6b"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2(12, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_dmxuq")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("QuadMesh_o0y6b")

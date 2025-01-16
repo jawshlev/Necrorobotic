@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw0e4rxsjy0ct"]
+
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_djn8b"]
+
+[node name="Title Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_djn8b")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 265.0
+offset_right = 591.0
+offset_bottom = 300.0
+text = "Begin"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 344.0
+offset_right = 591.0
+offset_bottom = 379.0
+text = "Quit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 158.0
+offset_right = 709.0
+offset_bottom = 228.0
+theme_override_colors/default_color = Color(1, 0.0770394, 0.0483976, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "TITLE SCREEN"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

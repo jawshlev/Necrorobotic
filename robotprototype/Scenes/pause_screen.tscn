@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://pfmtv1op80e8"]
+
+[ext_resource type="Script" path="res://Scripts/pause_screen.gd" id="1_o02sy"]
+
+[node name="Title Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o02sy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+z_index = -1
+offset_right = 1150.0
+offset_bottom = 647.0
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 532.0
+offset_top = 266.0
+offset_right = 602.0
+offset_bottom = 301.0
+text = "Resume"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 344.0
+offset_right = 591.0
+offset_bottom = 379.0
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/Quit" to="." method="_on_quit_pressed"]

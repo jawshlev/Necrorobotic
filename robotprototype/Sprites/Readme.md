@@ -1,2 +1,2 @@
-#Sprites Folder
+# Sprites Folder
 Place sprites here

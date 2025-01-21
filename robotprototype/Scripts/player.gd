@@ -1,105 +1,116 @@
 extends CharacterBody2D
 
+@onready var space_state = get_world_2d().direct_space_state
 
-var speed = 150.0 #Player's speed
-var jump_velocity = -300.0 #Player's Jump Height
-var robot_parts = [0, 0, 0, 0] #Which robo-parts the player has. Order is Legs, Arms, Chest, Head
-var facing_right = 1 #Which way the player is facing
-var can_dash = false #Tracks cooldown on dash
-var double_jump = false #Tracks double jumps
-var energy = 100 #Player's energy
-var health = 100 #Player's health
-var invincible = false #Is player invincible
-var in_hurtbox = 0 #How many overlapping hurtboxes is the player in
-var contact_damage = 0 #How much contact damage should they take
-var drain_rate = 0 #How much energy drains per second
-const dash_drain = 5 #How much energy the dash drains
-const jump_drain = 5 #How much energy the player loses double jumping
-const iseconds = 1 #How long the player is invincible for
-signal lose_energy
-signal take_damage
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+const pos = Vector2(0,0)
 
-func _ready() -> void:
-	pass
+var max_distance : float = 100.0
+var max_health : float = 100.0
+var max_energy : float = 100.0
+var energy_reduction_rate : float = 0.01
+var FOV_scalar = 2*PI/90
+var time_elapsed = 0.0 
+var attackable = 0
+var invincible = false
+
+func _process(delta: float) -> void:
+	if self != null:
+		if max_health == 0:
+			self.queue_free()
+	time_elapsed += delta  # Increment the time elapsed by the frame time
+
+	if time_elapsed >= 1.0:  # If a second has passed
+		max_energy -= (max_energy*energy_reduction_rate)
+		time_elapsed = 0.0  # Reset the time counter
+		print(max_energy)
 	
+
 func _physics_process(delta: float) -> void:
-	
-	if energy <= 0:
-		speed = 70
-		jump_velocity = -150
-		
-	# Apply contact damage
-	if(in_hurtbox >= 1):
-		hurt(contact_damage)
-	
-	# Enable double jump
-	if robot_parts[0] == 1 and is_on_floor():
-		double_jump = true
-		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
-		if(not is_on_floor()):
-			energy -= jump_drain
-			lose_energy.emit(jump_drain)
-			double_jump = false
-		velocity.y = jump_velocity
-		
-	if Input.is_action_just_pressed("ui_dash") and can_dash and energy >= dash_drain:
-		can_dash = false
-		energy -= dash_drain
-		lose_energy.emit(dash_drain)
-		velocity.x = facing_right * 1500
-		get_tree().create_timer(0.01).timeout.connect(func(): can_dash = true)
-		
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
-		facing_right = direction
-		if abs(velocity.x) > abs(speed):
-			if velocity.x < 0:
-				velocity.x += 100
-			else:
-				velocity.x -= 100
-		else:
-			velocity.x += direction * speed
+		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	targetAreaCast()
 
 
-func _on_energy_drain_timeout() -> void:
-	if energy > 0:
-		if energy < drain_rate:
-			lose_energy.emit(energy)
-			energy = 0
+func targetAreaCast():
+	if Input.is_action_pressed("slow-mo") and max_energy >= 1:
+		attackable = 0
+		set_target_area(get_FOV_circle(position, 60))
+		energy_reduction_rate = 0.2
+		Engine.time_scale = 0.5
+	else:
+		clear_target_area()
+		energy_reduction_rate = 0.1
+		Engine.time_scale = 1
+		
+func get_FOV_circle(from:Vector2, radius):
+	var angle = FOV_scalar
+	var points = PackedVector2Array()
+	var difference = pos - from
+	while angle < 2*PI:
+		var offset = Vector2(radius, 0).rotated(angle)
+		var to = from + offset
+		var query = PhysicsRayQueryParameters2D.create(from, to)
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		if result:
+			if result.collider is StaticBody2D: #checks for walls
+				points.append(result.position+difference)
+			else: #assumes a hostile NPC
+				
+				attackable += 1
+				#print("something is in attack range", attackable)
+				if Input.is_action_pressed("attack") and attackable>0:
+					invincible = true
+					# Get the direction vector towards the attraction point
+					var direction = (result.position - pos).normalized()
+					if position.distance_to(result.position) < (radius-25):
+						#print("Attraction complete!")
+						position = result.position  # Snap to the target
+					else:
+						# Move the sprite towards the attraction point
+						position += direction * 30 * get_process_delta_time()
+				points.append(to+difference)
 		else:
-			lose_energy.emit(drain_rate)
-			energy -= drain_rate
-
-func hurt(amount) -> void:
-	if(!invincible):
-		health -= amount
-		take_damage.emit(amount)
-		invincible = true
-		get_tree().create_timer(1).timeout.connect(func(): invincible = false)
-
-func enter_hurtbox(damage):
-	in_hurtbox += 1
-	contact_damage = damage
-
-func exit_hurtbox():
-	in_hurtbox -= 1
+			points.append(to+difference)
+		angle += FOV_scalar
 	
-func get_upgrade(id, upgrade_drain_rate, upgrade_speed, upgrade_jump):
-	robot_parts[id] = 1
-	drain_rate += upgrade_drain_rate
-	speed += upgrade_speed
-	jump_velocity += upgrade_jump
+	if attackable > 0:
+		$targetArea.color = Color(1, 0, 0, 0.6)
+	else:
+		$targetArea.color = Color(129, 129, 129, 0.6)
 	
+	return points
+
+	
+
+func set_target_area(points:PackedVector2Array):
+	$targetArea.polygon = points
+	
+func clear_target_area():
+	set_target_area(PackedVector2Array())
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy") and !invincible:
+		max_health -= 10
+		print("Collided with a enemy ", max_health)
+	elif area.is_in_group("enemy") and invincible:
+		print("I should not recieve dmg", max_health)
+		area.get_parent().queue_free()
+	pass # Replace with function body.

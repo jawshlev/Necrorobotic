@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
 @export var speed: float = 200.0
-@export var follow_distance: float = 500.0  # Distance at which the enemy starts following the player
+@export var follow_distance: float = 500.0  
 
-var player: NodePath = null  # Assign the player's node path in the editor
+var player: NodePath = null 
 
 func _ready():
     if player == null:
-        print("Player node path not set. Please assign it in the editor.")
+        print("There is no player")
 
 func _physics_process(delta: float) -> void:
     if not player:

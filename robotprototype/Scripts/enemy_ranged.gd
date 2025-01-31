@@ -29,35 +29,31 @@ func _physics_process(delta: float) -> void:
 	if player_node:
 		var distance_to_player = global_position.distance_to(player_node.global_position)
 
-		# debugging
-		print("distance to player: ", distance_to_player)
-		print("jump range: ", jump_range)
-		print("is on floor: ", is_on_floor())
-
-		# BOTH distance_to_player AND is_safe_to_move must be true (otherwise will go off cliff)
+		# moves toward the player ONLY IF BOTH in range and no gap detected
 		if distance_to_player <= detection_range and is_safe_to_move():
-			print("player is in range, trying to move toward")
 			if player_node.global_position.x > global_position.x:
 				velocity.x = speed
 			elif player_node.global_position.x < global_position.x:
 				velocity.x = -speed
 		else:
-			# else, stop moving
 			speed = 0
 
 		if distance_to_player <= jump_range:
-			print("player is in jump range")
 			if is_on_floor() and jump_timer <= 0.0:
 				jump()
 				jump_timer = 1.0
 		else:
-			# resets timer if player is out of jump range automatically (debug)
-			print("player is out of jump range, resetting timer")
 			jump_timer = 0.0
 
-	jump_timer = max(jump_timer - delta, 0)
+		if distance_to_player <= detection_range:
+			shoot_timer -= delta
+			if shoot_timer <= 0.0:
+				shoot_at_player()
+				shoot_timer = shoot_interval  # resets the shoot timer
 
+	jump_timer = max(jump_timer - delta, 0)
 	move_and_slide()
+
 
 func is_safe_to_move() -> bool:
 	var direction = Vector2(1 if velocity.x > 0 else -1, 0)
@@ -71,12 +67,12 @@ func is_safe_to_move() -> bool:
 
 	var result = space_state.intersect_ray(query)
 
-	print("gap ahead:", result != null)
+	#print("gap ahead:", result != null)
 
 	return result != null
 
 func jump():
-	print("jumping")
+	#print("jumping")
 	is_jumping = true
 	velocity.y = jump_velocity
 	await get_tree().create_timer(0.5).timeout
@@ -84,7 +80,7 @@ func jump():
 
 func shoot_at_player():
 	if projectile_scene == null:
-		print("projecticles not implemented OR assigned")
+		print("assign projectile")
 		return
 
 	var player_node = get_node_or_null(player)
@@ -96,5 +92,10 @@ func shoot_at_player():
 	projectile.global_position = global_position
 
 	var direction = (player_node.global_position - global_position).normalized()
-	projectile.velocity = direction * 200.0
+	projectile.set_direction(direction)
+
+	# easier in the code than to do it manually
+	projectile.collision_layer = 2 
+	projectile.collision_mask = 4
+
 	print("shooting")

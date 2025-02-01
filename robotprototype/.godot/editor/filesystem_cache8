@@ -1,0 +1,15 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1737417695
+icon.svg::CompressedTexture2D::5028868746625692019::1737360188::1737360243::1::::<><>::
+::res://Prefabs/::1737360188
+platform.tscn::PackedScene::4618926652168524849::1737360188::0::1::::<><>::
+player.tscn::PackedScene::464446276842288253::1737360188::0::1::::<><>::res://Scripts/player.gd
+::res://Scenes/::1737360447
+main.tscn::PackedScene::8517368904379609800::1737360447::0::1::::<><>::res://Scripts/main.gd<>uid://gu8mk30pud7b::::res://Prefabs/player.tscn<>uid://b62pbuqkj4ign::::res://Prefabs/platform.tscn
+pause_screen.tscn::PackedScene::1063918221150910149::1737360188::0::1::::<><>::res://Scripts/pause_screen.gd
+title_screen.tscn::PackedScene::8755321640220108811::1737360447::0::1::::<><>::res://Scripts/title_screen.gd
+::res://Scripts/::1737360188
+main.gd::GDScript::-1::1737360188::0::1::::<>Node2D<>::
+pause_screen.gd::GDScript::-1::1737360188::0::1::::<>Control<>::
+player.gd::GDScript::-1::1737360188::0::1::::<>CharacterBody2D<>::
+title_screen.gd::GDScript::-1::1737360188::0::1::::<>Control<>::

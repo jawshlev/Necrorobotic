@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://wv8v3pi1jblc"]
+
+[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_4b4x4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0y7v"]
+size = Vector2(208, 119)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5w8bf"]
+
+[node name="Room1Test" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_4b4x4")]
+position = Vector2(-28, 59)
+
+[node name="PLAT" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PLAT"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLAT/StaticBody2D"]
+position = Vector2(-44.5, 174.5)
+shape = SubResource("RectangleShape2D_j0y7v")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="PLAT/StaticBody2D"]
+position = Vector2(-43.813, 173.958)
+scale = Vector2(-357.953, 119.558)
+mesh = SubResource("QuadMesh_5w8bf")
+
+[node name="PLAT2" type="Node2D" parent="."]
+position = Vector2(357, -40)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PLAT2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLAT2/StaticBody2D"]
+position = Vector2(-119, 174.5)
+shape = SubResource("RectangleShape2D_j0y7v")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="PLAT2/StaticBody2D"]
+position = Vector2(-119.103, 173.958)
+scale = Vector2(-207.373, 119.558)
+mesh = SubResource("QuadMesh_5w8bf")

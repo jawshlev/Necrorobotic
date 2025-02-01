@@ -40,12 +40,12 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_di2xe")
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_idsfp")
 
-[node name="Quit2" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_ajdgl")
@@ -109,6 +109,6 @@ position = Vector2(576, 324)
 texture = ExtResource("6_jwggn")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit2" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Quit3" to="." method="_on_quit_pressed"]

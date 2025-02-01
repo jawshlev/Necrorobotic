@@ -1,14 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtl426ul3fya7"]
+[gd_scene load_steps=14 format=3 uid="uid://dtl426ul3fya7"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_gk14a"]
+[ext_resource type="Texture2D" uid="uid://cdway67ws31nr" path="res://icon.svg" id="2_40ncr"]
 [ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_hvs3c"]
+[ext_resource type="Script" path="res://Scenes/robo_boots.gd" id="2_rgwcg"]
 [ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="3_wd5p7"]
+[ext_resource type="Script" path="res://Scenes/energy_drain_timer.gd" id="5_q0xq8"]
+[ext_resource type="Script" path="res://Scenes/health_bar.gd" id="7_khb27"]
+[ext_resource type="Script" path="res://Scenes/energy_bar.gd" id="8_sdwvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6j2ko"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cc1y4"]
+bg_color = Color(1, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6sqo"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yn0w3"]
+bg_color = Color(0.196078, 0.196078, 1, 1)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_gk14a")
 
+[node name="Robo-Boots" type="Area2D" parent="."]
+position = Vector2(308, 144)
+script = ExtResource("2_rgwcg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Robo-Boots"]
+shape = SubResource("RectangleShape2D_egwpa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Robo-Boots"]
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_40ncr")
+
 [node name="robot" parent="." instance=ExtResource("2_hvs3c")]
+visible = false
 position = Vector2(36, -33)
+
+[node name="EnergyDrain" type="Timer" parent="robot"]
+autostart = true
+script = ExtResource("5_q0xq8")
 
 [node name="Node2D" parent="." instance=ExtResource("3_wd5p7")]
 position = Vector2(36, 21)
@@ -24,3 +60,45 @@ position = Vector2(777, 103)
 
 [node name="Node2D5" parent="." instance=ExtResource("3_wd5p7")]
 position = Vector2(688, 25)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health Bar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 787.0
+offset_top = 1.0
+offset_right = 1153.0
+offset_bottom = 41.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6j2ko")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cc1y4")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+script = ExtResource("7_khb27")
+
+[node name="Energy Bar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 787.0
+offset_top = 41.0
+offset_right = 1152.0
+offset_bottom = 52.0
+theme_override_styles/background = SubResource("StyleBoxFlat_v6sqo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yn0w3")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+script = ExtResource("8_sdwvp")
+
+[node name="Hazard" type="Area2D" parent="."]
+position = Vector2(574, 122)
+script = ExtResource("2_rgwcg")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Hazard"]
+shape = SubResource("RectangleShape2D_egwpa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard"]
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_40ncr")
+
+[connection signal="lose_energy" from="robot" to="CanvasLayer/Energy Bar" method="_on_robot_lose_energy"]
+[connection signal="take_damage" from="robot" to="CanvasLayer/Health Bar" method="_on_robot_take_damage"]
+[connection signal="timeout" from="robot/EnergyDrain" to="robot" method="_on_energy_drain_timeout"]

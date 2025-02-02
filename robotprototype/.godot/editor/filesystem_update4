@@ -1,6 +1,7 @@
 res://Scenes/main.tscn
-res://Scripts/player.gd
-res://Scenes/robo_boots.gd
 res://Scenes/title_screen.tscn
-res://Scenes/damage_manager.gd
-res://Prefabs/player.tscn
+res://Themes/startbutton.tres
+res://Themes/controlsbutton.tres
+res://Themes/creditsbutton.tres
+res://Themes/powerbutton.tres
+res://Scripts/player.gd

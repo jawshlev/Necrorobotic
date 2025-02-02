@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtl426ul3fya7"]
+[gd_scene load_steps=15 format=3 uid="uid://dtl426ul3fya7"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_gk14a"]
 [ext_resource type="Texture2D" uid="uid://cdway67ws31nr" path="res://icon.svg" id="2_40ncr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/energy_drain_timer.gd" id="5_q0xq8"]
 [ext_resource type="Script" path="res://Scenes/health_bar.gd" id="7_khb27"]
 [ext_resource type="Script" path="res://Scenes/energy_bar.gd" id="8_sdwvp"]
+[ext_resource type="Script" path="res://Scripts/hazard.gd" id="9_nh8qr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
 
@@ -38,11 +39,10 @@ position = Vector2(3.8147e-06, -3.8147e-06)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("2_40ncr")
 
-[node name="robot" parent="." instance=ExtResource("2_hvs3c")]
-visible = false
+[node name="Robot" parent="." groups=["Player"] instance=ExtResource("2_hvs3c")]
 position = Vector2(36, -33)
 
-[node name="EnergyDrain" type="Timer" parent="robot"]
+[node name="EnergyDrain" type="Timer" parent="Robot"]
 autostart = true
 script = ExtResource("5_q0xq8")
 
@@ -89,16 +89,20 @@ script = ExtResource("8_sdwvp")
 
 [node name="Hazard" type="Area2D" parent="."]
 position = Vector2(574, 122)
-script = ExtResource("2_rgwcg")
+script = ExtResource("9_nh8qr")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_egwpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hazard"]
-position = Vector2(3.8147e-06, -3.8147e-06)
+position = Vector2(3.8147e-06, 1)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("2_40ncr")
 
-[connection signal="lose_energy" from="robot" to="CanvasLayer/Energy Bar" method="_on_robot_lose_energy"]
-[connection signal="take_damage" from="robot" to="CanvasLayer/Health Bar" method="_on_robot_take_damage"]
-[connection signal="timeout" from="robot/EnergyDrain" to="robot" method="_on_energy_drain_timeout"]
+[connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]
+[connection signal="lose_energy" from="Robot" to="CanvasLayer/Energy Bar" method="_on_robot_lose_energy"]
+[connection signal="take_damage" from="Robot" to="CanvasLayer/Health Bar" method="_on_robot_take_damage"]
+[connection signal="timeout" from="Robot/EnergyDrain" to="Robot" method="_on_energy_drain_timeout"]
+[connection signal="body_entered" from="Hazard" to="Hazard" method="_on_body_entered"]
+[connection signal="body_exited" from="Hazard" to="Hazard" method="_on_body_exited"]

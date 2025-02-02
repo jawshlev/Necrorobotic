@@ -1,9 +1,6 @@
 extends Area2D
 
-const id = 0
-const speed = 50
-const jump = -50
-const drain = 1
+const contact_damage = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +12,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body):
-	if(body.is_in_group("Player")):
-		body.get_upgrade(id, drain, speed, jump)
-		print("Boots Get!")
-		queue_free()
+	if body.has_method("enter_hurtbox"):
+		body.enter_hurtbox(contact_damage)
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.has_method("exit_hurtbox"):
+		body.exit_hurtbox() # Replace with function body.

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsirm7xg2xp4x"]
+
+[ext_resource type="Script" path="res://Scripts/credits_screen.gd" id="1_s2tad"]
+[ext_resource type="Texture2D" uid="uid://cxghgqetfhl6o" path="res://Assets/tbackground2.png" id="2_unqbc"]
+[ext_resource type="Theme" uid="uid://m5n5wax2s0j8" path="res://Themes/leftbutton.tres" id="3_r74lw"]
+[ext_resource type="FontFile" uid="uid://cjsm3v7u373oj" path="res://Assets/Robotics Galactus.ttf" id="4_vdbcd"]
+
+[sub_resource type="FontVariation" id="FontVariation_03l5f"]
+base_font = ExtResource("4_vdbcd")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s2tad")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_unqbc")
+
+[node name="Left" type="Button" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 57.0
+offset_bottom = 55.0
+theme = ExtResource("3_r74lw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 378.0
+offset_top = 57.0
+offset_right = 710.0
+offset_bottom = 140.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_03l5f")
+theme_override_font_sizes/normal_font_size = 60
+text = "Credits"
+
+[connection signal="pressed" from="Left" to="." method="_on_left_pressed"]

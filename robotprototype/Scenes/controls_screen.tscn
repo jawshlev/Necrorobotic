@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj2sccnkwcjb8"]
+
+[ext_resource type="Script" path="res://Scripts/controls_screen.gd" id="1_t5mvq"]
+[ext_resource type="Texture2D" uid="uid://cxghgqetfhl6o" path="res://Assets/tbackground2.png" id="2_dyowp"]
+[ext_resource type="FontFile" uid="uid://cjsm3v7u373oj" path="res://Assets/Robotics Galactus.ttf" id="3_l6kq6"]
+[ext_resource type="Theme" uid="uid://m5n5wax2s0j8" path="res://Themes/leftbutton.tres" id="4_sv7xp"]
+
+[sub_resource type="FontVariation" id="FontVariation_avlwp"]
+base_font = ExtResource("3_l6kq6")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t5mvq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(577, 325)
+texture = ExtResource("2_dyowp")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -196.0
+offset_top = -254.0
+offset_right = 183.0
+offset_bottom = -171.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_avlwp")
+theme_override_font_sizes/normal_font_size = 60
+text = "Controls"
+
+[node name="Left" type="Button" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 61.0
+offset_bottom = 60.0
+theme = ExtResource("4_sv7xp")
+
+[connection signal="pressed" from="Left" to="." method="_on_left_pressed"]

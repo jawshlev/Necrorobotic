@@ -1,7 +1,0 @@
-res://Scenes/main.tscn
-res://Scenes/title_screen.tscn
-res://Themes/startbutton.tres
-res://Themes/controlsbutton.tres
-res://Themes/creditsbutton.tres
-res://Themes/powerbutton.tres
-res://Scripts/player.gd

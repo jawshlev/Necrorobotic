@@ -46,3 +46,7 @@ ui_dash={
 [input_devices]
 
 pointing/main_scene="res://Scenes/testLevel.tscn"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

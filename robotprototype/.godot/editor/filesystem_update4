@@ -1,0 +1,6 @@
+res://Scenes/main.tscn
+res://Scripts/player.gd
+res://Scenes/robo_boots.gd
+res://Scenes/title_screen.tscn
+res://Scenes/damage_manager.gd
+res://Prefabs/player.tscn

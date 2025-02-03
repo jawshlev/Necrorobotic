@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://gu8mk30pud7b"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_byh54"]
-[ext_resource type="Script" path="res://Scenes/energy_drain_timer.gd" id="2_cjg7p"]
+[ext_resource type="Script" path="res://energy_drain_timer.gd" id="2_cjg7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodjv"]
 size = Vector2(10, 10)

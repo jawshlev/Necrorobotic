@@ -2,13 +2,12 @@ extends Control
 
 # Function to hide the pause menu
 func hide_pause_menu():
-	print("Play Time")
 	#self.visible = false
 	#get_tree().paused = false  # Resumes the game
 	# Get a reference to NodeA (assuming NodeA is a sibling or in the same scene)
-	var node_a = get_node("/root/main")
+	var pause_screen = get_tree().get_current_scene()
 	# Call the function from ScriptA on NodeA
-	node_a.hide_pause_UI()
+	pause_screen.hide_pause_UI()
 
 func show_pause_menu():  # Show the pause menu
 	print("Break Time")

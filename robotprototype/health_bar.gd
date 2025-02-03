@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,5 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_robot_lose_energy(drain):
-	value = value - drain
+func _on_robot_take_damage(damage):
+	value = value - damage

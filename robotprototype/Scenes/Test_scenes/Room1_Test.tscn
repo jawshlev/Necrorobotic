@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://wv8v3pi1jblc"]
 
-[ext_resource type="Script" path="res://Scenes/Test_scenes/room_initialize.gd" id="1_gdvhm"]
+[ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
 [ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_4b4x4"]
 [ext_resource type="Texture2D" uid="uid://c55gdnh76j7sy" path="res://Scenes/Test_scenes/Room1.png" id="2_vf8b4"]

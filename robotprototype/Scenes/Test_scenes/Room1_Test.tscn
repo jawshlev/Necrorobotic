@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
-[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_4b4x4"]
+[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/Player.tscn" id="2_4b4x4"]
 [ext_resource type="Texture2D" uid="uid://c55gdnh76j7sy" path="res://Scenes/Test_scenes/Room1.png" id="2_vf8b4"]
 [ext_resource type="Texture2D" uid="uid://e5sxnwwqc1t8" path="res://Scenes/Test_scenes/Room2NCR.png" id="3_oq4b3"]
 [ext_resource type="Texture2D" uid="uid://dpk8blgx1dlbj" path="res://Scenes/Test_scenes/tileset template2.png" id="3_uiuuk"]

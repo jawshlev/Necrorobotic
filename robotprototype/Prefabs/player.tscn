@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://gu8mk30pud7b"]
+[gd_scene load_steps=4 format=3 uid="uid://gu8mk30pud7b"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_byh54"]
-[ext_resource type="Script" path="res://energy_drain_timer.gd" id="2_cjg7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodjv"]
 size = Vector2(10, 10)
@@ -23,6 +22,5 @@ zoom = Vector2(3, 3)
 
 [node name="EnergyDrain" type="Timer" parent="."]
 autostart = true
-script = ExtResource("2_cjg7p")
 
 [connection signal="timeout" from="EnergyDrain" to="." method="_on_energy_drain_timeout"]

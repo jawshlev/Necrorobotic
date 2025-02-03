@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dtl426ul3fya7"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gk14a"]
-[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_hvs3c"]
+[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/Player.tscn" id="2_hvs3c"]
 [ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="2_rgwcg"]
 [ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="3_24hge"]
-[ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="3_wd5p7"]
+[ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/Platform.tscn" id="3_wd5p7"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="6_4tatm"]
 [ext_resource type="Script" path="res://Scripts/hazard.gd" id="9_nh8qr"]
 

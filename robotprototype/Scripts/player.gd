@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 var speed = 150.0 #Player's speed
-var jump_velocity = -250.0 #Player's Jump Height
+var jump_velocity = -300.0 #Player's Jump Height
 var robot_parts = [0, 0, 0, 0] #Which robo-parts the player has. Order is Legs, Arms, Chest, Head
 var facing_right = 1 #Which way the player is facing
 var can_dash = false #Tracks cooldown on dash

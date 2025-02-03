@@ -8,8 +8,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var player = get_node("Player")
-	player.take_damage.connect(get_node("UI/Health Bar")._on_robot_take_damage)
-	player.lose_energy.connect(get_node("UI/Energy Bar")._on_robot_lose_energy)
+	player.take_damage.connect(get_node("UI/Health Bar")._on_robot_drain)
+	player.lose_energy.connect(get_node("UI/Energy Bar")._on_robot_drain)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 		add_child(pause_menu)
 
 func hide_pause_UI():
-	Engine.time_scale =1
+	Engine.time_scale = 1
 	remove_child(pause_menu)
 	
 	

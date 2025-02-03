@@ -5,20 +5,23 @@ var speed = 150.0 #Player's speed
 var jump_velocity = -250.0 #Player's Jump Height
 var robot_parts = [0, 0, 0, 0] #Which robo-parts the player has. Order is Legs, Arms, Chest, Head
 var facing_right = 1 #Which way the player is facing
-var can_dash = true #Tracks cooldown on dash
+var can_dash = false #Tracks cooldown on dash
 var double_jump = false #Tracks double jumps
 var energy = 100 #Player's energy
 var health = 100 #Player's health
 var invincible = false #Is player invincible
 var in_hurtbox = 0 #How many overlapping hurtboxes is the player in
 var contact_damage = 0 #How much contact damage should they take
-var drain_rate = 1 #How much energy drains per second
+var drain_rate = 0 #How much energy drains per second
 const dash_drain = 5 #How much energy the dash drains
 const jump_drain = 5 #How much energy the player loses double jumping
 const iseconds = 1 #How long the player is invincible for
 signal lose_energy
 signal take_damage
 
+func _ready() -> void:
+	pass
+	
 func _physics_process(delta: float) -> void:
 	
 	if energy <= 0:

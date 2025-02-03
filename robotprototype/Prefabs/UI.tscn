@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://clbanbc2js845"]
+
+[ext_resource type="Script" path="res://Scenes/health_bar.gd" id="1_8tik4"]
+[ext_resource type="Script" path="res://Scenes/energy_bar.gd" id="2_f6g1g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6j2ko"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cc1y4"]
+bg_color = Color(1, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6sqo"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yn0w3"]
+bg_color = Color(0.196078, 0.196078, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Health Bar" type="ProgressBar" parent="."]
+offset_left = 787.0
+offset_top = 1.0
+offset_right = 1153.0
+offset_bottom = 41.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6j2ko")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cc1y4")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+script = ExtResource("1_8tik4")
+
+[node name="Energy Bar" type="ProgressBar" parent="."]
+offset_left = 787.0
+offset_top = 41.0
+offset_right = 1152.0
+offset_bottom = 52.0
+theme_override_styles/background = SubResource("StyleBoxFlat_v6sqo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yn0w3")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+script = ExtResource("2_f6g1g")

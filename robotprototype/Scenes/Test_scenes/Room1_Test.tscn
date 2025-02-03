@@ -1,5 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=17 format=4 uid="uid://wv8v3pi1jblc"]
 
+[ext_resource type="Script" path="res://Scenes/Test_scenes/room_initialize.gd" id="1_gdvhm"]
+[ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
 [ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_4b4x4"]
 [ext_resource type="Texture2D" uid="uid://c55gdnh76j7sy" path="res://Scenes/Test_scenes/Room1.png" id="2_vf8b4"]
 [ext_resource type="Texture2D" uid="uid://e5sxnwwqc1t8" path="res://Scenes/Test_scenes/Room2NCR.png" id="3_oq4b3"]
@@ -400,9 +402,11 @@ terrain_set_0/terrain_0/color = Color(0.834076, 0.131196, 0.395326, 1)
 sources/0 = SubResource("TileSetAtlasSource_pak5s")
 
 [node name="Room1Test" type="Node2D"]
+script = ExtResource("1_gdvhm")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_4b4x4")]
-visible = false
+[node name="UI" parent="." instance=ExtResource("1_tpvie")]
+
+[node name="Player" parent="." instance=ExtResource("2_4b4x4")]
 position = Vector2(0, 64)
 
 [node name="Room1" type="Sprite2D" parent="."]

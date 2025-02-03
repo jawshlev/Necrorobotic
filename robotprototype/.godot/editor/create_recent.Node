@@ -1,6 +1,0 @@
-TileMap
-CollisionShape2D
-StaticBody2D
-Node2D
-MeshInstance2D
-Sprite2D

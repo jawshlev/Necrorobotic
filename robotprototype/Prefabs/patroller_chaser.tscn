@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b44m5epdpwwmk"]
+
+[ext_resource type="Script" path="res://Scripts/patroller_chaser.gd" id="1_cy3od"]
+[ext_resource type="Texture2D" uid="uid://wnc86uulv7op" path="res://Assets/Enemy.png" id="2_ph7sn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5qny"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_cy3od")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0982131, 0.0982131)
+texture = ExtResource("2_ph7sn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x5qny")

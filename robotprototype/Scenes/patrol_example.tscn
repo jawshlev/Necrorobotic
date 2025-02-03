@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://cijkn8au15rpa"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_2tuh2"]
+[ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="2_ebdpk"]
+[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="3_jcgiu"]
+[ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="4_cjttj"]
+[ext_resource type="PackedScene" uid="uid://b44m5epdpwwmk" path="res://Prefabs/patroller_chaser.tscn" id="5_y5vv2"]
+
+[sub_resource type="Curve2D" id="Curve2D_ednv2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 71, 1, 0, 0, 0, 0, 72, -43, 0, 0, 0, 0, 3, -44)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_24ahm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 78, 0)
+}
+point_count = 2
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_2tuh2")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_ebdpk")
+player = NodePath("../robot")
+
+[node name="robot" parent="." instance=ExtResource("3_jcgiu")]
+position = Vector2(36, -33)
+
+[node name="Node2D" parent="." instance=ExtResource("4_cjttj")]
+position = Vector2(36, 21)
+
+[node name="Node2D2" parent="." instance=ExtResource("4_cjttj")]
+position = Vector2(265, 86)
+
+[node name="Node2D3" parent="." instance=ExtResource("4_cjttj")]
+position = Vector2(575, 143)
+
+[node name="Node2D4" parent="." instance=ExtResource("4_cjttj")]
+position = Vector2(777, 103)
+
+[node name="Node2D5" parent="." instance=ExtResource("4_cjttj")]
+position = Vector2(688, 25)
+
+[node name="PatrolRoute" type="Path2D" parent="."]
+position = Vector2(-44, -63)
+curve = SubResource("Curve2D_ednv2")
+
+[node name="FlyingEnemy" parent="PatrolRoute" node_paths=PackedStringArray("target") instance=ExtResource("5_y5vv2")]
+target = NodePath("../../robot")
+use_gravity = false
+
+[node name="PatrolRoute2" type="Path2D" parent="."]
+position = Vector2(270, 61)
+curve = SubResource("Curve2D_24ahm")
+
+[node name="GroundEnemy" parent="PatrolRoute2" node_paths=PackedStringArray("target") instance=ExtResource("5_y5vv2")]
+target = NodePath("../../robot")
+bounce = true

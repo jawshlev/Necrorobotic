@@ -1,6 +1,9 @@
 # Local folders and files
 **/[Ll]ocal_*
 
+# temp files
+*.tmp
+
 # Godot 4+ specific ignores
 .godot/
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://77cvj0qbdd7p"]
 
-[ext_resource type="Script" path="res://Scenes/player_inventory.gd" id="1_r1am4"]
+[ext_resource type="Script" path="res://Scripts/player_inventory.gd" id="1_r1am4"]
 [ext_resource type="Texture2D" uid="uid://61fq6s3e3na7" path="res://Sprites/HELMET.png" id="2_bcq46"]
 [ext_resource type="Texture2D" uid="uid://dnnr0jonhu5br" path="res://Sprites/Silhouette1.png" id="3_3o7xi"]
 
@@ -15,17 +15,20 @@ script = ExtResource("1_r1am4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -576.0
+offset_top = -322.0
+offset_right = -536.0
+offset_bottom = -282.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_top = 1.0
-offset_right = 1151.0
-offset_bottom = 648.0
+offset_left = -577.0
+offset_top = -324.0
+offset_right = 623.0
+offset_bottom = 326.0
 color = Color(0.117647, 0.117647, 0.117647, 0.654902)
 
 [node name="Line2D" type="Line2D" parent="ColorRect"]
@@ -52,34 +55,34 @@ width = 4.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 113.0
-offset_top = 431.0
-offset_right = 378.0
-offset_bottom = 499.0
+offset_left = -463.0
+offset_top = 109.0
+offset_right = -198.0
+offset_bottom = 177.0
 theme_override_font_sizes/normal_font_size = 45
 text = "Item Name:"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 501.0
-offset_right = 282.0
-offset_bottom = 569.0
+offset_left = -559.0
+offset_top = 179.0
+offset_right = -294.0
+offset_bottom = 247.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Description ..."
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 249.0
-offset_top = 12.0
-offset_right = 487.0
-offset_bottom = 50.0
+offset_left = -327.0
+offset_top = -310.0
+offset_right = -89.0
+offset_bottom = -272.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Available Upgrades"
 
 [node name="Silhouette1" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(950, 121)
+position = Vector2(374, -201)
 scale = Vector2(3, 3)
 texture = ExtResource("3_3o7xi")
 flip_h = true
@@ -118,10 +121,10 @@ offset_bottom = 22.0
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 27.0
-offset_top = 425.0
-offset_right = 70.0
-offset_bottom = 465.0
+offset_left = -549.0
+offset_top = 103.0
+offset_right = -506.0
+offset_bottom = 143.0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_bcq46")
 

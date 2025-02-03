@@ -3,8 +3,7 @@ extends CharacterBody2D
 @onready var space_state = get_world_2d().direct_space_state
 #@onready var mesh_instance_2d: Sprite2D = $Area2D/MeshInstance2D
 @onready var animations: AnimationPlayer = $Area2D/MeshInstance2D/AnimationPlayer
-@onready var main = $".."
-
+@onready var game_Over_Menu = $"../GameOver"
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -22,16 +21,18 @@ var attackable = 0
 var invincible = false
 var rendered = false
 var has_helmet01 = false
+var damaged = false
+var enemy 
 var pl_animations
 var dir_velocity
+var main
 
 func _ready():
+	main = get_parent()
+	#print("Player's main: ", main)
 	pl_animations = $AnimationTree.get("parameters/playback")
 
 func _process(delta: float) -> void:
-	if self != null:
-		if curr_health == 0:
-			self.queue_free()
 	time_elapsed += delta  # Increment the time elapsed by the frame time
 
 	if time_elapsed >= 1.0:  # If a second has passed
@@ -42,7 +43,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if(!(main.paused)):
+	if(!(main.stop_control)):
 		# Add the gravity.
 		if not is_on_floor():
 			velocity += get_gravity() * delta
@@ -62,10 +63,18 @@ func _physics_process(delta: float) -> void:
 		else:
 			pl_animations.travel("Idle")
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		
+		if (damaged):
+			damage_Controller(enemy)
+		
 		move_and_slide()
 		melee_attack()
 		targetAreaCast()
+
+func game_Over():
+	if curr_health == 0:
+		game_Over_Menu.show()
+		self.queue_free()
 
 func melee_attack():
 	if Input.is_action_pressed("attack") and !(has_helmet01):
@@ -88,6 +97,8 @@ func get_FOV_circle(from:Vector2, radius):
 	var angle = FOV_scalar
 	var points = PackedVector2Array()
 	var difference = pos - from
+	invincible = false
+	$targetArea.color = Color(129, 129, 129, 0.6)
 	while angle < 2*PI:
 		var offset = Vector2(radius, 0).rotated(angle)
 		var to = from + offset
@@ -97,11 +108,10 @@ func get_FOV_circle(from:Vector2, radius):
 		if result:
 			if result.collider is StaticBody2D: #checks for walls
 				points.append(result.position+difference)
-			else: #assumes a hostile NPC
-				
-				attackable += 1
+			else:
 				#print("something is in attack range", attackable)
-				if Input.is_action_pressed("attack") and attackable>0:
+				$targetArea.color = Color(1, 0, 0, 0.6)
+				if Input.is_action_pressed("attack"):
 					invincible = true
 					# Get the direction vector towards the attraction point
 					var direction = (result.position - pos).normalized()
@@ -112,18 +122,11 @@ func get_FOV_circle(from:Vector2, radius):
 						# Move the sprite towards the attraction point
 						position += direction * 30 * get_process_delta_time()
 				points.append(to+difference)
+				
 		else:
 			points.append(to+difference)
 		angle += FOV_scalar
-	
-	if attackable > 0:
-		$targetArea.color = Color(1, 0, 0, 0.6)
-	else:
-		$targetArea.color = Color(129, 129, 129, 0.6)
-	
 	return points
-
-	
 
 func set_target_area(points:PackedVector2Array):
 	$targetArea.polygon = points
@@ -134,28 +137,34 @@ func clear_target_area():
 	set_target_area(PackedVector2Array())
 	rendered = false
 
-func enemy_knockbackfx(enemy: Area2D, strength: float):
+func enemy_knockbackfx(enemy: RigidBody2D, strength: float):
 	pl_animations.travel("flash_dmg")
 	
 	# Issue with how the normals are obtained
-	#var knock_dir = enemy.global_position.direction_to(global_position)
-	#print("Collision normal:", knock_dir)
-	#var impulse = knock_dir * strength
-	#velocity += impulse
+	var knock_dir = enemy.global_position.direction_to(global_position)
+	print("Collision normal:", knock_dir)
+	var impulse = knock_dir.x * strength
+	velocity.x += impulse
+
+func damage_Controller(enemy: RigidBody2D):
+	curr_health -= 10
+	enemy_knockbackfx(enemy, 2500)
+	print("Collided with a enemy ", curr_health)
+	damaged = false
+	game_Over()
 	
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	
-	var enemy = area.get_parent()
+	enemy = area.get_parent()
 	if area.is_in_group("enemy") and !invincible:
-		curr_health -= 10
-		enemy_knockbackfx(area, 500)
-		print("Collided with a enemy ", curr_health)
+		damaged = true
+		
 	elif area.is_in_group("enemy") and invincible:
 		#print("I should not recieve dmg", max_health)
 		var orbPos = area.global_position
 		enemy.queue_free()
-		var orbScene = load("res://orb.tscn")
+		var orbScene = load("res://Prefabs/orb.tscn")
 		var orbInst = orbScene.instantiate()
 		self.get_parent().call_deferred("add_child", orbInst)
 		orbInst.global_position = orbPos

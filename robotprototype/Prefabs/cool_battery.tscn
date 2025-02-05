@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://gyog4ijektlm" path="res://Sprites/battHostile.png" id="2_skgk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77331"]
-size = Vector2(20, 25)
+size = Vector2(20, 25)  # Kept larger size for better collision
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54cnn"]
-size = Vector2(20, 24)
+size = Vector2(20, 24)  # Kept consistent with above size for Area2D
 
 [node name="RigidBody2D" type="RigidBody2D"]
 script = ExtResource("1_ke2si")
@@ -15,16 +15,17 @@ script = ExtResource("1_ke2si")
 [node name="BattHostile" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 1)
+scale = Vector2(0.75, 0.75)  # Retained scaling for better visuals
 texture = ExtResource("2_skgk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
+position = Vector2(0, 2.5)  # Retained HEAD position for better alignment
 shape = SubResource("RectangleShape2D_77331")
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 2)
+position = Vector2(0, 2)  # Kept simpler positioning for consistency
 shape = SubResource("RectangleShape2D_54cnn")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

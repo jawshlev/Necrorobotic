@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://77cvj0qbdd7p"]
+
+[ext_resource type="Script" path="res://Scripts/player_inventory.gd" id="1_r1am4"]
+[ext_resource type="Texture2D" uid="uid://61fq6s3e3na7" path="res://Sprites/HELMET.png" id="2_bcq46"]
+[ext_resource type="Texture2D" uid="uid://dnnr0jonhu5br" path="res://Sprites/Silhouette1.png" id="3_3o7xi"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r1am4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -576.0
+offset_top = -322.0
+offset_right = -536.0
+offset_bottom = -282.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -577.0
+offset_top = -324.0
+offset_right = 623.0
+offset_bottom = 326.0
+color = Color(0.117647, 0.117647, 0.117647, 0.654902)
+
+[node name="Line2D" type="Line2D" parent="ColorRect"]
+position = Vector2(175, 466)
+points = PackedVector2Array(-176, -56, 978, -56)
+width = 2.0
+
+[node name="Line2D2" type="Line2D" parent="ColorRect"]
+position = Vector2(811, 498)
+rotation = -1.57103
+scale = Vector2(0.509864, 1.00298)
+points = PackedVector2Array(174.582, -55.8129, 978, -56)
+width = 4.0
+
+[node name="Line2D3" type="Line2D" parent="ColorRect"]
+position = Vector2(1, -3)
+points = PackedVector2Array(755, 318, 978.742, 318, 1152, 318)
+width = 4.0
+
+[node name="Line2D4" type="Line2D" parent="ColorRect"]
+position = Vector2(-755, -263)
+points = PackedVector2Array(755, 318, 1511, 318)
+width = 4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -463.0
+offset_top = 109.0
+offset_right = -198.0
+offset_bottom = 177.0
+theme_override_font_sizes/normal_font_size = 45
+text = "Item Name:"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -559.0
+offset_top = 179.0
+offset_right = -294.0
+offset_bottom = 247.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Description ..."
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -327.0
+offset_top = -310.0
+offset_right = -89.0
+offset_bottom = -272.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Available Upgrades"
+
+[node name="Silhouette1" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(374, -201)
+scale = Vector2(3, 3)
+texture = ExtResource("3_3o7xi")
+flip_h = true
+hframes = 4
+
+[node name="Head" type="TextureButton" parent="Silhouette1"]
+offset_left = -6.0
+offset_top = -26.0
+offset_right = 6.0
+offset_bottom = -14.0
+
+[node name="Chest" type="TextureButton" parent="Silhouette1"]
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="Legs" type="TextureButton" parent="Silhouette1"]
+offset_left = -10.0
+offset_top = 17.0
+offset_right = 8.0
+offset_bottom = 64.0
+
+[node name="R_Arm" type="TextureButton" parent="Silhouette1"]
+offset_left = -17.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 23.0
+
+[node name="L_Arm" type="TextureButton" parent="Silhouette1"]
+offset_left = 8.0
+offset_top = -10.0
+offset_right = 14.0
+offset_bottom = 22.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -549.0
+offset_top = 103.0
+offset_right = -506.0
+offset_bottom = 143.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_bcq46")
+
+[connection signal="pressed" from="Silhouette1/Head" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Silhouette1/Chest" to="." method="_on_chest_pressed"]
+[connection signal="pressed" from="Silhouette1/Legs" to="." method="_on_legs_pressed"]
+[connection signal="pressed" from="Silhouette1/R_Arm" to="." method="_on_r_arm_pressed"]
+[connection signal="pressed" from="Silhouette1/L_Arm" to="." method="_on_l_arm_pressed"]

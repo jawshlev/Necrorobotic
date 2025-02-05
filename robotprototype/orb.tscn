@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3q6cunq5fjbd"]
+
+[ext_resource type="Script" path="res://orb.gd" id="1_0vavr"]
+[ext_resource type="Texture2D" uid="uid://cbmm1kas8ogyr" path="res://Sprites/energyOrb.png" id="1_q0gm7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y40w7"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbb50"]
+radius = 4.12311
+
+[node name="RigidBody2D" type="StaticBody2D"]
+script = ExtResource("1_0vavr")
+
+[node name="EnergyOrb" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_q0gm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y40w7")
+
+[node name="Area2D" type="Area2D" parent="." groups=["collectible"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hbb50")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

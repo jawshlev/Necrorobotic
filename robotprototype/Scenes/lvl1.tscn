@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://beuawhu1vqy11"]
+
+[ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="1_bscfl"]
+[ext_resource type="PackedScene" uid="uid://xh8cr2vfw2ni" path="res://Prefabs/cool_battery.tscn" id="2_lt8ji"]
+[ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="3_6uxr3"]
+[ext_resource type="PackedScene" uid="uid://f4cnsbl3egho" path="res://Scenes/abyss_boundary.tscn" id="4_bgjyg"]
+[ext_resource type="PackedScene" uid="uid://8wyygvymc8tk" path="res://Prefabs/level_transition.tscn" id="5_ulb5f"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_bscfl")]
+position = Vector2(-103, 35)
+
+[node name="Node2D2" parent="." instance=ExtResource("1_bscfl")]
+position = Vector2(271, 156)
+
+[node name="Node2D6" parent="." instance=ExtResource("1_bscfl")]
+position = Vector2(357, -22)
+
+[node name="Node2D7" parent="." instance=ExtResource("1_bscfl")]
+position = Vector2(657, -90)
+
+[node name="Node2D3" parent="." instance=ExtResource("1_bscfl")]
+position = Vector2(539, 135)
+
+[node name="Node2D4" parent="." instance=ExtResource("1_bscfl")]
+position = Vector2(741, 95)
+
+[node name="Node2D5" parent="." instance=ExtResource("1_bscfl")]
+position = Vector2(652, 17)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("2_lt8ji")]
+position = Vector2(-81, -24)
+
+[node name="RigidBody2D2" parent="." instance=ExtResource("2_lt8ji")]
+position = Vector2(397, -51)
+
+[node name="RigidBody2D3" parent="." instance=ExtResource("2_lt8ji")]
+position = Vector2(578, -6)
+
+[node name="RigidBody2D4" parent="." instance=ExtResource("2_lt8ji")]
+position = Vector2(446, 109)
+
+[node name="RigidBody2D5" parent="." instance=ExtResource("2_lt8ji")]
+position = Vector2(195, 126)
+
+[node name="Area2D" parent="." instance=ExtResource("3_6uxr3")]
+position = Vector2(280, -66)
+
+[node name="abyssBoundary" parent="." instance=ExtResource("4_bgjyg")]
+position = Vector2(325, 219)
+scale = Vector2(110, 1)
+
+[node name="SpawnPoint" type="Node2D" parent="." groups=["spawnPoint"]]
+position = Vector2(747, -129)
+
+[node name="levelTransition" parent="." instance=ExtResource("5_ulb5f")]
+position = Vector2(836, 58)

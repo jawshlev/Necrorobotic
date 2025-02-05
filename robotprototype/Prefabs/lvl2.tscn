@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp1wf13olu7xb"]
+
+[ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="1_7iwp6"]
+[ext_resource type="Texture2D" uid="uid://yl5x1f0phqt5" path="res://Assets/image.png" id="2_qfdet"]
+[ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="3_hqi1c"]
+
+[node name="Node2D" instance=ExtResource("1_7iwp6")]
+
+[node name="StaticBody2D" parent="." index="0"]
+position = Vector2(2, 108)
+
+[node name="SpawnPoint" type="Node2D" parent="." index="1" groups=["spawnPoint"]]
+position = Vector2(89, 66)
+
+[node name="Image" type="Sprite2D" parent="." index="2"]
+z_index = -1
+position = Vector2(4, -164)
+texture = ExtResource("2_qfdet")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="3"]
+color = Color(0.582379, 0.905807, 0.776463, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+script = ExtResource("3_hqi1c")

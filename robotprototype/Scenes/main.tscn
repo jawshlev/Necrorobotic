@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="6_4tatm"]
 [ext_resource type="Script" path="res://Scripts/hazard.gd" id="9_nh8qr"]
 [ext_resource type="PackedScene" uid="uid://dq2i5kodbd4uc" path="res://Prefabs/Battery.tscn" id="10_pvj8t"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
+[ext_resource type="PackedScene" uid="uid://xh8cr2vfw2ni" path="res://Prefabs/cool_battery.tscn" id="11_vk72e"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_gk14a")
@@ -35,6 +34,12 @@ position = Vector2(36, 21)
 
 [node name="Node2D2" parent="." instance=ExtResource("3_wd5p7")]
 position = Vector2(307, 164)
+
+[node name="Node2D6" parent="." instance=ExtResource("3_wd5p7")]
+position = Vector2(393, -14)
+
+[node name="Node2D7" parent="." instance=ExtResource("3_wd5p7")]
+position = Vector2(693, -82)
 
 [node name="Node2D3" parent="." instance=ExtResource("3_wd5p7")]
 position = Vector2(575, 143)
@@ -67,6 +72,9 @@ position = Vector2(201, 141)
 
 [node name="HeadPickup" parent="." instance=ExtResource("5_e16o2")]
 position = Vector2(543, 113)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("11_vk72e")] # cool_battery.tscn added
+position = Vector2(-45, -16)
 
 [connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]
 [connection signal="body_entered" from="Hazard" to="Hazard" method="_on_body_entered"]

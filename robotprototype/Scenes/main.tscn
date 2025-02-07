@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtl426ul3fya7"]
+[gd_scene load_steps=10 format=3 uid="uid://dtl426ul3fya7"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_gk14a"]
 [ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_hvs3c"]
 [ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="3_wd5p7"]
-[ext_resource type="PackedScene" uid="uid://upov1lemhiuc" path="res://enemy_ranged.tscn" id="4_jw0vw"]
 [ext_resource type="Texture2D" uid="uid://drpafp2wwu1mi" path="res://Scenes/peashooter.webp" id="5_c4rft"]
 [ext_resource type="Script" path="res://Scenes/enemy_ranged.gd" id="5_fh57p"]
 [ext_resource type="PackedScene" uid="uid://y4ex0j8qakjk" path="res://enemy_goomba.tscn" id="6_iw5tx"]
+[ext_resource type="PackedScene" uid="uid://6exnm5jpi7ul" path="res://bullet.tscn" id="7_omal6"]
 [ext_resource type="Script" path="res://enemy_goomba.gd" id="7_y5yi3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcsni"]
+size = Vector2(19, 19)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_gk14a")
@@ -30,19 +33,6 @@ position = Vector2(777, 103)
 
 [node name="Node2D5" parent="." instance=ExtResource("3_wd5p7")]
 position = Vector2(688, 25)
-
-[node name="enemy_ranged" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("4_jw0vw")]
-position = Vector2(599, 3)
-collision_layer = 4
-collision_mask = 130
-script = ExtResource("5_fh57p")
-sprite = NodePath("CollisionShape2D/Sprite2D")
-
-[node name="Sprite2D" parent="enemy_ranged/CollisionShape2D" index="0"]
-position = Vector2(-0.00546528, 5.16418e-07)
-rotation = -6.28319
-scale = Vector2(0.0157783, 0.0152427)
-texture = ExtResource("5_c4rft")
 
 [node name="enemy_goomba" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("6_iw5tx")]
 position = Vector2(308, 150)
@@ -68,7 +58,24 @@ script = ExtResource("7_y5yi3")
 sprite = NodePath("CollisionShape2D/Sprite2D")
 start_flipped = true
 
-[editable path="enemy_ranged"]
+[node name="enemy_ranged" type="CharacterBody2D" parent="." node_paths=PackedStringArray("sprite")]
+position = Vector2(636, 4)
+collision_layer = 4
+collision_mask = 130
+script = ExtResource("5_fh57p")
+projectile_scene = ExtResource("7_omal6")
+player = NodePath("../robot")
+sprite = NodePath("CollisionShape2D/Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_ranged"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_gcsni")
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy_ranged/CollisionShape2D"]
+position = Vector2(-1.04308e-07, 9.83477e-07)
+scale = Vector2(0.0149961, 0.0144707)
+texture = ExtResource("5_c4rft")
+
 [editable path="enemy_goomba"]
 [editable path="enemy_goomba2"]
 [editable path="enemy_goomba3"]

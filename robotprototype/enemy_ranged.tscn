@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://upov1lemhiuc"]
+
+[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_l4acf"]
+[ext_resource type="PackedScene" uid="uid://6exnm5jpi7ul" path="res://Scenes/bullet.tscn" id="2_foold"]
+[ext_resource type="Texture2D" uid="uid://bxnt8qcrmpc6p" path="res://Scenes/blue blue.webp" id="3_0lh7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd8j1"]
+
+[node name="enemy_ranged" type="CharacterBody2D"]
+collision_mask = 129
+script = ExtResource("1_l4acf")
+projectile_scene = ExtResource("2_foold")
+player = NodePath("../robot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jd8j1")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(2.98023e-08, -7.15256e-07)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_0lh7j")

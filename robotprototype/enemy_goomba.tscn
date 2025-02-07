@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://y4ex0j8qakjk"]
+
+[ext_resource type="Texture2D" uid="uid://co677hk8qke2g" path="res://Scenes/goomba.webp" id="1_rubq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuxoa"]
+
+[node name="enemy_goomba" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vuxoa")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-9.53674e-07, -7.7486e-07)
+scale = Vector2(0.0172563, 0.0144092)
+texture = ExtResource("1_rubq8")

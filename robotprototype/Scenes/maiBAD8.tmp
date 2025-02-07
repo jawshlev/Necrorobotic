@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtl426ul3fya7"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_gk14a"]
+[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_hvs3c"]
+[ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="3_wd5p7"]
+[ext_resource type="Texture2D" uid="uid://bxnt8qcrmpc6p" path="res://Scenes/blue blue.webp" id="4_4jbjl"]
+[ext_resource type="Script" path="res://Scenes/enemy.gd" id="4_ysdas"]
+[ext_resource type="PackedScene" uid="uid://6exnm5jpi7ul" path="res://bullet.tscn" id="5_mcq7o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1ynn"]
+size = Vector2(20, 19)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_gk14a")
+
+[node name="robot" parent="." instance=ExtResource("2_hvs3c")]
+position = Vector2(36, -33)
+
+[node name="Node2D" parent="." instance=ExtResource("3_wd5p7")]
+position = Vector2(36, 21)
+
+[node name="Node2D2" parent="." instance=ExtResource("3_wd5p7")]
+position = Vector2(307, 164)
+
+[node name="Node2D3" parent="." instance=ExtResource("3_wd5p7")]
+position = Vector2(575, 143)
+
+[node name="Node2D4" parent="." instance=ExtResource("3_wd5p7")]
+position = Vector2(777, 103)
+
+[node name="Node2D5" parent="." instance=ExtResource("3_wd5p7")]
+position = Vector2(688, 25)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+script = ExtResource("4_ysdas")
+jump_range = 60.0
+projectile_scene = ExtResource("5_mcq7o")
+player = NodePath("../robot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(9, 1.5)
+shape = SubResource("RectangleShape2D_o1ynn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(8.9, 1.5)
+scale = Vector2(0.02525, 0.02375)
+texture = ExtResource("4_4jbjl")

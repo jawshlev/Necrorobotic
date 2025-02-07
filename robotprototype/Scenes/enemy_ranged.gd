@@ -33,23 +33,20 @@ func _physics_process(delta: float) -> void:
 	if player_node:
 		var distance_to_player = global_position.distance_to(player_node.global_position)
 
-		# Move toward the player if in range
 		if distance_to_player <= detection_range:
 			if player_node.global_position.x > global_position.x:
 				velocity.x = speed
 			elif player_node.global_position.x < global_position.x:
 				velocity.x = -speed
 		else:
-			velocity.x = 0  # Stop if the player is out of range
+			velocity.x = 0
 
-		# Jump if the player is close
 		if distance_to_player <= jump_range and is_on_floor() and jump_timer <= 0.0:
 			jump()
 			jump_timer = 1.0
 		else:
 			jump_timer = 0.0
 
-		# Shoot at the player if in range
 		if distance_to_player <= detection_range:
 			shoot_timer -= delta
 			if shoot_timer <= 0.0:
@@ -58,15 +55,13 @@ func _physics_process(delta: float) -> void:
 
 	jump_timer = max(jump_timer - delta, 0)
 
-	# Flip sprite based on movement direction
 	if sprite:
 		if velocity.x > 0:
-			sprite.flip_h = false  # Facing right
+			sprite.flip_h = false
 		elif velocity.x < 0:
-			sprite.flip_h = true  # Facing left
+			sprite.flip_h = true
 
 	move_and_slide()
-
 
 func jump():
 	is_jumping = true
@@ -79,16 +74,11 @@ func shoot_at_player():
 		print("Projectile scene is not assigned!")
 		return
 
-	# Determine the direction the enemy is facing
 	var shoot_direction = Vector2(1, 0) if velocity.x > 0 else Vector2(-1, 0)
-
-	# Spawn position should be slightly in front of the enemy
-	var spawn_position = global_position  # Adjust offset
-
-	# Instantiate and shoot projectile
+	var spawn_position = global_position
 	var projectile = projectile_scene.instantiate()
 	get_parent().add_child(projectile)
 	projectile.global_position = spawn_position
-	projectile.velocity.x = shoot_direction.x * projectile.speed  # Set velocity directly for direction
+	projectile.velocity.x = shoot_direction.x * projectile.speed
 
 	print("Shooting in direction:", shoot_direction, " from position:", spawn_position)

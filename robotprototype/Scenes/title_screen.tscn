@@ -27,11 +27,10 @@ script = ExtResource("1_djn8b")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 540.0
+offset_left = 470.0
 offset_top = 265.0
-offset_right = 740.0
+offset_right = 670.0
 offset_bottom = 505.0
-scale = Vector2(1.111, 1.111)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -57,21 +56,19 @@ script = ExtResource("3_jajbt")
 
 [node name="Quit3" type="Button" parent="."]
 layout_mode = 2
-offset_left = 11.0
-offset_top = 653.0
-offset_right = 61.0
-offset_bottom = 703.0
-scale = Vector2(1.111, 1.111)
+offset_left = 10.0
+offset_top = 589.0
+offset_right = 60.0
+offset_bottom = 639.0
 size_flags_vertical = 3
 theme = ExtResource("5_iawwt")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 405.0
+offset_left = 337.0
 offset_top = 145.0
-offset_right = 874.0
+offset_right = 806.0
 offset_bottom = 228.0
-scale = Vector2(1.111, 1.111)
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_4dwcq")
@@ -88,8 +85,7 @@ motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallex Background/ParallaxBackground/ParallaxLayer"]
-position = Vector2(640, 360)
-scale = Vector2(1.11111, 1.11111)
+position = Vector2(576, 324)
 texture = ExtResource("3_kr7r6")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallex Background/ParallaxBackground"]
@@ -97,8 +93,7 @@ motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallex Background/ParallaxBackground/ParallaxLayer2"]
-position = Vector2(640, 360)
-scale = Vector2(1.11111, 1.11111)
+position = Vector2(576, 324)
 texture = ExtResource("4_n87se")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Parallex Background/ParallaxBackground"]
@@ -106,8 +101,7 @@ motion_scale = Vector2(0.3, 0.3)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallex Background/ParallaxBackground/ParallaxLayer3"]
-position = Vector2(640, 360)
-scale = Vector2(1.11111, 1.11111)
+position = Vector2(576, 324)
 texture = ExtResource("5_vn1t0")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Parallex Background/ParallaxBackground"]
@@ -115,8 +109,7 @@ motion_scale = Vector2(0.4, 0.4)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallex Background/ParallaxBackground/ParallaxLayer4"]
-position = Vector2(640, 360)
-scale = Vector2(1.11111, 1.11111)
+position = Vector2(576, 324)
 texture = ExtResource("6_jwggn")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

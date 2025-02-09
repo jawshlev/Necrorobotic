@@ -1,90 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://y4ex0j8qakjk"]
+[gd_scene load_steps=3 format=3 uid="uid://y4ex0j8qakjk"]
 
-[ext_resource type="Script" path="res://Scripts/enemy_goomba.gd" id="1_jxix4"]
-[ext_resource type="Texture2D" uid="uid://ca3hnus522dvf" path="res://Assets/Sprites/goomBot_SpriteSheet.png" id="2_6sq4x"]
-
-[sub_resource type="Animation" id="Animation_wqasx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_0gg8o"]
-resource_name = "goombot_walk"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8rawo"]
-_data = {
-"RESET": SubResource("Animation_wqasx"),
-"goombot_walk": SubResource("Animation_0gg8o")
-}
+[ext_resource type="Texture2D" uid="uid://co677hk8qke2g" path="res://Scenes/goomba.webp" id="1_rubq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vuxoa"]
-size = Vector2(20.9091, 17.5439)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwnmb"]
-animation = &"goombot_walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fkdyw"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_draaf"]
-states/goombot_walk/node = SubResource("AnimationNodeAnimation_kwnmb")
-states/goombot_walk/position = Vector2(316, 80)
-transitions = ["Start", "goombot_walk", SubResource("AnimationNodeStateMachineTransition_fkdyw")]
-
-[node name="enemy_goomba" type="CharacterBody2D" groups=["Enemy"]]
-script = ExtResource("1_jxix4")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, -1)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_6sq4x")
-hframes = 8
-vframes = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-libraries = {
-"": SubResource("AnimationLibrary_8rawo")
-}
+[node name="enemy_goomba" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(0.86, 1.14)
 shape = SubResource("RectangleShape2D_vuxoa")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_vuxoa")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Sprite2D")
-tree_root = SubResource("AnimationNodeStateMachine_draaf")
-anim_player = NodePath("../Sprite2D/AnimationPlayer")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_hitbox_body_entered"]
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-9.53674e-07, -7.7486e-07)
+scale = Vector2(0.0172563, 0.0144092)
+texture = ExtResource("1_rubq8")

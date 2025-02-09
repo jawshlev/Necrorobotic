@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duuvj5tifn6pg"
-path="res://.godot/imported/BootsSpawn.png-68ef263b30da6ad5088214c92a4915a9.ctex"
+uid="uid://drpafp2wwu1mi"
+path="res://.godot/imported/peashooter.webp-3c05a4bb0ee1e4fa0e4f9b77ca147aa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Character Animations/BootsSpawn.png"
-dest_files=["res://.godot/imported/BootsSpawn.png-68ef263b30da6ad5088214c92a4915a9.ctex"]
+source_file="res://Scenes/peashooter.webp"
+dest_files=["res://.godot/imported/peashooter.webp-3c05a4bb0ee1e4fa0e4f9b77ca147aa9.ctex"]
 
 [params]
 

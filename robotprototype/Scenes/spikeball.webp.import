@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3miu6ronsqun"
-path="res://.godot/imported/punchAnim.png-81a8fdaccd7239d0ade6b6e272d57752.ctex"
+uid="uid://b8wv643qaqwst"
+path="res://.godot/imported/spikeball.webp-8bccc0d5a4ae0457d94118667c10b4bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Character Animations/punchAnim.png"
-dest_files=["res://.godot/imported/punchAnim.png-81a8fdaccd7239d0ade6b6e272d57752.ctex"]
+source_file="res://Scenes/spikeball.webp"
+dest_files=["res://.godot/imported/spikeball.webp-8bccc0d5a4ae0457d94118667c10b4bd.ctex"]
 
 [params]
 

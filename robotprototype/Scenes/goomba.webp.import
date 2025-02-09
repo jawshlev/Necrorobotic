@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g4dbb8ehd2dn"
-path="res://.godot/imported/runAnim.png-d95a5b9b9428407064a157f31edef0bb.ctex"
+uid="uid://co677hk8qke2g"
+path="res://.godot/imported/goomba.webp-f7ced632bcf0d10de7fa974db89c9cd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Character Animations/runAnim.png"
-dest_files=["res://.godot/imported/runAnim.png-d95a5b9b9428407064a157f31edef0bb.ctex"]
+source_file="res://Scenes/goomba.webp"
+dest_files=["res://.godot/imported/goomba.webp-f7ced632bcf0d10de7fa974db89c9cd3.ctex"]
 
 [params]
 

@@ -1,16 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://gu8mk30pud7b"]
+[gd_scene load_steps=30 format=3 uid="uid://gu8mk30pud7b"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_byh54"]
-[ext_resource type="Shader" path="res://Prefabs/player.gdshader" id="2_47mju"]
-[ext_resource type="Texture2D" uid="uid://di8e28lvt1qtn" path="res://Sprites/player_spriteSheet.png" id="2_ld3gw"]
+[ext_resource type="Texture2D" uid="uid://di8e28lvt1qtn" path="res://Sprites/player_spriteSheet.png" id="3_fpfrj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodjv"]
-size = Vector2(11, 10)
+size = Vector2(7.5, 29)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5g4er"]
-shader = ExtResource("2_47mju")
-shader_parameter/flash_color = null
-shader_parameter/flash_value = null
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8eg7m"]
 
 [sub_resource type="Animation" id="Animation_n5ni7"]
 length = 0.001
@@ -262,10 +258,10 @@ _data = {
 "player_idle": SubResource("Animation_mwmbs")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6wna"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbise"]
 size = Vector2(9, 29)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dvjh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o155l"]
 size = Vector2(9.65698, 4)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lo0sx"]
@@ -323,7 +319,7 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ix7m1"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0u11c"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o7a23"]
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_bqk3d")
 states/Idle/position = Vector2(369, 115)
 states/Punch/node = SubResource("AnimationNodeBlendSpace2D_he4fy")
@@ -333,23 +329,23 @@ states/flash_dmg/node = SubResource("AnimationNodeAnimation_bj7u8")
 states/flash_dmg/position = Vector2(613, 45)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tjbh7"), "Idle", "flash_dmg", SubResource("AnimationNodeStateMachineTransition_jnn04"), "Idle", "Punch", SubResource("AnimationNodeStateMachineTransition_3uhhh"), "flash_dmg", "Idle", SubResource("AnimationNodeStateMachineTransition_ho6ty"), "flash_dmg", "Punch", SubResource("AnimationNodeStateMachineTransition_2awbh"), "Punch", "Idle", SubResource("AnimationNodeStateMachineTransition_ix7m1")]
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_byh54")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2(-0.25, 0.5)
 shape = SubResource("RectangleShape2D_oodjv")
 
-[node name="EnergyDrain" type="Timer" parent="."]
-autostart = true
+[node name="targetArea" type="Polygon2D" parent="." groups=["targetArc"]]
+color = Color(0.505344, 0.505344, 0.505344, 0.905882)
 
 [node name="BodyArea" type="Area2D" parent="." groups=["player_hitBox"]]
 
 [node name="MeshInstance2D" type="Sprite2D" parent="BodyArea"]
 texture_filter = 1
-material = SubResource("ShaderMaterial_5g4er")
+material = SubResource("ShaderMaterial_8eg7m")
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_ld3gw")
+texture = ExtResource("3_fpfrj")
 hframes = 9
 vframes = 2
 frame = 1
@@ -361,7 +357,7 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
 position = Vector2(-0.5, 1.5)
-shape = SubResource("RectangleShape2D_e6wna")
+shape = SubResource("RectangleShape2D_mbise")
 
 [node name="FistArea" type="Area2D" parent="." groups=["meleeRange"]]
 position = Vector2(-1, 0)
@@ -369,19 +365,15 @@ position = Vector2(-1, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FistArea"]
 position = Vector2(-10, -5)
 scale = Vector2(1.08286, -0.572328)
-shape = SubResource("RectangleShape2D_0dvjh")
+shape = SubResource("RectangleShape2D_o155l")
 disabled = true
 debug_color = Color(0.962747, 0.194532, 1.92523e-07, 0.42)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BodyArea/MeshInstance2D")
-tree_root = SubResource("AnimationNodeStateMachine_0u11c")
+tree_root = SubResource("AnimationNodeStateMachine_o7a23")
 anim_player = NodePath("../BodyArea/MeshInstance2D/AnimationPlayer")
-parameters/Idle/blend_position = Vector2(-0.956797, -0.0176991)
+parameters/Idle/blend_position = Vector2(0.407246, 0.300885)
 parameters/Punch/blend_position = Vector2(-0.402899, 0.300885)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
-zoom = Vector2(3, 3)
-
-[connection signal="timeout" from="EnergyDrain" to="." method="_on_energy_drain_timeout"]
+[connection signal="area_entered" from="BodyArea" to="." method="_on_area_2d_area_entered"]

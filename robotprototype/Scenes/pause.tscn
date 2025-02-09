@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://hrscv6a0xpfq"]
+[gd_scene load_steps=2 format=3 uid="uid://b3b7sipnhdivd"]
 
-[ext_resource type="Script" path="res://Scenes/pause.gd" id="1_giji5"]
+[ext_resource type="Script" path="res://Scripts/pause.gd" id="1_giji5"]
 
 [node name="Pause" type="Control"]
 layout_mode = 3

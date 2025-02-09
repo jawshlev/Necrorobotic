@@ -384,4 +384,7 @@ parameters/Punch/blend_position = Vector2(-0.402899, 0.300885)
 enabled = false
 zoom = Vector2(3, 3)
 
+[node name="targetArea" type="Polygon2D" parent="." groups=["targetArc"]]
+color = Color(0.505344, 0.505344, 0.505344, 0.905882)
+
 [connection signal="timeout" from="EnergyDrain" to="." method="_on_energy_drain_timeout"]

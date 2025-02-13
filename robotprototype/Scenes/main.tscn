@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtl426ul3fya7"]
+[gd_scene load_steps=10 format=3 uid="uid://dtl426ul3fya7"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gk14a"]
-[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player-mergere.tscn" id="2_hvs3c"]
+[ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_hvs3c"]
 [ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="2_rgwcg"]
 [ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="3_24hge"]
 [ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="3_wd5p7"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="6_4tatm"]
+[ext_resource type="PackedScene" uid="uid://y4ex0j8qakjk" path="res://Prefabs/enemy_goomba.tscn" id="8_tthrt"]
 [ext_resource type="Script" path="res://Scripts/hazard.gd" id="9_nh8qr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
@@ -57,6 +58,9 @@ shape = SubResource("RectangleShape2D_egwpa")
 position = Vector2(3.8147e-06, 1)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("3_24hge")
+
+[node name="enemy_goomba" parent="." instance=ExtResource("8_tthrt")]
+position = Vector2(221, 144)
 
 [connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]
 [connection signal="body_entered" from="Hazard" to="Hazard" method="_on_body_entered"]

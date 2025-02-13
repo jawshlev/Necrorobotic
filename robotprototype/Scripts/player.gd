@@ -18,7 +18,7 @@ var double_jump = false #Tracks double jumps
 var energy = 100 #Player's energy
 var health = 100 #Player's health
 var invincible = false #Is player invincible
-var in_hurtbox = 0 #How many overlapping hurtboxes is the player in
+var immobile = false #Can the player move
 var contact_damage = 0 #How much contact damage should they take
 var drain_rate = 0 #How much energy drains per second
 const dash_drain = 5 #How much energy the dash drains
@@ -38,10 +38,6 @@ func _physics_process(delta: float) -> void:
 		speed = 70
 		jump_velocity = -150
 		
-	# Apply contact damage
-	if(in_hurtbox >= 1):
-		hurt(contact_damage)
-	
 	# Enable double jump
 	if robot_parts[0] == 1 and is_on_floor():
 		double_jump = true
@@ -50,40 +46,41 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
-		if(not is_on_floor()):
-			energy -= jump_drain
-			lose_energy.emit(jump_drain)
-			double_jump = false
-		velocity.y = jump_velocity
-		
-	if Input.is_action_just_pressed("ui_dash") and can_dash and energy >= dash_drain:
-		can_dash = false
-		energy -= dash_drain
-		lose_energy.emit(dash_drain)
-		velocity.x = facing_right * 1500
-		get_tree().create_timer(0.01).timeout.connect(func(): can_dash = true)
-		
+	if not immobile:
+		# Handle jump.
+		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
+			if(not is_on_floor()):
+				energy -= jump_drain
+				lose_energy.emit(jump_drain)
+				double_jump = false
+			velocity.y = jump_velocity
+			
+		if Input.is_action_just_pressed("ui_dash") and can_dash and energy >= dash_drain:
+			can_dash = false
+			energy -= dash_drain
+			lose_energy.emit(dash_drain)
+			velocity.x = facing_right * 1500
+			get_tree().create_timer(0.01).timeout.connect(func(): can_dash = true)
+			
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		facing_right = direction
-		print(velocity)
-		print(facing_right)
-		$AnimationTree.set("parameters/Idle/blend_position", velocity)
-		if abs(velocity.x) > abs(speed):
-			if velocity.x < 0:
-				velocity.x += 100
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var direction := Input.get_axis("ui_left", "ui_right")
+		if direction:
+			facing_right = direction
+#			print(velocity)
+#			print(facing_right)
+			$AnimationTree.set("parameters/Idle/blend_position", velocity)
+			if abs(velocity.x) > abs(speed):
+				if velocity.x < 0:
+					velocity.x += 100
+				else:
+					velocity.x -= 100
 			else:
-				velocity.x -= 100
+				velocity.x += direction * speed
 		else:
-			velocity.x += direction * speed
-	else:
-		pl_animations.travel("Idle")
-		velocity.x = move_toward(velocity.x, 0, speed)
+			pl_animations.travel("Idle")
+			velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
 	melee_attack()
@@ -171,12 +168,19 @@ func hurt(amount) -> void:
 		invincible = true
 		get_tree().create_timer(1).timeout.connect(func(): invincible = false)
 
-func enter_hurtbox(damage):
-	in_hurtbox += 1
-	contact_damage = damage
-
-func exit_hurtbox():
-	in_hurtbox -= 1
+func enter_hurtbox(damage, knockback):
+	if(!invincible):
+		health -= damage
+		if health <= 0:
+			self.queue_free()
+		take_damage.emit(damage)
+		invincible = true
+		get_tree().create_timer(1).timeout.connect(func(): invincible = false)
+	velocity.x = knockback
+	velocity.y = -100
+	immobile = true
+	move_and_slide()
+	get_tree().create_timer(0.25).timeout.connect(func(): immobile = false)
 	
 func get_upgrade(id, upgrade_drain_rate, upgrade_speed, upgrade_jump):
 	robot_parts[id] = 1
@@ -184,3 +188,6 @@ func get_upgrade(id, upgrade_drain_rate, upgrade_speed, upgrade_jump):
 	speed += upgrade_speed
 	jump_velocity += upgrade_jump
 	
+func gain_energy(amount):
+	energy += amount
+	lose_energy.emit(-amount)

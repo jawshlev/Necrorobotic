@@ -1,11 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://gu8mk30pud7b"]
+[gd_scene load_steps=30 format=3 uid="uid://gu8mk30pud7b"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_byh54"]
 [ext_resource type="Shader" path="res://Prefabs/player.gdshader" id="2_47mju"]
 [ext_resource type="Texture2D" uid="uid://di8e28lvt1qtn" path="res://Sprites/player_spriteSheet.png" id="2_ld3gw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oodjv"]
-size = Vector2(11, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6wna"]
+size = Vector2(9, 29)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5g4er"]
 shader = ExtResource("2_47mju")
@@ -262,9 +262,6 @@ _data = {
 "player_idle": SubResource("Animation_mwmbs")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6wna"]
-size = Vector2(9, 29)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dvjh"]
 size = Vector2(9.65698, 4)
 
@@ -337,13 +334,15 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 script = ExtResource("1_byh54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_oodjv")
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_e6wna")
 
 [node name="EnergyDrain" type="Timer" parent="."]
 autostart = true
 
 [node name="BodyArea" type="Area2D" parent="." groups=["player_hitBox"]]
+collision_layer = 2
+collision_mask = 2
 
 [node name="MeshInstance2D" type="Sprite2D" parent="BodyArea"]
 texture_filter = 1
@@ -381,7 +380,6 @@ parameters/Idle/blend_position = Vector2(-0.956797, -0.0176991)
 parameters/Punch/blend_position = Vector2(-0.402899, 0.300885)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 zoom = Vector2(3, 3)
 
 [node name="targetArea" type="Polygon2D" parent="." groups=["targetArc"]]

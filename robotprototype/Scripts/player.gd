@@ -8,7 +8,7 @@ const pos = Vector2(0,0)
 
 var pl_animations
 var speed = 150.0 #Player's speed
-var jump_velocity = -300.0 #Player's Jump Height
+var jump_velocity = -350.0 #Player's Jump Height
 var FOV_scalar = 2*PI/90 # the rendered field of view for the Area of Attack
 var robot_parts = [0, 0, 0, 0] #Which robo-parts the player has. Order is Legs, Arms, Chest, Head
 var facing_right = 1 #Which way the player is facing

@@ -65,3 +65,5 @@ position = Vector2(221, 144)
 [connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]
 [connection signal="body_entered" from="Hazard" to="Hazard" method="_on_body_entered"]
 [connection signal="body_exited" from="Hazard" to="Hazard" method="_on_body_exited"]
+
+[editable path="enemy_goomba"]

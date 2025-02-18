@@ -11,8 +11,7 @@ func _ready() -> void:
 	player.take_damage.connect(get_node("UI/Health Bar")._on_robot_drain)
 	player.lose_energy.connect(get_node("UI/Energy Bar")._on_robot_drain)
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
-		enemy.on_death.connect(player.gain_energy)
-
+		enemy.on_death.connect(player.gain_energy) 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

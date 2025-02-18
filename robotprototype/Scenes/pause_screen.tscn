@@ -1,31 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://pfmtv1op80e8"]
 
-[sub_resource type="GDScript" id="GDScript_kakia"]
-script/source = "extends Control
-
-# Function to hide the pause menu
-func hide_pause_menu():
-	print(\"Play Time\")
-	#self.visible = false
-	#get_tree().paused = false  # Resumes the game
-	# Get a reference to NodeA (assuming NodeA is a sibling or in the same scene)
-	var node_a = get_node(\"/root/main\")
-	# Call the function from ScriptA on NodeA
-	node_a.hide_pause_UI()
-
-func show_pause_menu():  # Show the pause menu
-	print(\"Break Time\")
-	self.visible = true
-	get_tree().paused = true  # Resumes the game
-
-func _on_start_button_pressed() -> void:
-	hide_pause_menu()
-	pass # Replace with function body.
-
-func _on_quit_pressed() -> void:
-	get_tree().quit()
-	pass # Replace with function body.
-"
+[ext_resource type="Script" path="res://Scripts/pause_screen.gd" id="1_o02sy"]
 
 [node name="Title Screen" type="Control"]
 layout_mode = 3
@@ -34,28 +9,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_kakia")
+script = ExtResource("1_o02sy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 z_index = -1
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_right = 1150.0
+offset_bottom = 647.0
 
 [node name="StartButton" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 609.0
+offset_left = 532.0
 offset_top = 266.0
-offset_right = 679.0
+offset_right = 602.0
 offset_bottom = 301.0
 text = "Resume"
 
 [node name="Quit" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 616.0
+offset_left = 539.0
 offset_top = 344.0
-offset_right = 668.0
+offset_right = 591.0
 offset_bottom = 379.0
 text = "Quit"
 

@@ -22,6 +22,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 Player="Is the player"
+Enemy=""
 
 [input]
 

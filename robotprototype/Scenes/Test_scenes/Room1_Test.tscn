@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=34 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -27,8 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://dgmi2wgmfdk4j" path="res://Scenes/Test_scenes/RoomAB.png" id="24_0xngi"]
 [ext_resource type="Texture2D" uid="uid://cvvscx53in872" path="res://Scenes/Test_scenes/RoomCD.png" id="25_68c3u"]
 [ext_resource type="PackedScene" uid="uid://y4ex0j8qakjk" path="res://Prefabs/enemy_goomba.tscn" id="27_831t3"]
-[ext_resource type="Script" path="res://Scripts/enemy_goomba.gd" id="28_a4hky"]
+[ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="28_pp8el"]
 [ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="29_3qgiv"]
+[ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="29_swle1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("3_uiuuk")
@@ -416,6 +417,8 @@ terrain_set_0/terrain_0/name = "base 0"
 terrain_set_0/terrain_0/color = Color(0.834076, 0.131196, 0.395326, 1)
 sources/0 = SubResource("TileSetAtlasSource_pak5s")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buhbc"]
+
 [node name="Room1Test" type="Node2D"]
 script = ExtResource("1_gdvhm")
 
@@ -531,7 +534,20 @@ tile_set = SubResource("TileSet_yd28x")
 
 [node name="enemy_goomba" parent="." instance=ExtResource("27_831t3")]
 position = Vector2(110, 52)
-script = ExtResource("28_a4hky")
+
+[node name="Robo-Boots" type="Area2D" parent="."]
+position = Vector2(250, -9)
+script = ExtResource("28_pp8el")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Robo-Boots"]
+shape = SubResource("RectangleShape2D_buhbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Robo-Boots"]
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("29_swle1")
 
 [node name="Area2D" parent="." instance=ExtResource("29_3qgiv")]
-position = Vector2(249, -23)
+position = Vector2(1273, 25)
+
+[connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]

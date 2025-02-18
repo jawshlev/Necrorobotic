@@ -61,6 +61,7 @@ texture = ExtResource("3_24hge")
 
 [node name="enemy_goomba" parent="." instance=ExtResource("8_tthrt")]
 position = Vector2(221, 144)
+collision_layer = 2
 
 [connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]
 [connection signal="body_entered" from="Hazard" to="Hazard" method="_on_body_entered"]

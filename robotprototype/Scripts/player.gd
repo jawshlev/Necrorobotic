@@ -35,8 +35,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	if energy <= 0:
-		speed = 80
-		jump_velocity = -200
+		speed = 70
+		jump_velocity = -150
 		
 	# Enable double jump
 	if robot_parts[0] == 1 and is_on_floor():
@@ -47,14 +47,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	if not immobile:
-		# Handle jump.
-		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
-			if(not is_on_floor()):
-				energy -= jump_drain
-				lose_energy.emit(jump_drain)
-				double_jump = false
-			velocity.y = jump_velocity
-			
+
 		if Input.is_action_just_pressed("ui_dash") and can_dash and energy >= dash_drain:
 			can_dash = false
 			energy -= dash_drain
@@ -70,7 +63,9 @@ func _physics_process(delta: float) -> void:
 			facing_right = direction
 #			print(velocity)
 #			print(facing_right)
-			$AnimationTree.set("parameters/Idle/blend_position", velocity)
+			var face_dir = Vector2(facing_right, 0)
+			pl_animations.travel("Walk")
+			$AnimationTree.set("parameters/Walk/blend_position", face_dir)
 			if abs(velocity.x) > abs(speed):
 				if velocity.x < 0:
 					velocity.x += 100
@@ -79,9 +74,23 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.x += direction * speed
 		else:
+			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Idle")
+			$AnimationTree.set("parameters/Idle/blend_position", face_dir)
 			velocity.x = move_toward(velocity.x, 0, speed)
-
+			
+		# Handle jump.
+		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
+			var face_dir = Vector2(facing_right, 0)
+			pl_animations.travel("Jump")
+			$AnimationTree.set("parameters/Jump/blend_position", face_dir)
+			if(not is_on_floor()):
+				energy -= jump_drain
+				lose_energy.emit(jump_drain)
+				double_jump = false
+			velocity.y = jump_velocity	
+		
+	print(facing_right)
 	move_and_slide()
 	melee_attack()
 	targetAreaCast()
@@ -95,7 +104,9 @@ func melee_attack():
 	#checks for a regular melee attack if no head is equipped
 	if Input.is_action_pressed("attack") and robot_parts[3]==0:
 		pl_animations.travel("Punch")
-		$AnimationTree.set("parameters/Punch/blend_position", facing_right)
+		print(facing_right,0)
+		var face_dir = Vector2(facing_right, 0)
+		$AnimationTree.set("parameters/Punch/blend_position", face_dir)
 
 func targetAreaCast():
 	if robot_parts[3]!=0:
@@ -124,15 +135,23 @@ func get_FOV_circle(from:Vector2, radius):
 			if result.collider is TileMapLayer: #checks for walls
 				points.append(result.position+difference)
 			else:
-				print("something is in attack range", result)
+				#print("something is in attack range", result)
 				$targetArea.color = Color(1, 0, 0, 0.6)
 				if Input.is_action_pressed("attack"):
 					invincible = true
 					# Get the direction vector towards the attraction point
 					var direction = (result.position - pos).normalized()
 					if position.distance_to(result.position) < (radius-25):
-						#print("Attraction complete!")
+						print("Attraction complete!")
+						print(result)
 						position = result.position  # Snap to the target
+						if(result.collider is CharacterBody2D):
+							
+							if result.collider.has_method("take_damage"):
+								result.collider.take_damage(20, 10) # Call a method from the script
+								print("Called a function on the hit object!")
+							#result.take_damage(20, 10)
+						
 					else:
 						# Move the sprite towards the attraction point
 						position += direction * 30 * get_process_delta_time()
@@ -193,6 +212,11 @@ func gain_energy(amount):
 	lose_energy.emit(-amount)
 
 
-func _on_fist_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Enemy"):
-		body.take_damage(5, 100 * facing_right)
+func _on_fist_area_area_entered(area: Area2D) -> void:
+	print('fist hit something')
+	print(area)
+	#if(area is CharacterBody2D):
+	#	if area.has_method("take_damage"):
+	#		area.take_damage(20, 10) # Call a method from the script
+	#		print("Called a function on the hit object!")
+	pass # Replace with function body.

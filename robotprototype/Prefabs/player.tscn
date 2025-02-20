@@ -386,3 +386,4 @@ zoom = Vector2(3, 3)
 color = Color(0.505344, 0.505344, 0.505344, 0.905882)
 
 [connection signal="timeout" from="EnergyDrain" to="." method="_on_energy_drain_timeout"]
+[connection signal="body_entered" from="FistArea" to="." method="_on_fist_area_body_entered"]

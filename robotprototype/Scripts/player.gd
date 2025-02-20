@@ -35,8 +35,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	if energy <= 0:
-		speed = 70
-		jump_velocity = -150
+		speed = 80
+		jump_velocity = -200
 		
 	# Enable double jump
 	if robot_parts[0] == 1 and is_on_floor():
@@ -191,3 +191,8 @@ func get_upgrade(id, upgrade_drain_rate, upgrade_speed, upgrade_jump):
 func gain_energy(amount):
 	energy += amount
 	lose_energy.emit(-amount)
+
+
+func _on_fist_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		body.take_damage(5, 100 * facing_right)

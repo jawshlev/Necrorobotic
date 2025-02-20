@@ -1,204 +1,35 @@
-[gd_scene load_steps=20 format=3 uid="uid://ywwtble31omj"]
+[gd_scene load_steps=5 format=3 uid="uid://ywwtble31omj"]
 
-[ext_resource type="Script" path="res://Scripts/enemy_flying.gd" id="1_eagd8"]
-[ext_resource type="Texture2D" uid="uid://5im2j58wef3f" path="res://Assets/Sprites/aeroGoblin_SpriteSheet.png" id="2_s8iie"]
+[ext_resource type="Script" path="res://enemy_flying.gd" id="1_eagd8"]
+[ext_resource type="Texture2D" uid="uid://ceerijwbe7ooi" path="res://Sprites/cavebat.png" id="2_stsfd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kt8"]
 size = Vector2(29, 13)
 
-[sub_resource type="Animation" id="Animation_20rno"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_0q2re"]
-resource_name = "hostile_flying"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_rwsnt"]
-resource_name = "hostile_flying_attack"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11, 12, 13, 14, 15]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_uo7lx"]
-resource_name = "hostile_flying_attack_right"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11, 12, 13, 14, 15]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_d3ef8"]
-_data = {
-"RESET": SubResource("Animation_20rno"),
-"hostile_flying": SubResource("Animation_0q2re"),
-"hostile_flying_attack": SubResource("Animation_rwsnt"),
-"hostile_flying_attack_right": SubResource("Animation_uo7lx")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ylgt"]
-size = Vector2(31, 15)
+size = Vector2(29, 13)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jy26q"]
-size = Vector2(121, 113)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_47ay0"]
-animation = &"hostile_flying_attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bdx5h"]
-animation = &"hostile_flying_attack_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jw0lc"]
-animation = &"hostile_flying_attack"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_aaod0"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_47ay0")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_bdx5h")
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_jw0lc")
-blend_point_2/pos = 0.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fonsq"]
-animation = &"hostile_flying"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ltwe8"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a7be8"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_htx8b"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_34hp8"]
-states/Attack/node = SubResource("AnimationNodeBlendSpace1D_aaod0")
-states/Attack/position = Vector2(616, 58)
-states/hostile_flying/node = SubResource("AnimationNodeAnimation_fonsq")
-states/hostile_flying/position = Vector2(324, 106)
-transitions = ["Start", "hostile_flying", SubResource("AnimationNodeStateMachineTransition_ltwe8"), "hostile_flying", "Attack", SubResource("AnimationNodeStateMachineTransition_a7be8"), "Attack", "hostile_flying", SubResource("AnimationNodeStateMachineTransition_htx8b")]
-
-[node name="enemy_flying" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Node2D" type="Node2D"]
 position = Vector2(-1, -1)
+
+[node name="enemy_flying" type="CharacterBody2D" parent="."]
+collision_layer = 2
 script = ExtResource("1_eagd8")
 patrol_distance = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_flying"]
 position = Vector2(4.5, -3.5)
 shape = SubResource("RectangleShape2D_p2kt8")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-0.5, 0.5)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_s8iie")
-hframes = 8
-vframes = 2
+[node name="Sprite2D" type="Sprite2D" parent="enemy_flying/CollisionShape2D"]
+position = Vector2(-4.76837e-07, 0.999998)
+scale = Vector2(0.113281, 0.0976562)
+texture = ExtResource("2_stsfd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D/Sprite2D"]
-libraries = {
-"": SubResource("AnimationLibrary_d3ef8")
-}
+[node name="Area2D" type="Area2D" parent="enemy_flying"]
 
-[node name="DamageArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_flying/Area2D"]
 position = Vector2(4.5, -3.5)
 shape = SubResource("RectangleShape2D_1ylgt")
 
-[node name="DetectionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(4.5, 19.5)
-shape = SubResource("RectangleShape2D_jy26q")
-
-[node name="SwoopTimer" type="Timer" parent="."]
-
-[node name="GracePeriodTimer" type="Timer" parent="."]
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../CollisionShape2D/Sprite2D")
-tree_root = SubResource("AnimationNodeStateMachine_34hp8")
-anim_player = NodePath("../CollisionShape2D/Sprite2D/AnimationPlayer")
-parameters/Attack/blend_position = 0.39596
-
-[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="timeout" from="SwoopTimer" to="." method="_on_timer_timeout"]
+[node name="Timer" type="Timer" parent="enemy_flying"]

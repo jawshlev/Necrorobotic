@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b62pbuqkj4ign" path="res://Prefabs/platform.tscn" id="3_wd5p7"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="6_4tatm"]
 [ext_resource type="PackedScene" uid="uid://y4ex0j8qakjk" path="res://Prefabs/enemy_goomba.tscn" id="8_tthrt"]
-[ext_resource type="PackedScene" uid="uid://ywwtble31omj" path="res://enemy_flying.tscn" id="9_2ecmv"]
+[ext_resource type="PackedScene" uid="uid://ywwtble31omj" path="res://Prefabs/enemy_flying.tscn" id="9_2ecmv"]
 [ext_resource type="Script" path="res://Scripts/hazard.gd" id="9_nh8qr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]

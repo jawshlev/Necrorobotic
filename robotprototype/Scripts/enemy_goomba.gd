@@ -11,6 +11,7 @@ const contact_damage = 5
 const knockback = 200
 const energy = 5
 var health = 20
+var immobile = false
 signal on_death
 
 var direction: int = 1
@@ -23,9 +24,10 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
-	if is_on_wall() or !is_ground_ahead():
-		flip_direction()
-	velocity.x = direction * speed
+	if !immobile:
+		if is_on_wall() or !is_ground_ahead():
+			flip_direction()
+		velocity.x = direction * speed
 	move_and_slide()
 
 func is_ground_ahead() -> bool:
@@ -57,8 +59,13 @@ func is_player_in_front(player: Node2D) -> bool:
 	var player_right = player.global_position.x > global_position.x and direction == 1
 	return player_left or player_right
 
-func take_damage(damage, _knockback):
+func take_damage(damage, knockback):
 	health -= damage
 	if health <= 0:
 		on_death.emit(energy)
 		queue_free()
+	immobile = true
+	velocity.x = knockback
+	velocity.y = -100
+	move_and_slide()
+	get_tree().create_timer(0.25).timeout.connect(func(): immobile = false)

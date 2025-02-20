@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cof414boiped"]
+
+[ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="1_5p6iw"]
+[ext_resource type="Texture2D" uid="uid://oyqurgkct2yk" path="res://Sprites/BootsSpawn.png" id="2_0hras"]
+[ext_resource type="Script" path="res://Prefabs/sprite_2d.gd" id="3_eoae2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
+
+[node name="Robo-Boots" type="Area2D"]
+script = ExtResource("1_5p6iw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_egwpa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -5)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_0hras")
+script = ExtResource("3_eoae2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

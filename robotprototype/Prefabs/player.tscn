@@ -122,7 +122,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ol4xr"]
 resource_name = "player_attack"
-length = 0.45
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -130,7 +130,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"times": PackedFloat32Array(0, 0.015, 0.03, 0.045, 0.06, 0.075, 0.09, 0.105, 0.12),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [9, 10, 11, 12, 13, 14, 15, 16, 17]
@@ -142,7 +142,7 @@ tracks/1/path = NodePath("../../FistArea/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4),
+"times": PackedFloat32Array(0, 0.045, 0.12),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -174,7 +174,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_gs81y"]
 resource_name = "player_attack_right"
-length = 0.45
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -182,7 +182,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"times": PackedFloat32Array(0, 0.015, 0.03, 0.045, 0.06, 0.075, 0.09, 0.105, 0.12),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [9, 10, 11, 12, 13, 14, 15, 16, 17]
@@ -194,7 +194,7 @@ tracks/1/path = NodePath("../../FistArea/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4),
+"times": PackedFloat32Array(0, 0.045, 0.12),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -556,6 +556,7 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qb676"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nr5dl"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5wgk"]
 switch_mode = 2
@@ -573,7 +574,7 @@ states/Walk/position = Vector2(-30, 65)
 states/flash_dmg/node = SubResource("AnimationNodeAnimation_bj7u8")
 states/flash_dmg/position = Vector2(555, 65)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tjbh7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_5le6a"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_eabbx"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_rmqla"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wikgp"), "Walk", "Punch", SubResource("AnimationNodeStateMachineTransition_8v8cv"), "Walk", "flash_dmg", SubResource("AnimationNodeStateMachineTransition_xwph7"), "Idle", "flash_dmg", SubResource("AnimationNodeStateMachineTransition_nr3ji"), "Idle", "Punch", SubResource("AnimationNodeStateMachineTransition_qb676"), "Punch", "Idle", SubResource("AnimationNodeStateMachineTransition_nr5dl"), "flash_dmg", "Idle", SubResource("AnimationNodeStateMachineTransition_s5wgk")]
-graph_offset = Vector2(-460, 26)
+graph_offset = Vector2(-584, 98)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_byh54")
@@ -608,7 +609,6 @@ position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_e6wna")
 
 [node name="Boots" type="Sprite2D" parent="BodyArea"]
-visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_m5tll")
 hframes = 9

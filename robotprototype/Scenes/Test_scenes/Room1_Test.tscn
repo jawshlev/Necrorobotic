@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=33 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -27,9 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://dgmi2wgmfdk4j" path="res://Scenes/Test_scenes/RoomAB.png" id="24_0xngi"]
 [ext_resource type="Texture2D" uid="uid://cvvscx53in872" path="res://Scenes/Test_scenes/RoomCD.png" id="25_68c3u"]
 [ext_resource type="PackedScene" uid="uid://y4ex0j8qakjk" path="res://Prefabs/enemy_goomba.tscn" id="27_831t3"]
-[ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="28_pp8el"]
 [ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="29_3qgiv"]
-[ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="29_swle1"]
+[ext_resource type="PackedScene" uid="uid://cof414boiped" path="res://Prefabs/robo_boots.tscn" id="29_v2kny"]
+[ext_resource type="PackedScene" uid="uid://bmx2swlj0ent" path="res://Scenes/gameOver.tscn" id="30_h3p1n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("3_uiuuk")
@@ -417,8 +417,6 @@ terrain_set_0/terrain_0/name = "base 0"
 terrain_set_0/terrain_0/color = Color(0.834076, 0.131196, 0.395326, 1)
 sources/0 = SubResource("TileSetAtlasSource_pak5s")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_buhbc"]
-
 [node name="Room1Test" type="Node2D"]
 script = ExtResource("1_gdvhm")
 
@@ -426,10 +424,6 @@ script = ExtResource("1_gdvhm")
 
 [node name="Player" parent="." instance=ExtResource("2_4b4x4")]
 position = Vector2(0, 64)
-
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-position = Vector2(0, -64)
-zoom = Vector2(2, 2)
 
 [node name="AllRoomsDraft" type="Node2D" parent="."]
 visible = false
@@ -535,19 +529,26 @@ tile_set = SubResource("TileSet_yd28x")
 [node name="enemy_goomba" parent="." instance=ExtResource("27_831t3")]
 position = Vector2(110, 52)
 
-[node name="Robo-Boots" type="Area2D" parent="."]
-position = Vector2(250, -9)
-script = ExtResource("28_pp8el")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Robo-Boots"]
-shape = SubResource("RectangleShape2D_buhbc")
-
-[node name="Sprite2D" type="Sprite2D" parent="Robo-Boots"]
-position = Vector2(3.8147e-06, -3.8147e-06)
-scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("29_swle1")
-
 [node name="Area2D" parent="." instance=ExtResource("29_3qgiv")]
-position = Vector2(1273, 25)
+position = Vector2(-22, -308)
 
-[connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]
+[node name="enemy_goomba2" parent="." instance=ExtResource("27_831t3")]
+position = Vector2(461, -97)
+
+[node name="enemy_goomba3" parent="." instance=ExtResource("27_831t3")]
+position = Vector2(771, -170)
+
+[node name="enemy_goomba4" parent="." instance=ExtResource("27_831t3")]
+position = Vector2(1084, -271)
+
+[node name="Robo-Boots2" parent="." instance=ExtResource("29_v2kny")]
+position = Vector2(1272, 35)
+
+[node name="GameOver" parent="." instance=ExtResource("30_h3p1n")]
+visible = false
+visibility_layer = 2
+offset_left = -6.0
+offset_top = 52.0
+offset_right = -6.0
+offset_bottom = 52.0
+scale = Vector2(0.35, 0.35)

@@ -18,7 +18,19 @@ func _process(delta):
 
 func restart():
 	Engine.time_scale = 1
-	get_tree().reload_current_scene()
+	var main_scene = get_parent()
+	var spawn_nodes = get_tree().get_nodes_in_group("spawnPoint")
+	var player_node = get_tree().get_nodes_in_group("player")
+	for child in spawn_nodes:
+		#print("Found a Spawn!", child.position)
+		respawn = child.position
+	
+	for col in player_node:
+		#print("Found a Player!", col.position)
+		var player = col.get_parent()
+		player.position = respawn
+		player.show()
+		hide()
 
 
 func _on_resume_pressed() -> void:

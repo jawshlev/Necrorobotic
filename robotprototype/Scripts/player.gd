@@ -19,6 +19,7 @@ var energy = 100.0 #Player's energy
 var health = 100 #Player's health
 var invincible = false #Is player invincible
 var immobile = false #Can the player move
+var defeated = false #Can the player move
 var contact_damage = 0 #How much contact damage should they take
 var drain_rate = 0 #How much energy drains per second
 const dash_drain = 5 #How much energy the dash drains
@@ -35,16 +36,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	if energy <= 0:
-		speed = 70
-		jump_velocity = -150
+		speed = 80
+		jump_velocity = -200
 		
 	# Enable double jump
 	if robot_parts[0] == 1 and is_on_floor():
 		double_jump = true
 		
 	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	if(!defeated):
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 
 	if not immobile:
 
@@ -90,21 +92,16 @@ func _physics_process(delta: float) -> void:
 				double_jump = false
 			velocity.y = jump_velocity	
 		
-	print(facing_right)
+	#print(game_Over_Menu.visible)
 	move_and_slide()
 	melee_attack()
 	targetAreaCast()
-
-func game_Over():
-	if health == 0:
-		get_parent().add_child(get_parent().gameOver_menu)
-		#self.queue_free()
 
 func melee_attack():
 	#checks for a regular melee attack if no head is equipped
 	if Input.is_action_pressed("attack") and robot_parts[3]==0:
 		pl_animations.travel("Punch")
-		print(facing_right,0)
+		#print(facing_right,0)
 		var face_dir = Vector2(facing_right, 0)
 		$AnimationTree.set("parameters/Punch/blend_position", face_dir)
 
@@ -142,14 +139,14 @@ func get_FOV_circle(from:Vector2, radius):
 					# Get the direction vector towards the attraction point
 					var direction = (result.position - pos).normalized()
 					if position.distance_to(result.position) < (radius-25):
-						print("Attraction complete!")
-						print(result)
+						#print("Attraction complete!")
+						#print(result)
 						position = result.position  # Snap to the target
 						if(result.collider is CharacterBody2D):
 							
 							if result.collider.has_method("take_damage"):
 								result.collider.take_damage(20, 10) # Call a method from the script
-								print("Called a function on the hit object!")
+								#print("Called a function on the hit object!")
 							#result.take_damage(20, 10)
 						
 					else:
@@ -191,15 +188,22 @@ func enter_hurtbox(damage, knockback):
 	if(!invincible):
 		health -= damage
 		if health <= 0:
-			self.queue_free()
+			immobile = true
+			self.collision_layer = 0  # Disable collision layer
+			self.collision_mask = 0
+			defeated = true
+			$"../UI".hide()
+			self.hide()
+			game_Over_Menu.visible = !game_Over_Menu.visible
 		take_damage.emit(damage)
 		invincible = true
 		get_tree().create_timer(1).timeout.connect(func(): invincible = false)
-	velocity.x = knockback
-	velocity.y = -100
-	immobile = true
-	move_and_slide()
-	get_tree().create_timer(0.25).timeout.connect(func(): immobile = false)
+	else:
+		velocity.x = knockback
+		velocity.y = -100
+		immobile = true
+		move_and_slide()
+		get_tree().create_timer(0.25).timeout.connect(func(): immobile = false)
 	
 func get_upgrade(id, upgrade_drain_rate, upgrade_speed, upgrade_jump):
 	robot_parts[id] = 1
@@ -213,8 +217,8 @@ func gain_energy(amount):
 
 
 func _on_fist_area_area_entered(area: Area2D) -> void:
-	print('fist hit something')
-	print(area)
+	#print('fist hit something')
+	#print(area)
 	#if(area is CharacterBody2D):
 	#	if area.has_method("take_damage"):
 	#		area.take_damage(20, 10) # Call a method from the script

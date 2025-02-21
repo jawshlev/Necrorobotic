@@ -90,7 +90,6 @@ func _physics_process(delta: float) -> void:
 				double_jump = false
 			velocity.y = jump_velocity	
 		
-	print(facing_right)
 	move_and_slide()
 	melee_attack()
 	targetAreaCast()
@@ -104,7 +103,6 @@ func melee_attack():
 	#checks for a regular melee attack if no head is equipped
 	if Input.is_action_pressed("attack") and robot_parts[3]==0:
 		pl_animations.travel("Punch")
-		print(facing_right,0)
 		var face_dir = Vector2(facing_right, 0)
 		$AnimationTree.set("parameters/Punch/blend_position", face_dir)
 

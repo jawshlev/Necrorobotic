@@ -38,7 +38,7 @@ position = Vector2(688, 25)
 [node name="UI" parent="." instance=ExtResource("6_4tatm")]
 
 [node name="Hazard" type="Area2D" parent="."]
-position = Vector2(674, 79)
+position = Vector2(670, 285)
 script = ExtResource("9_nh8qr")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Hazard"]
@@ -54,23 +54,23 @@ texture = ExtResource("3_24hge")
 position = Vector2(221, 144)
 collision_layer = 2
 
-[node name="Node2D6" parent="." instance=ExtResource("9_2ecmv")]
-position = Vector2(513, 57)
-
-[node name="enemy_flying" parent="Node2D6" index="0"]
-player_path = NodePath("../../Player")
-
-[node name="enemy_goomba" parent="." instance=ExtResource("8_tthrt")]
+[node name="enemy_goomba2" parent="." instance=ExtResource("8_tthrt")]
 position = Vector2(221, 144)
 collision_layer = 2
 
 [node name="Node2D6" parent="." instance=ExtResource("9_2ecmv")]
-position = Vector2(513, 57)
+position = Vector2(153, -72)
 
 [node name="enemy_flying" parent="Node2D6" index="0"]
+collision_mask = 0
 player_path = NodePath("../../Player")
 
-[connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]
+[node name="DamageArea" parent="Node2D6/enemy_flying" index="1"]
+collision_layer = 2
+
+[node name="DetectionArea" parent="Node2D6/enemy_flying" index="2"]
+collision_layer = 2
+
 [connection signal="body_entered" from="Hazard" to="Hazard" method="_on_body_entered"]
 [connection signal="body_exited" from="Hazard" to="Hazard" method="_on_body_exited"]
 

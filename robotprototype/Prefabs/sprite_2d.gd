@@ -13,5 +13,5 @@ func _ready():
 
 func _process(delta):
 	# Use a sine function to oscillate the y position
-	print(position.y)
+	#print(position.y)
 	position.y = initial_position.y + amplitude * sin(speed * global_position.x + (Time.get_unix_time_from_system()*1000) * 0.001)

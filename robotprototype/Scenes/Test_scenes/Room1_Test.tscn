@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://y4ex0j8qakjk" path="res://Prefabs/enemy_goomba.tscn" id="27_831t3"]
 [ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="28_pp8el"]
 [ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="29_3qgiv"]
-[ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="29_swle1"]
+[ext_resource type="Texture2D" uid="uid://dsmyxysbyoe0w" path="res://Assets/Shoes.png" id="29_lm4j1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("3_uiuuk")
@@ -536,19 +536,19 @@ tile_set = SubResource("TileSet_yd28x")
 position = Vector2(695, -154)
 
 [node name="Robo-Boots" type="Area2D" parent="."]
-position = Vector2(250, -9)
+position = Vector2(1269, 37)
 script = ExtResource("28_pp8el")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Robo-Boots"]
 shape = SubResource("RectangleShape2D_buhbc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Robo-Boots"]
-position = Vector2(3.8147e-06, -3.8147e-06)
-scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("29_swle1")
+position = Vector2(8.58307e-06, 0)
+scale = Vector2(0.0555556, 0.0555556)
+texture = ExtResource("29_lm4j1")
 
 [node name="Area2D" parent="." instance=ExtResource("29_3qgiv")]
-position = Vector2(1278, 30)
+position = Vector2(2732, -880)
 
 [node name="Enemies" type="Node2D" parent="."]
 

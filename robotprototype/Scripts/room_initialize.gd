@@ -18,11 +18,14 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("ui_cancel"):  # Default mapping for Escape key
 		print("Pausing")
+		
+		$Player.immobile = true
 		Engine.time_scale = 0
 		add_child(pause_menu)
 
 func hide_pause_UI():
 	Engine.time_scale = 1
+	$Player.immobile = false
 	remove_child(pause_menu)
 	
 	

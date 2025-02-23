@@ -3,10 +3,13 @@ extends CharacterBody2D
 @onready var space_state = get_world_2d().direct_space_state
 @onready var animations: AnimationPlayer = $BodyArea/MeshInstance2D/AnimationPlayer
 @onready var game_Over_Menu = $"../GameOver"
+@onready var defaultAnimations = $DefaultAnimationTree
+@onready var bootAnimations = $BootAnimationTree
 
 const pos = Vector2(0,0)
 
 var pl_animations
+var boot_animations
 var speed = 150.0 #Player's speed
 var jump_velocity = -300.0 #Player's Jump Height
 var FOV_scalar = 2*PI/90 # the rendered field of view for the Area of Attack
@@ -30,7 +33,8 @@ signal lose_energy
 signal take_damage
 
 func _ready() -> void:
-	pl_animations = $AnimationTree.get("parameters/playback")
+	pl_animations = defaultAnimations.get("parameters/playback")
+	$BodyArea/Boots.visible = false
 	pass
 	
 func _physics_process(delta: float) -> void:
@@ -38,7 +42,11 @@ func _physics_process(delta: float) -> void:
 	if energy <= 0:
 		speed = 80
 		jump_velocity = -200
-		
+	
+	if robot_parts[0] == 1:
+		$BodyArea/Boots.visible = true
+		boot_animations = bootAnimations.get("parameters/playback")
+	
 	# Enable double jump
 	if robot_parts[0] == 1 and is_on_floor():
 		double_jump = true
@@ -67,7 +75,10 @@ func _physics_process(delta: float) -> void:
 #			print(facing_right)
 			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Walk")
-			$AnimationTree.set("parameters/Walk/blend_position", face_dir)
+			defaultAnimations.set("parameters/Walk/blend_position", face_dir)
+			if robot_parts[0] == 1:
+				boot_animations.travel("Walk")
+				bootAnimations.set("parameters/Walk/blend_position", face_dir)
 			if abs(velocity.x) > abs(speed):
 				if velocity.x < 0:
 					velocity.x += 100
@@ -78,14 +89,20 @@ func _physics_process(delta: float) -> void:
 		else:
 			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Idle")
-			$AnimationTree.set("parameters/Idle/blend_position", face_dir)
+			defaultAnimations.set("parameters/Idle/blend_position", face_dir)
+			if robot_parts[0] == 1:
+				boot_animations.travel("Idle")
+				bootAnimations.set("parameters/Idle/blend_position", face_dir)
 			velocity.x = move_toward(velocity.x, 0, speed)
 			
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
 			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Jump")
-			$AnimationTree.set("parameters/Jump/blend_position", face_dir)
+			defaultAnimations.set("parameters/Jump/blend_position", face_dir)
+			if robot_parts[0] == 1:
+				boot_animations.travel("Jump")
+				bootAnimations.set("parameters/Jump/blend_position", face_dir)
 			if(not is_on_floor()):
 				energy -= jump_drain
 				lose_energy.emit(jump_drain)
@@ -99,11 +116,14 @@ func _physics_process(delta: float) -> void:
 
 func melee_attack():
 	#checks for a regular melee attack if no head is equipped
-	if Input.is_action_pressed("attack") and robot_parts[3]==0:
+	if Input.is_action_just_pressed("attack") and robot_parts[3]==0:
 		pl_animations.travel("Punch")
 		#print(facing_right,0)
 		var face_dir = Vector2(facing_right, 0)
-		$AnimationTree.set("parameters/Punch/blend_position", face_dir)
+		defaultAnimations.set("parameters/Punch/blend_position", face_dir)
+		if robot_parts[0] == 1:
+				boot_animations.travel("Punch")
+				bootAnimations.set("parameters/Punch/blend_position", face_dir)
 
 func targetAreaCast():
 	if robot_parts[3]!=0:

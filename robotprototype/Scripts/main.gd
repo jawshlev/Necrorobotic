@@ -4,6 +4,7 @@ extends Node2D
 #var last_pressed_time = 0.0
 #var delay_time = 1000.0  # Delay time in milliseconds (1 second)
 @onready var pause_menu = preload("res://Scenes/pause_screen.tscn").instantiate()
+@onready var gameOver_menu = preload("res://Scenes/gameOver.tscn").instantiate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

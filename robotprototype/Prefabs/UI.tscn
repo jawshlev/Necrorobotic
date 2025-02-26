@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://clbanbc2js845"]
+
+[ext_resource type="Texture2D" uid="uid://jmvdow6gkxpn" path="res://Assets/healthbar.png" id="1_obbnm"]
+[ext_resource type="Script" path="res://Scripts/resource_bar.gd" id="2_f6g1g"]
+[ext_resource type="Texture2D" uid="uid://vrwbopw1lv4c" path="res://Assets/energybar.png" id="3_tyf75"]
+[ext_resource type="AudioStream" uid="uid://63ovmxtjx4cs" path="res://Assets/LowEnergy.mp3" id="4_5ta5u"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l0whq"]
+size = Vector2(320, 9)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3sf66"]
+size = Vector2(320, 9)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Health Bar" type="TextureProgressBar" parent="."]
+offset_right = 350.0
+offset_bottom = 25.0
+value = 100.0
+texture_over = ExtResource("1_obbnm")
+texture_progress = SubResource("PlaceholderTexture2D_l0whq")
+texture_progress_offset = Vector2(25, 8)
+script = ExtResource("2_f6g1g")
+
+[node name="Energy Bar" type="TextureProgressBar" parent="."]
+offset_top = 25.0
+offset_right = 350.0
+offset_bottom = 50.0
+value = 100.0
+texture_over = ExtResource("3_tyf75")
+texture_progress = SubResource("PlaceholderTexture2D_3sf66")
+texture_progress_offset = Vector2(25, 8)
+script = ExtResource("2_f6g1g")
+
+[node name="LowEnergyWarning" type="AudioStreamPlayer" parent="Energy Bar"]
+stream = ExtResource("4_5ta5u")

@@ -935,4 +935,4 @@ parameters/Punch/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
 
 [connection signal="timeout" from="EnergyDrain" to="." method="_on_energy_drain_timeout"]
-[connection signal="area_entered" from="FistArea" to="." method="_on_fist_area_area_entered"]
+[connection signal="body_entered" from="FistArea" to="." method="_on_fist_area_body_entered"]

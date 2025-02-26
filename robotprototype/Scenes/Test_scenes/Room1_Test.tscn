@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=34 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -27,9 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://dgmi2wgmfdk4j" path="res://Scenes/Test_scenes/RoomAB.png" id="24_0xngi"]
 [ext_resource type="Texture2D" uid="uid://cvvscx53in872" path="res://Scenes/Test_scenes/RoomCD.png" id="25_68c3u"]
 [ext_resource type="PackedScene" uid="uid://y4ex0j8qakjk" path="res://Prefabs/enemy_goomba.tscn" id="27_831t3"]
+[ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="28_pp8el"]
 [ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="29_3qgiv"]
-[ext_resource type="PackedScene" uid="uid://cof414boiped" path="res://Prefabs/robo_boots.tscn" id="29_v2kny"]
-[ext_resource type="PackedScene" uid="uid://bmx2swlj0ent" path="res://Scenes/gameOver.tscn" id="30_h3p1n"]
+[ext_resource type="Texture2D" uid="uid://dsmyxysbyoe0w" path="res://Assets/Shoes.png" id="29_lm4j1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("3_uiuuk")
@@ -417,6 +417,8 @@ terrain_set_0/terrain_0/name = "base 0"
 terrain_set_0/terrain_0/color = Color(0.834076, 0.131196, 0.395326, 1)
 sources/0 = SubResource("TileSetAtlasSource_pak5s")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buhbc"]
+
 [node name="Room1Test" type="Node2D"]
 script = ExtResource("1_gdvhm")
 
@@ -424,6 +426,10 @@ script = ExtResource("1_gdvhm")
 
 [node name="Player" parent="." instance=ExtResource("2_4b4x4")]
 position = Vector2(0, 64)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+position = Vector2(0, -64)
+zoom = Vector2(2, 2)
 
 [node name="AllRoomsDraft" type="Node2D" parent="."]
 visible = false
@@ -527,28 +533,356 @@ tile_map_data = PackedByteArray("AAD7/wUAAAAAAAIAAAD8/wUAAAADAAMAAAD8/wQAAAACAAE
 tile_set = SubResource("TileSet_yd28x")
 
 [node name="enemy_goomba" parent="." instance=ExtResource("27_831t3")]
-position = Vector2(110, 52)
+position = Vector2(695, -154)
+
+[node name="Robo-Boots" type="Area2D" parent="."]
+position = Vector2(1269, 37)
+script = ExtResource("28_pp8el")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Robo-Boots"]
+shape = SubResource("RectangleShape2D_buhbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Robo-Boots"]
+position = Vector2(8.58307e-06, 0)
+scale = Vector2(0.0555556, 0.0555556)
+texture = ExtResource("29_lm4j1")
 
 [node name="Area2D" parent="." instance=ExtResource("29_3qgiv")]
-position = Vector2(-22, -308)
+position = Vector2(2732, -880)
 
-[node name="enemy_goomba2" parent="." instance=ExtResource("27_831t3")]
-position = Vector2(461, -97)
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="enemy_goomba3" parent="." instance=ExtResource("27_831t3")]
-position = Vector2(771, -170)
+[node name="enemy_goomba2" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1134, -272)
 
-[node name="enemy_goomba4" parent="." instance=ExtResource("27_831t3")]
-position = Vector2(1084, -271)
+[node name="enemy_goomba3" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1418, -271)
 
-[node name="Robo-Boots2" parent="." instance=ExtResource("29_v2kny")]
-position = Vector2(1272, 35)
+[node name="enemy_goomba4" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1668, -414)
 
-[node name="GameOver" parent="." instance=ExtResource("30_h3p1n")]
-visible = false
-visibility_layer = 2
-offset_left = -6.0
-offset_top = 52.0
-offset_right = -6.0
-offset_bottom = 52.0
-scale = Vector2(0.35, 0.35)
+[node name="enemy_goomba5" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2329, -877)
+
+[node name="enemy_goomba6" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2384, -604)
+
+[node name="enemy_goomba7" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2204, -446)
+
+[node name="enemy_goomba8" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4010, -877)
+
+[node name="enemy_goomba9" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4152, -957)
+
+[node name="enemy_goomba10" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4299, -877)
+
+[node name="enemy_goomba11" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4151, -798)
+
+[node name="enemy_goomba12" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4006, -717)
+
+[node name="enemy_goomba13" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4303, -721)
+
+[node name="enemy_goomba14" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4155, -637)
+
+[node name="enemy_goomba15" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5226, -765)
+
+[node name="enemy_goomba16" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5590, -637)
+
+[node name="enemy_goomba17" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6000, -942)
+
+[node name="enemy_goomba18" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5536, -1229)
+
+[node name="enemy_goomba19" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5906, -1342)
+
+[node name="enemy_goomba20" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6214, -1345)
+
+[node name="enemy_goomba21" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6927, -1218)
+
+[node name="enemy_goomba22" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7845, -1363)
+
+[node name="enemy_goomba24" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8016, -768)
+
+[node name="enemy_goomba25" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8310, -1009)
+
+[node name="enemy_goomba26" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7644, -207)
+
+[node name="enemy_goomba27" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8262, -206)
+
+[node name="enemy_goomba32" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9146, 62)
+
+[node name="enemy_goomba33" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9504, 65)
+
+[node name="enemy_goomba34" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(10028, 386)
+
+[node name="enemy_goomba35" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8973, 546)
+
+[node name="enemy_goomba36" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8973, 546)
+
+[node name="enemy_goomba37" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9724, 700)
+
+[node name="enemy_goomba39" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9438, 1601)
+
+[node name="enemy_goomba40" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(10178, 1758)
+
+[node name="enemy_goomba41" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9552, 2746)
+
+[node name="enemy_goomba42" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(10223, 2883)
+
+[node name="enemy_goomba43" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9470, 3730)
+
+[node name="enemy_goomba44" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9992, 3730)
+
+[node name="enemy_goomba45" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9551, 4228)
+
+[node name="enemy_goomba46" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9692, 5350)
+
+[node name="enemy_goomba47" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9259, 5089)
+
+[node name="enemy_goomba48" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(10224, 5359)
+
+[node name="enemy_goomba49" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(10040, 5819)
+
+[node name="enemy_goomba50" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(10040, 5819)
+
+[node name="enemy_goomba51" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9211, 5856)
+
+[node name="enemy_goomba52" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8894, 6066)
+
+[node name="enemy_goomba111" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8570, 6478)
+
+[node name="enemy_goomba54" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7862, 6661)
+
+[node name="enemy_goomba55" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6768, 6955)
+
+[node name="enemy_goomba56" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6275, 6954)
+
+[node name="enemy_goomba58" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7720, 5699)
+
+[node name="enemy_goomba63" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6815, 4568)
+
+[node name="enemy_goomba64" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8404, 4223)
+
+[node name="enemy_goomba66" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7041, 4342)
+
+[node name="enemy_goomba67" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8206, 2622)
+
+[node name="enemy_goomba68" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7793, 2025)
+
+[node name="enemy_goomba69" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7984, 1834)
+
+[node name="enemy_goomba70" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7407, 2786)
+
+[node name="enemy_goomba71" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6145, 1197)
+
+[node name="enemy_goomba72" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6731, 1206)
+
+[node name="enemy_goomba73" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4333, 999)
+
+[node name="enemy_goomba74" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3237, 996)
+
+[node name="enemy_goomba75" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3829, 1994)
+
+[node name="enemy_goomba76" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1869, 1374)
+
+[node name="enemy_goomba77" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2285, 1372)
+
+[node name="enemy_goomba78" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2350, 1790)
+
+[node name="enemy_goomba81" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2350, 1790)
+
+[node name="enemy_goomba82" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(702, 1079)
+
+[node name="enemy_goomba83" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1128, 1084)
+
+[node name="enemy_goomba84" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1264, 1638)
+
+[node name="enemy_goomba85" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(853, 2029)
+
+[node name="enemy_goomba86" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(533, 2483)
+
+[node name="enemy_goomba87" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(533, 2483)
+
+[node name="enemy_goomba88" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1155, 2259)
+
+[node name="enemy_goomba89" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1445, 2650)
+
+[node name="enemy_goomba90" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(976, 2937)
+
+[node name="enemy_goomba91" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(1556, 3592)
+
+[node name="enemy_goomba92" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2435, 3831)
+
+[node name="enemy_goomba93" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3576, 3073)
+
+[node name="enemy_goomba94" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3921, 3075)
+
+[node name="enemy_goomba95" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3926, 4597)
+
+[node name="enemy_goomba96" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4170, 5176)
+
+[node name="enemy_goomba98" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3567, 5174)
+
+[node name="enemy_goomba99" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2771, 5472)
+
+[node name="enemy_goomba102" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5427, 5891)
+
+[node name="enemy_goomba103" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3951, 6030)
+
+[node name="enemy_goomba109" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3227, 7068)
+
+[node name="enemy_goomba110" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4357, 6954)
+
+[node name="enemy_goomba104" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5080, 6038)
+
+[node name="enemy_goomba108" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3646, 5585)
+
+[node name="enemy_goomba105" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4475, 5413)
+
+[node name="enemy_goomba106" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4184, 5758)
+
+[node name="enemy_goomba107" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4925, 5769)
+
+[node name="enemy_goomba100" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2484, 6056)
+
+[node name="enemy_goomba101" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(3179, 4806)
+
+[node name="enemy_goomba97" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(4158, 4201)
+
+[node name="enemy_goomba79" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2204, 1112)
+
+[node name="enemy_goomba80" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(2204, 1112)
+
+[node name="enemy_goomba65" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8295, 4649)
+
+[node name="enemy_goomba61" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6809, 5902)
+
+[node name="enemy_goomba62" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(7621, 6040)
+
+[node name="enemy_goomba59" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5645, 6595)
+
+[node name="enemy_goomba60" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6524, 6483)
+
+[node name="enemy_goomba57" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5697, 6949)
+
+[node name="enemy_goomba53" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9218, 6275)
+
+[node name="enemy_goomba38" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8745, 864)
+
+[node name="enemy_goomba28" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5871, -5)
+
+[node name="enemy_goomba30" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(5871, -5)
+
+[node name="enemy_goomba29" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6259, 416)
+
+[node name="enemy_goomba31" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(6790, 749)
+
+[node name="enemy_goomba23" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(8234, -1366)
+
+[node name="enemy_goomba" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(9122, 2076)
+
+[connection signal="body_entered" from="Robo-Boots" to="Robo-Boots" method="_on_body_entered"]

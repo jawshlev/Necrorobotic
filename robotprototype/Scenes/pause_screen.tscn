@@ -26,13 +26,22 @@ offset_right = 602.0
 offset_bottom = 301.0
 text = "Resume"
 
+[node name="Restart" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 321.0
+offset_right = 601.0
+offset_bottom = 356.0
+text = "Restart"
+
 [node name="Quit" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 539.0
-offset_top = 344.0
-offset_right = 591.0
-offset_bottom = 379.0
+offset_left = 538.0
+offset_top = 378.0
+offset_right = 590.0
+offset_bottom = 413.0
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/Quit" to="." method="_on_quit_pressed"]

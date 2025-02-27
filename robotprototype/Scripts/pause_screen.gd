@@ -21,3 +21,8 @@ func _on_start_button_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 	pass # Replace with function body.
+
+
+func _on_restart_pressed() -> void:
+	Engine.time_scale = 1
+	get_tree().reload_current_scene()

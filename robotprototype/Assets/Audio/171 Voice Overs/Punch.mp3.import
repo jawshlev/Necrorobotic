@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcue13gbvqdh6"
+path="res://.godot/imported/Punch.mp3-190d96451bef5b8f4027d56e34d54fb3.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/171 Voice Overs/Punch.mp3"
+dest_files=["res://.godot/imported/Punch.mp3-190d96451bef5b8f4027d56e34d54fb3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

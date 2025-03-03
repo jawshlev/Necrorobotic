@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0e7b0mcedym2"
+path="res://.godot/imported/Boss Pt 1.mp3-415b7cda09ec64e2fd950674f1b8399e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/171 Voice Overs/Boss Pt 1.mp3"
+dest_files=["res://.godot/imported/Boss Pt 1.mp3-415b7cda09ec64e2fd950674f1b8399e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

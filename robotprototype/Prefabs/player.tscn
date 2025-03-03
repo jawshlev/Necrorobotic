@@ -893,7 +893,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_m5tll")
 hframes = 9
 vframes = 4
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BodyArea/Boots"]
 libraries = {

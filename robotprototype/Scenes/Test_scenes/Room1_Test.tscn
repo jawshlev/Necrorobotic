@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=35 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="29_3qgiv"]
 [ext_resource type="PackedScene" uid="uid://cof414boiped" path="res://Prefabs/robo_boots.tscn" id="30_5tjka"]
 [ext_resource type="PackedScene" uid="uid://b3q6cunq5fjbd" path="res://Prefabs/orb.tscn" id="30_yhu4t"]
+[ext_resource type="PackedScene" uid="uid://ywwtble31omj" path="res://Prefabs/enemy_flying.tscn" id="32_ys2b6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("26_codfx")
@@ -754,6 +755,66 @@ position = Vector2(8234, -1366)
 
 [node name="enemy_goomba" parent="Enemies" instance=ExtResource("27_831t3")]
 position = Vector2(9122, 2076)
+
+[node name="enemy_flying" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(812, -70)
+
+[node name="enemy_flying2" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(1803, -601)
+
+[node name="enemy_flying3" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(2473, -908)
+
+[node name="enemy_flying4" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(3298, -826)
+
+[node name="enemy_flying20" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(4948, -826)
+
+[node name="enemy_flying5" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(7347, -984)
+
+[node name="enemy_flying6" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(6531, -121)
+
+[node name="enemy_flying7" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(5782, 321)
+
+[node name="enemy_flying8" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(5782, 321)
+
+[node name="enemy_flying9" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(6272, 680)
+
+[node name="enemy_flying10" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(8089, 2183)
+
+[node name="enemy_flying11" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(9744, 1640)
+
+[node name="enemy_flying12" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(10115, 2753)
+
+[node name="enemy_flying13" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(3713, 2296)
+
+[node name="enemy_flying15" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(2400, 3542)
+
+[node name="enemy_flying16" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(1962, 2284)
+
+[node name="enemy_flying17" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(982, 1316)
+
+[node name="enemy_flying18" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(273, 1045)
+
+[node name="enemy_flying19" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(4733, 859)
+
+[node name="enemy_flying14" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(4236, 2301)
 
 [node name="RigidBody2D" parent="." instance=ExtResource("30_yhu4t")]
 position = Vector2(219, -11)

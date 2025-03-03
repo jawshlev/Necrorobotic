@@ -30,7 +30,7 @@ signal lose_energy
 signal take_damage
 
 func _ready() -> void:
-	pl_animations = $AnimationTree.get("parameters/playback")
+	pl_animations = $DefaultAnimationTree.get("parameters/playback")
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 #			print(facing_right)
 			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Walk")
-			$AnimationTree.set("parameters/Walk/blend_position", face_dir)
+			$DefaultAnimationTree.set("parameters/Walk/blend_position", face_dir)
 			if abs(velocity.x) > abs(speed):
 				if velocity.x < 0:
 					velocity.x += 100
@@ -76,14 +76,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Idle")
-			$AnimationTree.set("parameters/Idle/blend_position", face_dir)
+			$DefaultAnimationTree.set("parameters/Idle/blend_position", face_dir)
 			velocity.x = move_toward(velocity.x, 0, deceleration_rate)
 
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
 			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Jump")
-			$AnimationTree.set("parameters/Jump/blend_position", face_dir)
+			$DefaultAnimationTree.set("parameters/Jump/blend_position", face_dir)
 			if(not is_on_floor()):
 				energy -= jump_drain
 				lose_energy.emit(jump_drain)
@@ -104,7 +104,7 @@ func melee_attack():
 	if Input.is_action_pressed("attack") and robot_parts[3]==0:
 		pl_animations.travel("Punch")
 		var face_dir = Vector2(facing_right, 0)
-		$AnimationTree.set("parameters/Punch/blend_position", face_dir)
+		$DefaultAnimationTree.set("parameters/Punch/blend_position", face_dir)
 
 func targetAreaCast():
 	if robot_parts[3]!=0:

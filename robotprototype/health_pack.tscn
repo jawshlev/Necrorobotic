@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca5is0ul7r07u"]
+
+[ext_resource type="Script" path="res://health_pack.gd" id="1_f8yxq"]
+[ext_resource type="Texture2D" uid="uid://cfcik50cdgnyr" path="res://Sprites/health.png" id="2_p216k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q6e5"]
+
+[node name="HealthPack" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_f8yxq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4q6e5")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+scale = Vector2(0.138889, 0.137931)
+texture = ExtResource("2_p216k")

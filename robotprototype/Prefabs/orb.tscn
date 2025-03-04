@@ -1,28 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3q6cunq5fjbd"]
+[gd_scene load_steps=5 format=3 uid="uid://3rujtik5jmqh"]
 
-[ext_resource type="Script" path="res://Scripts/orb.gd" id="1_0vavr"]
-[ext_resource type="Texture2D" uid="uid://cbmm1kas8ogyr" path="res://Sprites/energyOrb.png" id="1_q0gm7"]
+[ext_resource type="Script" path="res://Scripts/orb.gd" id="1_161cy"]
+[ext_resource type="Texture2D" uid="uid://cbmm1kas8ogyr" path="res://Sprites/energyOrb.png" id="2_7c67y"]
+[ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="3_87daw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y40w7"]
-radius = 3.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hbb50"]
-radius = 4.12311
+[node name="Orb" type="Area2D"]
+script = ExtResource("1_161cy")
 
-[node name="RigidBody2D" type="StaticBody2D"]
-script = ExtResource("1_0vavr")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_egwpa")
 
 [node name="EnergyOrb" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_q0gm7")
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("2_7c67y")
+script = ExtResource("3_87daw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_y40w7")
-
-[node name="Area2D" type="Area2D" parent="." groups=["collectible"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_hbb50")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

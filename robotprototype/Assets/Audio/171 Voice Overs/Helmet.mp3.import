@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl4323j7f35u4"
+path="res://.godot/imported/Helmet.mp3-da2cad60bcbd1b719db49ac455a05a94.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/171 Voice Overs/Helmet.mp3"
+dest_files=["res://.godot/imported/Helmet.mp3-da2cad60bcbd1b719db49ac455a05a94.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

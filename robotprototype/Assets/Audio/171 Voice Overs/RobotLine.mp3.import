@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://eqpgfyrji807"
+path="res://.godot/imported/RobotLine.mp3-6522d6bd4177d3ad0b28be88e3b4d52f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/171 Voice Overs/RobotLine.mp3"
+dest_files=["res://.godot/imported/RobotLine.mp3-6522d6bd4177d3ad0b28be88e3b4d52f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

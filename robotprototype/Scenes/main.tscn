@@ -61,15 +61,8 @@ collision_layer = 2
 [node name="Node2D6" parent="." instance=ExtResource("9_2ecmv")]
 position = Vector2(153, -72)
 
-[node name="enemy_flying" parent="Node2D6" index="0"]
-collision_mask = 0
-player_path = NodePath("../../Player")
-
-[node name="DamageArea" parent="Node2D6/enemy_flying" index="1"]
-collision_layer = 2
-
-[node name="DetectionArea" parent="Node2D6/enemy_flying" index="2"]
-collision_layer = 2
+[node name="Robo-Boots2" parent="." instance=ExtResource("2_a3t5a")]
+position = Vector2(501, 120)
 
 [connection signal="body_entered" from="Hazard" to="Hazard" method="_on_body_entered"]
 [connection signal="body_exited" from="Hazard" to="Hazard" method="_on_body_exited"]

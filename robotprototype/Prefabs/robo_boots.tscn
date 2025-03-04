@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="1_5p6iw"]
 [ext_resource type="Texture2D" uid="uid://oyqurgkct2yk" path="res://Sprites/BootsSpawn.png" id="2_0hras"]
-[ext_resource type="Script" path="res://Prefabs/sprite_2d.gd" id="3_eoae2"]
+[ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="3_eoae2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
 

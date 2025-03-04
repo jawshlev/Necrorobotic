@@ -4,23 +4,26 @@
 [ext_resource type="Texture2D" uid="uid://cifv7by4v14as" path="res://Sprites/goombaWalk.png" id="2_ac8uf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vuxoa"]
+size = Vector2(20.9091, 17.5439)
 
 [node name="enemy_goomba" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_jxix4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vuxoa")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -1)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_ac8uf")
 hframes = 8
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.86, 1.14)
+shape = SubResource("RectangleShape2D_vuxoa")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(1.1, 1.1)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_vuxoa")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_hitbox_body_entered"]

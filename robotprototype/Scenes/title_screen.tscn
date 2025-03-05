@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dw0e4rxsjy0ct"]
+[gd_scene load_steps=14 format=3 uid="uid://dw0e4rxsjy0ct"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_djn8b"]
 [ext_resource type="FontFile" uid="uid://cjsm3v7u373oj" path="res://Assets/Robotics Galactus.ttf" id="2_3vtdi"]
 [ext_resource type="Script" path="res://Scripts/parallex_background.gd" id="2_4d1mj"]
 [ext_resource type="Theme" uid="uid://d0ina7ck4rbrm" path="res://Themes/startbutton.tres" id="2_di2xe"]
 [ext_resource type="Theme" uid="uid://dl2a0pfn0dvgf" path="res://Themes/controlsbutton.tres" id="3_idsfp"]
+[ext_resource type="Script" path="res://Scenes/button.gd" id="3_jajbt"]
 [ext_resource type="Texture2D" uid="uid://cxghgqetfhl6o" path="res://Assets/tbackground2.png" id="3_kr7r6"]
 [ext_resource type="Theme" uid="uid://dgvatc5k6fv57" path="res://Themes/creditsbutton.tres" id="4_ajdgl"]
 [ext_resource type="Texture2D" uid="uid://cllvlp4s4rdq2" path="res://Assets/far2.png" id="4_n87se"]
@@ -39,16 +40,19 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_di2xe")
+script = ExtResource("3_jajbt")
 
 [node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_idsfp")
+script = ExtResource("3_jajbt")
 
 [node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_ajdgl")
+script = ExtResource("3_jajbt")
 
 [node name="Quit3" type="Button" parent="."]
 layout_mode = 2

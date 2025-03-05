@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://0sp8grc1iqmh"
+path="res://.godot/imported/Room1.mp3-6730baf78f24c22ab12d9e3d6d71c7b5.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/171 Voice Overs/Room1.mp3"
+dest_files=["res://.godot/imported/Room1.mp3-6730baf78f24c22ab12d9e3d6d71c7b5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://gu8mk30pud7b"]
+[gd_scene load_steps=81 format=3 uid="uid://gu8mk30pud7b"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_byh54"]
 [ext_resource type="Shader" path="res://Prefabs/player.gdshader" id="2_47mju"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://t0ijkt6bd0vy" path="res://Sprites/EnhancementTypes/doubleJumpBoots_spriteSheet.png" id="4_m5tll"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6wna"]
-size = Vector2(9, 29)
+size = Vector2(13, 29)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5g4er"]
 shader = ExtResource("2_47mju")
@@ -42,38 +42,38 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../../FistArea/CollisionShape2D:disabled")
+tracks/2/path = NodePath(".:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:flip_h")
+tracks/3/path = NodePath("../FistArea/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [false]
+"values": []
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../../FistArea/CollisionShape2D:position")
+tracks/4/path = NodePath("../FistArea/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(-10, -5)]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_aumhd"]
@@ -139,31 +139,31 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../FistArea/CollisionShape2D:disabled")
+tracks/1/path = NodePath(".:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.045, 0.12),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../FistArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.045, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../../FistArea/CollisionShape2D:position")
+tracks/3/path = NodePath("../FistArea/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -191,31 +191,31 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../FistArea/CollisionShape2D:disabled")
+tracks/1/path = NodePath(".:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.045, 0.12),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../FistArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.045, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../../FistArea/CollisionShape2D:position")
+tracks/3/path = NodePath("../FistArea/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -856,6 +856,8 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_fk3k3")
 states/Walk/position = Vector2(518, 56)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_rkj21"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_byhl0"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_p87bm"), "Walk", "Punch", SubResource("AnimationNodeStateMachineTransition_qadmb"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_jmjby"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_8jpyx"), "Punch", "Idle", SubResource("AnimationNodeStateMachineTransition_jui21"), "Idle", "Punch", SubResource("AnimationNodeStateMachineTransition_qa24w")]
 
+[sub_resource type="AudioStream" id="AudioStream_5ulqq"]
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_byh54")
 
@@ -866,11 +868,7 @@ shape = SubResource("RectangleShape2D_e6wna")
 [node name="EnergyDrain" type="Timer" parent="."]
 autostart = true
 
-[node name="BodyArea" type="Area2D" parent="." groups=["player_hitBox"]]
-collision_layer = 2
-collision_mask = 2
-
-[node name="MeshInstance2D" type="Sprite2D" parent="BodyArea"]
+[node name="MeshInstance2D" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_5g4er")
 scale = Vector2(0.5, 0.5)
@@ -879,23 +877,19 @@ hframes = 9
 vframes = 4
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BodyArea/MeshInstance2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance2D"]
 libraries = {
 "": SubResource("AnimationLibrary_2yihi")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
-position = Vector2(-0.5, 1.5)
-shape = SubResource("RectangleShape2D_e6wna")
-
-[node name="Boots" type="Sprite2D" parent="BodyArea"]
+[node name="Boots" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_m5tll")
 hframes = 9
 vframes = 4
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BodyArea/Boots"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boots"]
 libraries = {
 "": SubResource("AnimationLibrary_utclh")
 }
@@ -904,10 +898,8 @@ libraries = {
 position = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FistArea"]
-position = Vector2(-10, -5)
 scale = Vector2(1.08286, -0.572328)
 shape = SubResource("RectangleShape2D_0dvjh")
-disabled = true
 debug_color = Color(0.962747, 0.194532, 1.92523e-07, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -917,22 +909,25 @@ zoom = Vector2(3, 3)
 color = Color(0.505344, 0.505344, 0.505344, 0.905882)
 
 [node name="DefaultAnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../BodyArea/MeshInstance2D")
+root_node = NodePath("../MeshInstance2D")
 tree_root = SubResource("AnimationNodeStateMachine_0u11c")
-anim_player = NodePath("../BodyArea/MeshInstance2D/AnimationPlayer")
+anim_player = NodePath("../MeshInstance2D/AnimationPlayer")
 parameters/Idle/blend_position = Vector2(0.885142, 0.0707965)
 parameters/Jump/blend_position = Vector2(0.750263, -0.230088)
-parameters/Punch/blend_position = Vector2(-0.389884, 0.221239)
+parameters/Punch/blend_position = Vector2(0.517387, 0.180851)
 parameters/Walk/blend_position = Vector2(0.623815, 0.0707965)
 
 [node name="BootAnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../BodyArea/Boots")
+root_node = NodePath("../Boots")
 tree_root = SubResource("AnimationNodeStateMachine_60mhr")
-anim_player = NodePath("../BodyArea/Boots/AnimationPlayer")
+anim_player = NodePath("../Boots/AnimationPlayer")
 parameters/Idle/blend_position = Vector2(-0.00526869, 0.849558)
 parameters/Jump/blend_position = Vector2(0, 0)
 parameters/Punch/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
+
+[node name="PlayerSounds" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStream_5ulqq")
 
 [connection signal="timeout" from="EnergyDrain" to="." method="_on_energy_drain_timeout"]
 [connection signal="body_entered" from="FistArea" to="." method="_on_fist_area_body_entered"]

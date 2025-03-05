@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3ct67wtyl5xt"
+path="res://.godot/imported/RobotSound.mp3-bedce5adeed5ca5ccf2fb3abdeeda20d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/171 Voice Overs/RobotSound.mp3"
+dest_files=["res://.godot/imported/RobotSound.mp3-bedce5adeed5ca5ccf2fb3abdeeda20d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://65wegurm4cwf"
+path="res://.godot/imported/Chest.mp3-447e383cbe44fc1dcbec7c436220cef8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/171 Voice Overs/Chest.mp3"
+dest_files=["res://.godot/imported/Chest.mp3-447e383cbe44fc1dcbec7c436220cef8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

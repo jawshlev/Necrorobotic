@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 const contact_damage = 5	
 const knockback = 200
-const energy = 5
+const energy = 100
 var health = 20
 var immobile = false
 signal on_death

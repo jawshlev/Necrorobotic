@@ -1,21 +1,13 @@
-extends StaticBody2D
+extends Area2D
 
+const id = 0
+const speed = 50
+const jump = -50
+const drain = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("player_hitBox"):
-		var player = area.get_parent()
-		player.curr_energy = player.max_energy
-		queue_free()
-		#print("Collided with a player ", area.get_parent())
+func _on_body_entered(body):
+	if(body.is_in_group("Player")):
+		#print(body.energy)
+		body.energy = body.MAX_NRG
 		
-		pass # Replace with function body.
+		queue_free()

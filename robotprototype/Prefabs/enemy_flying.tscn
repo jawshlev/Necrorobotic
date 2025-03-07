@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ywwtble31omj"]
+[gd_scene load_steps=6 format=3 uid="uid://cll5f7whxewtt"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_flying.gd" id="1_eagd8"]
 [ext_resource type="Texture2D" uid="uid://ceerijwbe7ooi" path="res://Sprites/cavebat.png" id="2_stsfd"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=40 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -31,11 +31,12 @@
 [ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="29_3qgiv"]
 [ext_resource type="PackedScene" uid="uid://cof414boiped" path="res://Prefabs/robo_boots.tscn" id="30_5tjka"]
 [ext_resource type="PackedScene" uid="uid://3rujtik5jmqh" path="res://Prefabs/orb.tscn" id="30_yhu4t"]
-[ext_resource type="PackedScene" uid="uid://ywwtble31omj" path="res://Prefabs/enemy_flying.tscn" id="32_ys2b6"]
+[ext_resource type="PackedScene" uid="uid://cll5f7whxewtt" path="res://Prefabs/enemy_flying.tscn" id="32_ys2b6"]
 [ext_resource type="Texture2D" uid="uid://dop5jvpb8ajy8" path="res://Assets/Backgrounds/sewerbackground1.png" id="33_m1dja"]
 [ext_resource type="Texture2D" uid="uid://bbrvppgwopj32" path="res://Assets/Backgrounds/sewerbackground2.png" id="34_oboki"]
 [ext_resource type="Texture2D" uid="uid://eg7wo4oufuc1" path="res://Assets/Backgrounds/bossbackground.png" id="35_mdqlj"]
 [ext_resource type="Texture2D" uid="uid://dlof7xbcyw6tg" path="res://Assets/Backgrounds/wallbackground.png" id="36_1pdu1"]
+[ext_resource type="PackedScene" uid="uid://ca5is0ul7r07u" path="res://Prefabs/health_pack.tscn" id="37_ghui6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("26_codfx")
@@ -706,6 +707,9 @@ position = Vector2(1264, 1638)
 [node name="enemy_goomba85" parent="Enemies" instance=ExtResource("27_831t3")]
 position = Vector2(853, 2029)
 
+[node name="enemy_goomba95" parent="Enemies" instance=ExtResource("27_831t3")]
+position = Vector2(128, 1832)
+
 [node name="enemy_goomba86" parent="Enemies" instance=ExtResource("27_831t3")]
 position = Vector2(533, 2483)
 
@@ -811,6 +815,9 @@ position = Vector2(1962, 2284)
 [node name="enemy_flying17" parent="Enemies" instance=ExtResource("32_ys2b6")]
 position = Vector2(982, 1316)
 
+[node name="enemy_flying21" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(541, 1714)
+
 [node name="enemy_flying18" parent="Enemies" instance=ExtResource("32_ys2b6")]
 position = Vector2(273, 1045)
 
@@ -866,3 +873,59 @@ position = Vector2(5350, -910)
 
 [node name="Orb8" parent="." instance=ExtResource("30_yhu4t")]
 position = Vector2(6174, -1039)
+
+[node name="HealthPacks" type="Node2D" parent="."]
+
+[node name="HealthPack" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(904, -320)
+
+[node name="HealthPack2" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(1996, -548)
+
+[node name="HealthPack3" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(4156, -755)
+
+[node name="HealthPack4" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(4740, -771)
+
+[node name="HealthPack5" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(6398, -570)
+
+[node name="HealthPack6" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(8030, -1375)
+
+[node name="HealthPack7" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(8608, -446)
+
+[node name="HealthPack8" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(7002, 744)
+
+[node name="HealthPack9" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(8111, 2013)
+
+[node name="HealthPack10" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(9399, 2842)
+
+[node name="HealthPack11" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(4998, 2855)
+
+[node name="HealthPack12" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(3284, 2590)
+
+[node name="HealthPack13" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(3276, 3529)
+
+[node name="HealthPack14" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(1091, 3336)
+
+[node name="HealthPack15" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(2212, 2552)
+
+[node name="HealthPack16" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(36, 1721)
+
+[node name="HealthPack17" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(2475, 1583)
+
+[node name="HealthPack18" parent="HealthPacks" instance=ExtResource("37_ghui6")]
+position = Vector2(4975, 873)

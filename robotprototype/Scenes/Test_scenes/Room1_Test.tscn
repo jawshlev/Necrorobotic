@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=41 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://eg7wo4oufuc1" path="res://Assets/Backgrounds/bossbackground.png" id="35_mdqlj"]
 [ext_resource type="Texture2D" uid="uid://dlof7xbcyw6tg" path="res://Assets/Backgrounds/wallbackground.png" id="36_1pdu1"]
 [ext_resource type="PackedScene" uid="uid://ca5is0ul7r07u" path="res://Prefabs/health_pack.tscn" id="37_ghui6"]
+[ext_resource type="PackedScene" uid="uid://djyhx7tcw62dh" path="res://Prefabs/respawn_capsule.tscn" id="38_p71n8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("26_codfx")
@@ -558,7 +559,7 @@ position = Vector2(1134, -272)
 position = Vector2(1418, -271)
 
 [node name="enemy_goomba4" parent="Enemies" instance=ExtResource("27_831t3")]
-position = Vector2(1668, -414)
+position = Vector2(1650, -556)
 
 [node name="enemy_goomba5" parent="Enemies" instance=ExtResource("27_831t3")]
 position = Vector2(2329, -877)
@@ -627,7 +628,7 @@ position = Vector2(7644, -207)
 position = Vector2(8262, -206)
 
 [node name="enemy_goomba32" parent="Enemies" instance=ExtResource("27_831t3")]
-position = Vector2(9146, 62)
+position = Vector2(8914, 213)
 
 [node name="enemy_goomba33" parent="Enemies" instance=ExtResource("27_831t3")]
 position = Vector2(9504, 65)
@@ -768,7 +769,7 @@ position = Vector2(9122, 2076)
 position = Vector2(812, -70)
 
 [node name="enemy_flying2" parent="Enemies" instance=ExtResource("32_ys2b6")]
-position = Vector2(1803, -601)
+position = Vector2(1895, -606)
 
 [node name="enemy_flying3" parent="Enemies" instance=ExtResource("32_ys2b6")]
 position = Vector2(2473, -908)
@@ -784,6 +785,12 @@ position = Vector2(7347, -984)
 
 [node name="enemy_flying6" parent="Enemies" instance=ExtResource("32_ys2b6")]
 position = Vector2(6531, -121)
+
+[node name="enemy_flying22" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(9316, 350)
+
+[node name="enemy_flying23" parent="Enemies" instance=ExtResource("32_ys2b6")]
+position = Vector2(9320, 670)
 
 [node name="enemy_flying7" parent="Enemies" instance=ExtResource("32_ys2b6")]
 position = Vector2(5782, 321)
@@ -848,6 +855,7 @@ scale = Vector2(2.98742, 3.68056)
 texture = ExtResource("35_mdqlj")
 
 [node name="Wallbackground" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(2390, -578)
 scale = Vector2(3.01465, 2.05556)
@@ -929,3 +937,35 @@ position = Vector2(2475, 1583)
 
 [node name="HealthPack18" parent="HealthPacks" instance=ExtResource("37_ghui6")]
 position = Vector2(4975, 873)
+
+[node name="Respawns" type="Node2D" parent="."]
+
+[node name="RespawnCapsule" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(1629.85, -430.3)
+
+[node name="RespawnCapsule2" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(5886.85, -801.3)
+
+[node name="RespawnCapsule3" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(9156, 2459)
+
+[node name="RespawnCapsule4" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(8600.85, 49.7)
+
+[node name="RespawnCapsule5" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(4396.85, 767.7)
+
+[node name="RespawnCapsule6" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(2803.85, 1983.7)
+
+[node name="RespawnCapsule7" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(109.85, 1260.7)
+
+[node name="RespawnCapsule8" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(1826.85, 3308.7)
+
+[node name="RespawnCapsule9" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(4695.85, 2734.7)
+
+[node name="RespawnCapsule10" parent="Respawns" instance=ExtResource("38_p71n8")]
+position = Vector2(6240, 3529)

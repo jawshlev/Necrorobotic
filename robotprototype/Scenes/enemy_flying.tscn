@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://cll5f7whxewtt"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_flying.gd" id="1_eagd8"]
+[ext_resource type="Texture2D" uid="uid://ceerijwbe7ooi" path="res://Assets/Sprites/cavebat.png" id="2_stsfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kt8"]
+size = Vector2(29, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ylgt"]
+size = Vector2(31, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jy26q"]
+size = Vector2(121, 113)
+
+[node name="enemy_flying" type="CharacterBody2D"]
+position = Vector2(-1, -1)
+collision_layer = 2
+script = ExtResource("1_eagd8")
+patrol_distance = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, -3.5)
+shape = SubResource("RectangleShape2D_p2kt8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-4.76837e-07, 0.999998)
+scale = Vector2(0.113281, 0.0976562)
+texture = ExtResource("2_stsfd")
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(4.5, -3.5)
+shape = SubResource("RectangleShape2D_1ylgt")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(4.5, 19.5)
+shape = SubResource("RectangleShape2D_jy26q")
+
+[node name="SwoopTimer" type="Timer" parent="."]
+
+[node name="GracePeriodTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="timeout" from="SwoopTimer" to="." method="_on_timer_timeout"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://3rujtik5jmqh"]
 
 [ext_resource type="Script" path="res://Scripts/orb.gd" id="1_161cy"]
-[ext_resource type="Texture2D" uid="uid://cbmm1kas8ogyr" path="res://Sprites/energyOrb.png" id="2_7c67y"]
+[ext_resource type="Texture2D" uid="uid://cbmm1kas8ogyr" path="res://Assets/Sprites/energyOrb.png" id="2_7c67y"]
 [ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="3_87daw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]

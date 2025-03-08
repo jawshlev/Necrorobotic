@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://pfmtv1op80e8"]
+[gd_scene load_steps=4 format=3 uid="uid://pfmtv1op80e8"]
 
 [ext_resource type="Script" path="res://Scripts/pause_screen.gd" id="1_o02sy"]
+[ext_resource type="FontFile" uid="uid://cjsm3v7u373oj" path="res://Assets/Robotics Galactus.ttf" id="2_xd64e"]
+
+[sub_resource type="FontVariation" id="FontVariation_oyrj4"]
+base_font = ExtResource("2_xd64e")
 
 [node name="Title Screen" type="Control"]
 layout_mode = 3
@@ -17,6 +21,17 @@ script = ExtResource("1_o02sy")
 z_index = -1
 offset_right = 1150.0
 offset_bottom = 647.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
+offset_left = 426.0
+offset_top = 144.0
+offset_right = 713.0
+offset_bottom = 227.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_oyrj4")
+theme_override_font_sizes/normal_font_size = 60
+text = "Paused"
 
 [node name="StartButton" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0

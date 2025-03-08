@@ -5,15 +5,16 @@ extends CharacterBody2D
 @onready var default_anims = $DefaultAnimationTree
 @onready var bootAnimations = $BootAnimationTree
 @onready var bootOverlay = $Boots
+@onready var gameOver_menu = preload("res://Scenes/game_over.tscn").instantiate()
 
 const pos = Vector2(0,0)
 
 var pl_animations
 var boot_animations
-var speed = 150.0 #Player's speed
-var DEFAULT_SPEED = 150.0
-var DEFAULT_JUMP = -300
-var jump_velocity = -300.0 #Player's Jump Height
+var speed = 145.0 #Player's speed
+var DEFAULT_SPEED = 145.0
+var DEFAULT_JUMP = -350
+var jump_velocity = -350.0 #Player's Jump Height
 var FOV_scalar = 2*PI/90 # the rendered field of view for the Area of Attack
 var robot_parts = [0, 0, 0, 0] #Which robo-parts the player has. Order is Legs, Arms, Chest, Head
 var facing_right = 1 #Which way the player is facing
@@ -38,6 +39,7 @@ signal take_damage
 func _ready() -> void:
 	pl_animations = default_anims.get("parameters/playback")
 	bootOverlay.visible = false
+	$HelmetSprite.visible = false
 	pass
 	
 func _physics_process(delta: float) -> void:
@@ -62,7 +64,10 @@ func _physics_process(delta: float) -> void:
 	# Enable double jump
 	if robot_parts[0] == 1 and is_on_floor():
 		double_jump = true
-		
+	
+	#if robot_parts[3] == 1:
+	#	$HelmetSprite.visible = true
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -108,7 +113,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			
 		# Handle jump.
-		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or (double_jump and energy >= jump_drain)):
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or (double_jump and energy >= jump_drain)):
 			var face_dir = Vector2(facing_right, 0)
 			#if(!focused):
 			pl_animations.travel("Jump")
@@ -125,10 +130,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	melee_attack()
 	targetAreaCast()
+	game_Over()
 
 func game_Over():
-	if health == 0:
-		get_parent().add_child(get_parent().gameOver_menu)
+	if health <= 0:
+		gameOver_menu.z_index = 1
+		add_child(gameOver_menu)
 		#self.queue_free()
 
 func melee_attack():
@@ -178,9 +185,10 @@ func get_FOV_circle(from:Vector2, radius):
 					$targetArea.color = Color(1, 0, 0, 0.6)
 					if Input.is_action_just_pressed("attack"):
 						
-						bootOverlay.visible = false
+						
 						pl_animations.travel("flash_attack")
 					if Input.is_action_pressed("attack"):
+						bootOverlay.visible = false
 						focused = true
 						invincible = true
 						
@@ -189,7 +197,7 @@ func get_FOV_circle(from:Vector2, radius):
 						#print(direction)
 						if(direction.y > 0):
 							if position.distance_to(result.position) < (radius-40):
-								result.collider.take_damage(20, 10)
+								result.collider.take_damage(50, 10)
 						#print(position.distance_to(result.position))
 						if position.distance_to(result.position) < (radius-55):
 							#print("Attraction complete!")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkvtiloyjjanh"]
+
+[ext_resource type="Script" path="res://Scripts/pause_screen.gd" id="1_dym7j"]
+[ext_resource type="FontFile" uid="uid://cjsm3v7u373oj" path="res://Assets/Robotics Galactus.ttf" id="2_0q8ml"]
+
+[sub_resource type="FontVariation" id="FontVariation_x7u6e"]
+base_font = ExtResource("2_0q8ml")
+
+[node name="Title Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dym7j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+z_index = -1
+offset_right = 1150.0
+offset_bottom = 647.0
+
+[node name="Restart" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 321.0
+offset_right = 601.0
+offset_bottom = 356.0
+text = "Restart"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 538.0
+offset_top = 378.0
+offset_right = 590.0
+offset_bottom = 413.0
+text = "Quit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
+offset_left = 289.0
+offset_top = 143.0
+offset_right = 840.0
+offset_bottom = 226.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_x7u6e")
+theme_override_font_sizes/normal_font_size = 60
+text = "you are Dead!"
+
+[connection signal="pressed" from="CanvasLayer/Panel/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/Quit" to="." method="_on_quit_pressed"]

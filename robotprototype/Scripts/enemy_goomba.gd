@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 const contact_damage = 5	
 const knockback = 200
-const energy = 100
+const energy = 25
 var health = 20
 var immobile = true
 signal on_death
@@ -61,6 +61,7 @@ func is_player_in_front(player: Node2D) -> bool:
 func take_damage(damage, knockback):
 	health -= damage
 	if health <= 0:
+		
 		on_death.emit(energy)
 		queue_free()
 	immobile = true

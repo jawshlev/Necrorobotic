@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpgmn0fqr38wb"]
+[gd_scene load_steps=5 format=3 uid="uid://dpgmn0fqr38wb"]
 
 [ext_resource type="Script" path="res://Scripts/head_pickup.gd" id="1_fohxq"]
-[ext_resource type="Texture2D" uid="uid://61fq6s3e3na7" path="res://Sprites/HELMET.png" id="1_hebqi"]
+[ext_resource type="Texture2D" uid="uid://61fq6s3e3na7" path="res://Assets/Sprites/HELMET.png" id="1_hebqi"]
+[ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="3_e71it"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt56s"]
-size = Vector2(30, 31)
+size = Vector2(22, 21)
 
 [node name="Area2D" type="Area2D" groups=["collectible"]]
 script = ExtResource("1_fohxq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_hebqi")
+script = ExtResource("3_e71it")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_vt56s")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

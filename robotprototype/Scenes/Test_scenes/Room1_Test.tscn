@@ -4094,7 +4094,7 @@ script = ExtResource("1_gdvhm")
 [node name="UI" parent="." instance=ExtResource("1_tpvie")]
 
 [node name="Player" parent="." instance=ExtResource("2_4b4x4")]
-position = Vector2(2223, 1430)
+position = Vector2(35, 63)
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(0, -64)
@@ -4229,7 +4229,7 @@ position = Vector2(-2, -311)
 position = Vector2(1273, 30)
 
 [node name="Robo-Boots3" parent="." instance=ExtResource("30_5tjka")]
-position = Vector2(2180, 1424)
+position = Vector2(-8, 57)
 
 [node name="Enemies" type="Node2D" parent="."]
 

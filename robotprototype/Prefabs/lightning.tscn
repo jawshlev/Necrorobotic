@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddtejnc64ai2l"]
+
+[ext_resource type="Script" path="res://Prefabs/lightning.gd" id="1_448pl"]
+[ext_resource type="Texture2D" uid="uid://dti65uq8fm205" path="res://Assets/lightning-bolt-placeholder.png" id="1_mq8da"]
+[ext_resource type="Texture2D" uid="uid://bflf4afwuge65" path="res://Assets/lightning-bolt-warning.png" id="3_muguk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsof4"]
+size = Vector2(36, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5m8mt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mq8da")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_muguk")
+}],
+"loop": true,
+"name": &"warning",
+"speed": 5.0
+}]
+
+[node name="Lightning" type="Node2D"]
+script = ExtResource("1_448pl")
+
+[node name="Hitbox1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox1"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_gsof4")
+disabled = true
+
+[node name="Hitbox2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2"]
+position = Vector2(0, 30)
+shape = SubResource("RectangleShape2D_gsof4")
+disabled = true
+
+[node name="Hitbox3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox3"]
+position = Vector2(0, 50)
+shape = SubResource("RectangleShape2D_gsof4")
+disabled = true
+
+[node name="Hitbox4" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox4"]
+position = Vector2(0, 70)
+shape = SubResource("RectangleShape2D_gsof4")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 40)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_5m8mt")
+animation = &"warning"
+
+[connection signal="body_entered" from="Hitbox1" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hitbox2" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hitbox3" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hitbox4" to="." method="_on_hitbox_body_entered"]

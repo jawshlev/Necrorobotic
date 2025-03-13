@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://cljmkcgo70b0e"]
+
+[ext_resource type="Script" path="res://Scenes/Test_scenes/save_start.gd" id="1_6i8l8"]
+[ext_resource type="Texture2D" uid="uid://sd6em4jsjx4p" path="res://Assets/SaveTank.png" id="2_rh3uc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wneux"]
+size = Vector2(28, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s43ly"]
+atlas = ExtResource("2_rh3uc")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am12r"]
+atlas = ExtResource("2_rh3uc")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yris0"]
+atlas = ExtResource("2_rh3uc")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38rqq"]
+atlas = ExtResource("2_rh3uc")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3317"]
+atlas = ExtResource("2_rh3uc")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwo03"]
+atlas = ExtResource("2_rh3uc")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yc6pe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s43ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am12r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yris0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38rqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3317")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwo03")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SaveStation" type="Area2D"]
+z_index = -1
+position = Vector2(0, 48)
+script = ExtResource("1_6i8l8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_wneux")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yc6pe")
+frame_progress = 0.496794
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

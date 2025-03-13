@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://gu8mk30pud7b"]
+[gd_scene load_steps=97 format=3 uid="uid://gu8mk30pud7b"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_byh54"]
 [ext_resource type="Shader" path="res://Prefabs/player.gdshader" id="2_47mju"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://t0ijkt6bd0vy" path="res://Assets/Sprites/EnhancementTypes/doubleJumpBoots_spriteSheet.png" id="4_m5tll"]
 [ext_resource type="Texture2D" uid="uid://bwulupyra5e00" path="res://Assets/Sprites/smear effect/fistSmear-Sheet.png" id="5_i7onh"]
 [ext_resource type="Texture2D" uid="uid://61fq6s3e3na7" path="res://Assets/Sprites/HELMET.png" id="6_30oon"]
+[ext_resource type="Texture2D" uid="uid://2vaxpfqcurk0" path="res://Assets/action-warning.png" id="7_vxum7"]
+[ext_resource type="Texture2D" uid="uid://dh1v5cvrug7q1" path="res://Assets/warning-blink.png" id="8_c7xoo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6wna"]
 size = Vector2(13, 29)
@@ -1057,6 +1059,25 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="AudioStream" id="AudioStream_5ulqq"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_clysl"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vxum7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_c7xoo")
+}],
+"loop": true,
+"name": &"warning",
+"speed": 4.0
+}]
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_byh54")
 
@@ -1087,7 +1108,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_m5tll")
 hframes = 9
 vframes = 4
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boots"]
 libraries = {
@@ -1142,6 +1162,14 @@ hframes = 7
 position = Vector2(0, -11)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("6_30oon")
+
+[node name="WarningSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -23)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_clysl")
+animation = &"warning"
+frame_progress = 0.0873601
 
 [connection signal="timeout" from="EnergyDrain" to="." method="_on_energy_drain_timeout"]
 [connection signal="body_entered" from="FistArea" to="." method="_on_fist_area_body_entered"]

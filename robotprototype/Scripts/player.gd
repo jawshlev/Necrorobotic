@@ -29,6 +29,7 @@ var immobile = false #Can the player move
 var focused = false #Can the player move
 var contact_damage = 0 #How much contact damage should they take
 var drain_rate = 0 #How much energy drains per second
+var locationID = "SaveStart";
 const dash_drain = 5 #How much energy the dash drains
 const jump_drain = 5 #How much energy the player loses double jumping
 const focus_drain = 0.4 #How much energy the player loses on focus
@@ -75,11 +76,7 @@ func _physics_process(delta: float) -> void:
 	if not immobile:
 
 		if Input.is_action_just_pressed("ui_dash") and can_dash and energy >= dash_drain:
-			can_dash = false
-			energy -= dash_drain
-			lose_energy.emit(dash_drain)
-			velocity.x = facing_right * 1500
-			get_tree().create_timer(0.01).timeout.connect(func(): can_dash = true)
+			dash()
 			
 
 		# Get the input direction and handle the movement/deceleration.
@@ -114,19 +111,7 @@ func _physics_process(delta: float) -> void:
 			
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and (is_on_floor() or (double_jump and energy >= jump_drain)):
-			var face_dir = Vector2(facing_right, 0)
-			#if(!focused):
-			pl_animations.travel("Jump")
-			default_anims.set("parameters/Jump/blend_position", face_dir)
-			if robot_parts[0] == 1:
-				boot_animations.travel("Jump")
-				bootAnimations.set("parameters/Jump/blend_position", face_dir)
-			if(not is_on_floor()):
-				energy -= jump_drain
-				lose_energy.emit(jump_drain)
-				double_jump = false
-			velocity.y = jump_velocity	
-		
+			jump()
 	move_and_slide()
 	melee_attack()
 	targetAreaCast()
@@ -273,3 +258,24 @@ func gain_energy(amount):
 func _on_fist_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
 		body.take_damage(5, 100 * facing_right)
+
+func dash():
+	can_dash = false
+	energy -= dash_drain
+	lose_energy.emit(dash_drain)
+	velocity.x = facing_right * 1500
+	get_tree().create_timer(0.01).timeout.connect(func(): can_dash = true)
+
+func jump():
+	print("Jumping")
+	var face_dir = Vector2(facing_right, 0)
+	pl_animations.travel("Jump")
+	default_anims.set("parameters/Jump/blend_position", face_dir)
+	if robot_parts[0] == 1:
+		boot_animations.travel("Jump")
+		bootAnimations.set("parameters/Jump/blend_position", face_dir)
+	if(not is_on_floor()):
+		energy -= jump_drain
+		lose_energy.emit(jump_drain)
+		double_jump = false
+	velocity.y = jump_velocity;

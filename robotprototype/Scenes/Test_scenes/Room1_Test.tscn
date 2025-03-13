@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=50 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -39,6 +39,10 @@
 [ext_resource type="PackedScene" uid="uid://c2ob2qw8ppx03" path="res://Prefabs/enemy_ranged.tscn" id="38_aa3hu"]
 [ext_resource type="PackedScene" uid="uid://slt8o8kjdj6o" path="res://Prefabs/curtain.tscn" id="38_m8sr1"]
 [ext_resource type="Script" path="res://Scenes/Test_scenes/lava.gd" id="39_j0tji"]
+[ext_resource type="Script" path="res://Scenes/Test_scenes/final_boss.gd" id="40_i10hy"]
+[ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="41_gw40o"]
+[ext_resource type="PackedScene" uid="uid://ddtejnc64ai2l" path="res://Prefabs/lightning.tscn" id="42_g4001"]
+[ext_resource type="PackedScene" uid="uid://cljmkcgo70b0e" path="res://Prefabs/save_station.tscn" id="43_amku2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("27_mtg52")
@@ -434,10 +438,17 @@ sources/2 = SubResource("TileSetAtlasSource_c4fup")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0r18x"]
 size = Vector2(112, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwy4c"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1l7w"]
+size = Vector2(256, 20)
+
 [node name="Room1Test" type="Node2D"]
 script = ExtResource("1_gdvhm")
 
 [node name="UI" parent="." instance=ExtResource("1_tpvie")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_4b4x4")]
 position = Vector2(0, 64)
@@ -877,6 +888,7 @@ position = Vector2(6174, -1039)
 position = Vector2(431, -170)
 
 [node name="CurtainsController" type="Node2D" parent="."]
+visible = false
 
 [node name="Curtain" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
 position = Vector2(736, -160)
@@ -945,7 +957,39 @@ script = ExtResource("39_j0tji")
 position = Vector2(26, 3)
 shape = SubResource("RectangleShape2D_0r18x")
 
+[node name="Final Boss" type="CharacterBody2D" parent="." groups=["Enemy"]]
+position = Vector2(6208, 2944)
+script = ExtResource("40_i10hy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Final Boss"]
+texture = ExtResource("41_gw40o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Final Boss"]
+shape = SubResource("RectangleShape2D_rwy4c")
+
+[node name="Lightning" parent="Final Boss" instance=ExtResource("42_g4001")]
+position = Vector2(-944, 446)
+rotation = -1.5708
+scale = Vector2(1, 23.5)
+
+[node name="Lightning2" parent="Final Boss" instance=ExtResource("42_g4001")]
+position = Vector2(0, -192)
+scale = Vector2(1, 8.25)
+
+[node name="Lightning3" parent="Final Boss" instance=ExtResource("42_g4001")]
+position = Vector2(910, -192)
+scale = Vector2(1, 8.25)
+
+[node name="Boss Trigger" type="Area2D" parent="."]
+position = Vector2(6240, 3398)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss Trigger"]
+shape = SubResource("RectangleShape2D_l1l7w")
+
+[node name="SaveStart" parent="." instance=ExtResource("43_amku2")]
+
 [connection signal="body_entered" from="LavaSections/Area2D2" to="LavaSections/Area2D2" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D5" to="LavaSections/Area2D5" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D3" to="LavaSections/Area2D3" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D4" to="LavaSections/Area2D4" method="_on_body_entered"]
+[connection signal="body_shape_entered" from="Boss Trigger" to="Final Boss" method="_on_boss_trigger"]

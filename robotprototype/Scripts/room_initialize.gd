@@ -16,8 +16,40 @@ func _ready() -> void:
 	player.take_damage.connect(get_node("UI/Health Bar")._on_robot_drain)
 	player.lose_energy.connect(get_node("UI/Energy Bar")._on_robot_drain)
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
-		enemy.on_death.connect(player.gain_energy) 
+		enemy.on_death.connect(player.gain_energy)
+	load_game()
 
+func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return # Error! We don't have a save to load.
+
+	# We need to revert the game state so we're not cloning objects
+	# during loading. This will vary wildly depending on the needs of a
+	# project, so take care with this step.
+	# For our example, we will accomplish this by deleting saveable objects.
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+
+		# Creates the helper class to interact with JSON.
+		var json = JSON.new()
+
+		# Check if there is any error while parsing the JSON string, skip in case of failure.
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+
+		# Get the data from the JSON object.
+		var save_data = json.data
+		# Now we set the remaining variables.
+		for value in save_data.keys():
+			if value == "robot_parts":
+				player.robot_parts = value;
+			elif value == "locationID":
+				player.locationID == value
+				player.position = get_tree().get_node(value).position
+				
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	#update the resume timer value when the player resumes

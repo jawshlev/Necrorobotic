@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=43 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -36,7 +36,6 @@
 [ext_resource type="Texture2D" uid="uid://dop5jvpb8ajy8" path="res://Assets/Backgrounds/sewerbackground1.png" id="33_m1dja"]
 [ext_resource type="Texture2D" uid="uid://bbrvppgwopj32" path="res://Assets/Backgrounds/sewerbackground2.png" id="34_oboki"]
 [ext_resource type="Texture2D" uid="uid://eg7wo4oufuc1" path="res://Assets/Backgrounds/bossbackground.png" id="35_mdqlj"]
-[ext_resource type="PackedScene" uid="uid://c2ob2qw8ppx03" path="res://Prefabs/enemy_ranged.tscn" id="38_aa3hu"]
 [ext_resource type="PackedScene" uid="uid://slt8o8kjdj6o" path="res://Prefabs/curtain.tscn" id="38_m8sr1"]
 [ext_resource type="Script" path="res://Scenes/Test_scenes/lava.gd" id="39_j0tji"]
 
@@ -876,38 +875,88 @@ position = Vector2(6174, -1039)
 [node name="enemy_flying" parent="." instance=ExtResource("32_ys2b6")]
 position = Vector2(431, -170)
 
-[node name="CurtainsController" type="Node2D" parent="."]
+[node name="Curtains" type="Node2D" parent="."]
 
-[node name="Curtain" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
+[node name="Curtain" parent="Curtains" instance=ExtResource("38_m8sr1")]
 position = Vector2(736, -160)
 scale = Vector2(82, 26)
 
-[node name="Curtain2" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
+[node name="Curtain2" parent="Curtains" instance=ExtResource("38_m8sr1")]
 position = Vector2(2224, -592)
 scale = Vector2(67, 40)
 
-[node name="Curtain3" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
+[node name="Curtain3" parent="Curtains" instance=ExtResource("38_m8sr1")]
 position = Vector2(4120, -832)
 scale = Vector2(123, 35)
 
-[node name="Curtain4" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
+[node name="Curtain4" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(7021, -1060)
+scale = Vector2(168.64, 71.12)
+
+[node name="Curtain5" parent="Curtains" instance=ExtResource("38_m8sr1")]
 position = Vector2(6920, -1072)
 scale = Vector2(188, 100)
 
-[node name="Curtain6" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
-position = Vector2(2504, 2584)
-scale = Vector2(256, 200)
-
-[node name="Curtain7" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
-position = Vector2(9704, 1928)
-scale = Vector2(256, 200)
-
-[node name="Curtain5" parent="CurtainsController" instance=ExtResource("38_m8sr1")]
+[node name="Curtain6" parent="Curtains" instance=ExtResource("38_m8sr1")]
 position = Vector2(6184, 650)
 scale = Vector2(115, 71)
 
-[node name="enemy_goomba" parent="CurtainsController" instance=ExtResource("38_aa3hu")]
-position = Vector2(859, -178)
+[node name="Curtain7" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(9340, 515)
+scale = Vector2(105.413, 66.4702)
+
+[node name="Curtain8" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(9770, 2064)
+scale = Vector2(103.939, 93.543)
+
+[node name="Curtain9" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(7966, 1922)
+scale = Vector2(75.6843, 97.4033)
+
+[node name="Curtain10" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(855, 1317)
+scale = Vector2(92.3556, 79.7445)
+
+[node name="Curtain11" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(2298, 1311)
+scale = Vector2(55.5918, 78.3268)
+
+[node name="Curtain12" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(3951, 1333)
+scale = Vector2(110.531, 78.4258)
+
+[node name="Curtain13" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(1512, 2623)
+scale = Vector2(117.673, 51.8322)
+
+[node name="Curtain14" parent="Curtains" instance=ExtResource("38_m8sr1")]
+visible = false
+position = Vector2(3922, 2618)
+scale = Vector2(123.09, 49.5533)
+
+[node name="Curtain15" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(2689, 3563)
+scale = Vector2(176.869, 43.0589)
+
+[node name="Curtain16" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(3909, 2611)
+scale = Vector2(123.09, 49.5533)
+
+[node name="Curtain17" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(6262, 3681)
+scale = Vector2(177.81, 23.9933)
+
+[node name="Curtain18" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(4702, 3271)
+scale = Vector2(24.0644, 18.7502)
+
+[node name="Curtain19" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(7783, 3157)
+scale = Vector2(24.0644, 28.2302)
+
+[node name="Curtain20" parent="Curtains" instance=ExtResource("38_m8sr1")]
+position = Vector2(6196, 2384)
+scale = Vector2(97.6004, 104.695)
 
 [node name="LavaSections" type="Node2D" parent="."]
 

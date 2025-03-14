@@ -50,16 +50,8 @@ script = ExtResource("1_hnfqc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6ke8g")
 
-<<<<<<< Updated upstream
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(1.78814e-07, -1.19209e-07)
-scale = Vector2(0.0046875, 0.0046875)
-texture = ExtResource("2_88e34")
-hframes = 4
-=======
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
 position = Vector2(-2.98023e-08, 2.38419e-07)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_3jvri")
 autoplay = "default"
->>>>>>> Stashed changes

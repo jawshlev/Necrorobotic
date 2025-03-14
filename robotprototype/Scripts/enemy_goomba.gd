@@ -14,14 +14,11 @@ var health = 20
 var immobile = true
 signal on_death
 
+
 var direction: int = 1
 
 func _ready():
 	await get_tree().process_frame
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta

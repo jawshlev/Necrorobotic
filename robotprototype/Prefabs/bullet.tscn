@@ -1,10 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://6exnm5jpi7ul"]
+[gd_scene load_steps=9 format=3 uid="uid://6exnm5jpi7ul"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_hnfqc"]
 [ext_resource type="Texture2D" uid="uid://clvmotfa72ypw" path="res://Assets/Sprites/bullet.png" id="2_88e34"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ke8g"]
 radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv5vg"]
+atlas = ExtResource("2_88e34")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45rrr"]
+atlas = ExtResource("2_88e34")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik3j4"]
+atlas = ExtResource("2_88e34")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b35j7"]
+atlas = ExtResource("2_88e34")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jvri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv5vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45rrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik3j4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b35j7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="bullet" type="CharacterBody2D"]
 collision_layer = 0
@@ -14,8 +50,16 @@ script = ExtResource("1_hnfqc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6ke8g")
 
+<<<<<<< Updated upstream
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 position = Vector2(1.78814e-07, -1.19209e-07)
 scale = Vector2(0.0046875, 0.0046875)
 texture = ExtResource("2_88e34")
 hframes = 4
+=======
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+position = Vector2(-2.98023e-08, 2.38419e-07)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_3jvri")
+autoplay = "default"
+>>>>>>> Stashed changes

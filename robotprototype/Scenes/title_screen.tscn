@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw0e4rxsjy0ct"]
+[gd_scene load_steps=15 format=3 uid="uid://dw0e4rxsjy0ct"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_djn8b"]
 [ext_resource type="FontFile" uid="uid://cjsm3v7u373oj" path="res://Assets/Robotics Galactus.ttf" id="2_3vtdi"]
@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://drym1xqwvw6my" path="res://Themes/powerbutton.tres" id="5_iawwt"]
 [ext_resource type="Texture2D" uid="uid://ba6e867sf2din" path="res://Assets/middle2.png" id="5_vn1t0"]
 [ext_resource type="Texture2D" uid="uid://beko0r1eab7kt" path="res://Assets/close2.png" id="6_jwggn"]
+[ext_resource type="AudioStream" uid="uid://b602kg5wqvjb2" path="res://Assets/Audio/sewersoundscape.mp3" id="13_jyp47"]
 
 [sub_resource type="FontVariation" id="FontVariation_4dwcq"]
 base_font = ExtResource("2_3vtdi")
@@ -111,6 +112,10 @@ motion_mirroring = Vector2(1152, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Parallex Background/ParallaxBackground/ParallaxLayer4"]
 position = Vector2(576, 324)
 texture = ExtResource("6_jwggn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_jyp47")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]

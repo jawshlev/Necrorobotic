@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://jmvdow6gkxpn" path="res://Assets/healthbar.png" id="1_obbnm"]
 [ext_resource type="Script" path="res://Scripts/resource_bar.gd" id="2_f6g1g"]
 [ext_resource type="Texture2D" uid="uid://vrwbopw1lv4c" path="res://Assets/energybar.png" id="3_tyf75"]
-[ext_resource type="AudioStream" uid="uid://63ovmxtjx4cs" path="res://Assets/LowEnergy.mp3" id="4_5ta5u"]
+[ext_resource type="AudioStream" uid="uid://bgi8ifrl3rka7" path="res://Assets/Audio/LowEnergy.mp3" id="4_5ta5u"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l0whq"]
 size = Vector2(320, 9)

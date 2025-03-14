@@ -8,8 +8,10 @@ const drain = 1
 func _on_body_entered(body):
 	if(body.is_in_group("Player")):
 		#print(body.energy)
-		body.lose_energy.emit(-body.MAX_NRG)
-		body.energy = body.MAX_NRG
+		if(body.energy < 100):
+			body.lose_energy.emit(-body.MAX_NRG)
+			body.energy = body.MAX_NRG
+			queue_free()
 		#body.energy = body.MAX_NRG
 		
-		queue_free()
+		

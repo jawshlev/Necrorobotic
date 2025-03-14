@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=57 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
@@ -40,9 +40,9 @@
 [ext_resource type="PackedScene" uid="uid://slt8o8kjdj6o" path="res://Prefabs/curtain.tscn" id="38_m8sr1"]
 [ext_resource type="Script" path="res://Scenes/Test_scenes/lava.gd" id="39_j0tji"]
 [ext_resource type="Script" path="res://Scenes/Test_scenes/final_boss.gd" id="40_i10hy"]
-[ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="41_gw40o"]
 [ext_resource type="PackedScene" uid="uid://ddtejnc64ai2l" path="res://Prefabs/lightning.tscn" id="42_g4001"]
 [ext_resource type="PackedScene" uid="uid://cljmkcgo70b0e" path="res://Prefabs/save_station.tscn" id="43_amku2"]
+[ext_resource type="Texture2D" uid="uid://cmbnvr1aae2r6" path="res://Assets/BossSpritesheet.png" id="43_j3wvx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("27_mtg52")
@@ -440,6 +440,56 @@ size = Vector2(112, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwy4c"]
 size = Vector2(128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jclc"]
+atlas = ExtResource("43_j3wvx")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcgtv"]
+atlas = ExtResource("43_j3wvx")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8205g"]
+atlas = ExtResource("43_j3wvx")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i574"]
+atlas = ExtResource("43_j3wvx")
+region = Rect2(0, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31utn"]
+atlas = ExtResource("43_j3wvx")
+region = Rect2(96, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg8tx"]
+atlas = ExtResource("43_j3wvx")
+region = Rect2(192, 96, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5gc7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jclc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcgtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8205g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i574")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31utn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg8tx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1l7w"]
 size = Vector2(256, 20)
@@ -961,9 +1011,6 @@ shape = SubResource("RectangleShape2D_0r18x")
 position = Vector2(6208, 2944)
 script = ExtResource("40_i10hy")
 
-[node name="Sprite2D" type="Sprite2D" parent="Final Boss"]
-texture = ExtResource("41_gw40o")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Final Boss"]
 shape = SubResource("RectangleShape2D_rwy4c")
 
@@ -979,6 +1026,11 @@ scale = Vector2(1, 8.25)
 [node name="Lightning3" parent="Final Boss" instance=ExtResource("42_g4001")]
 position = Vector2(910, -192)
 scale = Vector2(1, 8.25)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Final Boss"]
+position = Vector2(4.00543e-05, -0.000102043)
+scale = Vector2(1.33333, 1.33333)
+sprite_frames = SubResource("SpriteFrames_5gc7o")
 
 [node name="Boss Trigger" type="Area2D" parent="."]
 position = Vector2(6240, 3398)

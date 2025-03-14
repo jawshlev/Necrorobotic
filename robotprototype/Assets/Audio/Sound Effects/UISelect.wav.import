@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bya2iqf8c3lai"
+path="res://.godot/imported/UISelect.wav-5ae9ae3739a06b484d774fa66a97f2aa.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound Effects/UISelect.wav"
+dest_files=["res://.godot/imported/UISelect.wav-5ae9ae3739a06b484d774fa66a97f2aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

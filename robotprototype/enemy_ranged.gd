@@ -9,11 +9,11 @@ signal on_death
 @export var detection_range: float = 200.0
 @export var jump_range: float = 80.0
 @export var projectile_scene: PackedScene
-@export var player: NodePath
 @export var ray_length: float = 15.0  
 @export var ray_forward_offset: float = 5.0  
 @onready var floor_check: RayCast2D = $Sprite2D/RayCast2D
 
+var player_node: Node
 const knockback = 200
 const contact_damage = 5	
 var shoot_timer: float = 0.0
@@ -25,7 +25,8 @@ var immobile = true
 var direction: int = 1
 
 func _ready():
-	if player == null or get_node_or_null(player) == null:
+	player_node = $Player
+	if player_node == null:
 		print("Player is not assigned. Please assign a player node.")
 
 func _physics_process(delta: float) -> void:
@@ -41,7 +42,6 @@ func _physics_process(delta: float) -> void:
 		elif !is_jumping:
 			velocity.y = max(velocity.y, gravity)
 
-		var player_node = get_node_or_null(player)
 		if player_node:
 			var distance_to_player = global_position.distance_to(player_node.global_position)
 

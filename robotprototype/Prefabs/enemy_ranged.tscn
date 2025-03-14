@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://c2ob2qw8ppx03"]
 
-[ext_resource type="Script" path="res://Scenes/enemy_ranged.gd" id="1_v1mlu"]
+[ext_resource type="Script" path="res://enemy_ranged.gd" id="1_v1mlu"]
 [ext_resource type="Texture2D" uid="uid://7c0qqwgpcelw" path="res://Assets/Sprites/projectileEnemy_SpriteSheet.png" id="2_xtwo1"]
 [ext_resource type="Script" path="res://Prefabs/projectile_controller.gd" id="3_fh7qv"]
 

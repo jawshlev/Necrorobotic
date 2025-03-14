@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 
 func enemy_immobilizer(toggle: bool):
 	for agent in get_overlapping_bodies():
-		if(agent.is_in_group("Enemy")):
+		if(agent.is_in_group("Enemy") and "immobile" in agent):
 			agent.immobile = toggle
 
 func _on_body_entered(body: Node2D) -> void:

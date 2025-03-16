@@ -23,7 +23,7 @@ var health: int = 30
 var energy: int = 50
 var immobile = true
 var direction: int = 1
-var flip_cooldown: float = 3  # Prevents instant flipping
+var flip_cooldown: float = 3  # prevents instant flipping
 var flip_timer: float = 0.0
 
 func _ready():
@@ -35,13 +35,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 		velocity.x = direction * speed
 
-		flip_timer -= delta  # Reduce cooldown timer
+		flip_timer -= delta  # reduce cooldown timer
 
-		# Only flip if cooldown has passed
+		# !!!Only flip if cooldown has passed
 		if flip_timer <= 0:
 			if is_on_wall() or !is_ground_ahead():
 				flip_direction()
-				flip_timer = flip_cooldown  # Reset cooldown
+				flip_timer = flip_cooldown  # this resets cooldown
 
 		move_and_slide()
 
@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.x = 0
 
-			# Jump if close enough to the player
+			# Jump if close enough to the player (kinda gets stuck I need to fix)
 			if distance_to_player <= jump_range and is_on_floor() and jump_timer <= 0.0:
 				jump()
 				jump_timer = 1.0
@@ -131,7 +131,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func flip_direction():
 	direction *= -1
-	velocity.x = direction * speed # Ensure movement continues after flipping
+	velocity.x = direction * speed # movement continues after flipping
 	self.scale.x *= -1
 
 func is_player_in_front(player: Node2D) -> bool:

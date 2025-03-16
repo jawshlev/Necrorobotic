@@ -597,8 +597,9 @@ texture = ExtResource("35_mdqlj")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="enemy_goomba43" parent="Enemies" instance=ExtResource("27_831t3")]
+[node name="enemy_goomba43" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("27_831t3")]
 position = Vector2(695, -154)
+player = NodePath("../../Player")
 
 [node name="enemy_goomba2" parent="Enemies" instance=ExtResource("27_831t3")]
 position = Vector2(1134, -272)

@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var start_flipped: bool = false
 @export var ray_length: float = 15.0  
 @export var ray_forward_offset: float = 5.0  
+@export var detection_range: float = 70  
+@export var player: Node2D  
 
 const contact_damage = 5	
 const knockback = 200
@@ -14,17 +16,30 @@ var health = 20
 var immobile = true
 signal on_death
 
-
 var direction: int = 1
+var chasing_player: bool = false
 
 func _ready():
 	await get_tree().process_frame
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
+	
+	if player and global_position.distance_to(player.global_position) <= detection_range:
+		chasing_player = true
+	else:
+		chasing_player = false
+	
 	if !immobile:
-		if is_on_wall() or !is_ground_ahead():
-			flip_direction()
+		if chasing_player:
+			if player.global_position.x > global_position.x:
+				direction = 1
+			elif player.global_position.x < global_position.x:
+				direction = -1
+		else:
+			if is_on_wall() or !is_ground_ahead():
+				flip_direction()
+
 		velocity.x = direction * speed
 		move_and_slide()
 
@@ -52,7 +67,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		if is_player_in_front(body):
 			flip_direction()
 
-
 func is_player_in_front(player: Node2D) -> bool:
 	var player_left = player.global_position.x < global_position.x and direction == -1
 	var player_right = player.global_position.x > global_position.x and direction == 1
@@ -61,7 +75,6 @@ func is_player_in_front(player: Node2D) -> bool:
 func take_damage(damage, knockback):
 	health -= damage
 	if health <= 0:
-		
 		on_death.emit(energy)
 		queue_free()
 	immobile = true
@@ -70,13 +83,7 @@ func take_damage(damage, knockback):
 	move_and_slide()
 	get_tree().create_timer(0.25).timeout.connect(func(): immobile = false)
 
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Curtain"):
-		#print(area)
-		if(!area.player_present):
-			#print(area, " ",area.player_present)
+		if !area.player_present:
 			flip_direction()
-			#immobile = true
-		
-	pass # Replace with function body.

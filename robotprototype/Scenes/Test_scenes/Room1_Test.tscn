@@ -872,7 +872,6 @@ position = Vector2(4236, 2301)
 
 [node name="enemy_flying21" parent="Enemies" instance=ExtResource("32_ys2b6")]
 position = Vector2(431, -170)
-collision_layer = 2
 motion_mode = 1
 
 [node name="DamageArea" parent="Enemies/enemy_flying21" index="1"]

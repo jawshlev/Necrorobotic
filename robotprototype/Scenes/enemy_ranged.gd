@@ -23,19 +23,28 @@ var health: int = 30
 var energy: int = 50
 var immobile = true
 var direction: int = 1
+var flip_cooldown: float = 3  # Prevents instant flipping
+var flip_timer: float = 0.0
 
 func _ready():
 	if player == null or get_node_or_null(player) == null:
 		print("Player is not assigned. Please assign a player node.")
 
 func _physics_process(delta: float) -> void:
-	if(!immobile):
+	if !immobile:
 		velocity.y += gravity * delta
 		velocity.x = direction * speed
-		if is_on_wall() or !is_ground_ahead():
-			flip_direction()
-		
+
+		flip_timer -= delta  # Reduce cooldown timer
+
+		# Only flip if cooldown has passed
+		if flip_timer <= 0:
+			if is_on_wall() or !is_ground_ahead():
+				flip_direction()
+				flip_timer = flip_cooldown  # Reset cooldown
+
 		move_and_slide()
+
 		if is_on_floor():
 			is_jumping = false
 		elif !is_jumping:
@@ -45,6 +54,7 @@ func _physics_process(delta: float) -> void:
 		if player_node:
 			var distance_to_player = global_position.distance_to(player_node.global_position)
 
+			# Move towards player if within detection range
 			if distance_to_player <= detection_range:
 				if player_node.global_position.x > global_position.x:
 					velocity.x = speed
@@ -53,12 +63,14 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.x = 0
 
+			# Jump if close enough to the player
 			if distance_to_player <= jump_range and is_on_floor() and jump_timer <= 0.0:
 				jump()
 				jump_timer = 1.0
 			else:
 				jump_timer = 0.0
 
+			# Shoot at player
 			if distance_to_player <= detection_range:
 				shoot_timer -= delta
 				if shoot_timer <= 0.0:
@@ -66,10 +78,6 @@ func _physics_process(delta: float) -> void:
 					shoot_timer = shoot_interval
 
 		jump_timer = max(jump_timer - delta, 0)
-
-
-		is_ground_ahead()
-		move_and_slide()
 
 func jump():
 	is_jumping = true
@@ -94,7 +102,6 @@ func shoot_at_player():
 func take_damage(damage, knockback):
 	health -= damage
 	if health <= 0:
-		
 		on_death.emit(energy)
 		queue_free()
 	immobile = true
@@ -104,7 +111,14 @@ func take_damage(damage, knockback):
 	get_tree().create_timer(0.25).timeout.connect(func(): immobile = false)
 
 func is_ground_ahead() -> bool:
-	return floor_check.is_colliding()
+	var space_state = get_world_2d().direct_space_state
+	var ray_start = global_position + Vector2(direction * ray_forward_offset, 5)
+	var ray_end = ray_start + Vector2(0, ray_length)
+	var query = PhysicsRayQueryParameters2D.create(ray_start, ray_end)
+	query.collision_mask = 1  
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	return result.has("collider")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -117,7 +131,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func flip_direction():
 	direction *= -1
-	self.scale.x = self.scale.x * -1
+	velocity.x = direction * speed # Ensure movement continues after flipping
+	self.scale.x *= -1
 
 func is_player_in_front(player: Node2D) -> bool:
 	var player_left = player.global_position.x < global_position.x and direction == -1

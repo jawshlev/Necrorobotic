@@ -872,6 +872,14 @@ position = Vector2(4236, 2301)
 
 [node name="enemy_flying21" parent="Enemies" instance=ExtResource("32_ys2b6")]
 position = Vector2(431, -170)
+collision_layer = 2
+motion_mode = 1
+
+[node name="DamageArea" parent="Enemies/enemy_flying21" index="1"]
+collision_layer = 2
+
+[node name="DetectionArea" parent="Enemies/enemy_flying21" index="2"]
+collision_layer = 2
 
 [node name="Curtains" type="Node2D" parent="."]
 visible = false
@@ -1126,3 +1134,5 @@ position = Vector2(7104, -226)
 [connection signal="body_entered" from="LavaSections/Area2D3" to="LavaSections/Area2D3" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D4" to="LavaSections/Area2D4" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D" to="LavaSections/Area2D" method="_on_body_entered"]
+
+[editable path="Enemies/enemy_flying21"]

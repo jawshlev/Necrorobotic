@@ -39,6 +39,7 @@ offset_bottom = 413.0
 text = "Quit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
+layout_mode = 0
 offset_left = 289.0
 offset_top = 143.0
 offset_right = 840.0

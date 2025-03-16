@@ -14,7 +14,6 @@ size = Vector2(121, 113)
 
 [node name="enemy_flying" type="CharacterBody2D"]
 position = Vector2(-1, -1)
-collision_layer = 2
 script = ExtResource("1_eagd8")
 patrol_distance = 100.0
 

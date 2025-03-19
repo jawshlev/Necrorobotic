@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://ywwtble31omj"]
+[gd_scene load_steps=21 format=3 uid="uid://ywwtble31omj"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_flying.gd" id="1_eagd8"]
 [ext_resource type="Texture2D" uid="uid://5im2j58wef3f" path="res://Assets/Sprites/aeroGoblin_SpriteSheet.png" id="2_s8iie"]
+[ext_resource type="AudioStream" uid="uid://vlpixomvh8yx" path="res://Assets/Audio/171 Voice Overs/FlyingEnemy.mp3" id="3_iohk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kt8"]
 size = Vector2(29, 13)
@@ -198,6 +199,9 @@ root_node = NodePath("../CollisionShape2D/Sprite2D")
 tree_root = SubResource("AnimationNodeStateMachine_34hp8")
 anim_player = NodePath("../CollisionShape2D/Sprite2D/AnimationPlayer")
 parameters/Attack/blend_position = 0.39596
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_iohk3")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

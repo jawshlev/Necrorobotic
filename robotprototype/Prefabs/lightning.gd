@@ -8,8 +8,10 @@ func _process(delta: float) -> void:
 	
 func strike():
 	$AnimatedSprite2D.set_visible(true)
+	print("Strike")
 	$AnimatedSprite2D.play("warning")
 	await get_tree().create_timer(1.0).timeout
+	print("Done")
 	$AnimatedSprite2D.play("default")
 	$Hitbox1/CollisionShape2D.set_disabled(false)
 	get_tree().create_timer(0.05).timeout.connect(func(): $Hitbox2/CollisionShape2D.set_disabled(false))

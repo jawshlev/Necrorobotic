@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cof414boiped"]
+[gd_scene load_steps=6 format=3 uid="uid://cof414boiped"]
 
 [ext_resource type="Script" path="res://Scripts/robo_boots.gd" id="1_5p6iw"]
 [ext_resource type="Texture2D" uid="uid://oyqurgkct2yk" path="res://Assets/Sprites/BootsSpawn.png" id="2_0hras"]
 [ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="3_eoae2"]
+[ext_resource type="AudioStream" uid="uid://b0o61tihmgrfh" path="res://Assets/Audio/171 Voice Overs/Boots.mp3" id="4_q7cwt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egwpa"]
 
@@ -17,5 +18,8 @@ position = Vector2(-1, -5)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_0hras")
 script = ExtResource("3_eoae2")
+
+[node name="Tutorial" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_q7cwt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

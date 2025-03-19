@@ -8,4 +8,8 @@ const drain = 1
 func _on_body_entered(body):
 	if(body.is_in_group("Player")):
 		body.get_upgrade(id, drain, speed, jump)
+		$Tutorial.play()
+		Engine.time_scale = 0;
+		await $Tutorial.finished
+		Engine.time_scale = 1;
 		queue_free()

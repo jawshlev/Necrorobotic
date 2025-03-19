@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpgmn0fqr38wb"]
+[gd_scene load_steps=6 format=3 uid="uid://dpgmn0fqr38wb"]
 
 [ext_resource type="Script" path="res://Scripts/head_pickup.gd" id="1_fohxq"]
 [ext_resource type="Texture2D" uid="uid://61fq6s3e3na7" path="res://Assets/Sprites/HELMET.png" id="1_hebqi"]
 [ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="3_e71it"]
+[ext_resource type="AudioStream" uid="uid://cl4323j7f35u4" path="res://Assets/Audio/171 Voice Overs/Helmet.mp3" id="4_yw5jp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt56s"]
 size = Vector2(22, 21)
@@ -18,5 +19,8 @@ script = ExtResource("3_e71it")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vt56s")
+
+[node name="Tutorial" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yw5jp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

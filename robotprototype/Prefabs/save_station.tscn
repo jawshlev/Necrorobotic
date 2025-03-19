@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cljmkcgo70b0e"]
+[gd_scene load_steps=19 format=3 uid="uid://cljmkcgo70b0e"]
 
 [ext_resource type="Script" path="res://Scenes/Test_scenes/save_start.gd" id="1_6i8l8"]
 [ext_resource type="Texture2D" uid="uid://sd6em4jsjx4p" path="res://Assets/SaveTank.png" id="2_rh3uc"]
@@ -104,6 +104,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ot17x"]
+size = Vector2(28, 4)
+
 [node name="SaveStation" type="Area2D"]
 z_index = -1
 script = ExtResource("1_6i8l8")
@@ -116,6 +119,15 @@ shape = SubResource("RectangleShape2D_wneux")
 sprite_frames = SubResource("SpriteFrames_yc6pe")
 animation = &"new_animation"
 autoplay = "new_animation"
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -14.0
+offset_top = -27.0
+offset_right = 14.0
+offset_bottom = -23.0
+step = 0.01
+texture_progress = SubResource("PlaceholderTexture2D_ot17x")
+tint_progress = Color(0, 0.0285901, 1, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddtejnc64ai2l"]
 
 [ext_resource type="Script" path="res://Prefabs/lightning.gd" id="1_448pl"]
-[ext_resource type="Texture2D" uid="uid://dti65uq8fm205" path="res://Assets/lightning-bolt-placeholder.png" id="1_mq8da"]
+[ext_resource type="Texture2D" uid="uid://dvuh58o3sbsd7" path="res://Assets/lightning.png" id="2_ytohh"]
 [ext_resource type="Texture2D" uid="uid://bflf4afwuge65" path="res://Assets/lightning-bolt-warning.png" id="3_muguk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsof4"]
@@ -11,7 +11,7 @@ size = Vector2(36, 20)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_mq8da")
+"texture": ExtResource("2_ytohh")
 }],
 "loop": true,
 "name": &"default",
@@ -62,7 +62,7 @@ visible = false
 position = Vector2(0, 40)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_5m8mt")
-animation = &"warning"
+frame_progress = 0.121705
 
 [connection signal="body_entered" from="Hitbox1" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Hitbox2" to="." method="_on_hitbox_body_entered"]

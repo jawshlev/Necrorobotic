@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 const pos = Vector2(0,0)
 
+var footsteps = preload("res://Assets/Audio/footsteps.wav")
 var pl_animations
 var boot_animations
 var speed = 145.0 #Player's speed
@@ -30,6 +31,7 @@ var focused = false #Can the player move
 var contact_damage = 0 #How much contact damage should they take
 var drain_rate = 0 #How much energy drains per second
 var locationID = "SaveStart";
+var walk_sfx = true;
 const dash_drain = 5 #How much energy the dash drains
 const jump_drain = 5 #How much energy the player loses double jumping
 const focus_drain = 0.4 #How much energy the player loses on focus
@@ -84,10 +86,16 @@ func _physics_process(delta: float) -> void:
 		var direction := Input.get_axis("ui_left", "ui_right")
 		if direction:
 			facing_right = direction
-#			print(velocity)
-#			print(facing_right)
+			print(velocity)
+			print(facing_right)
 			var face_dir = Vector2(facing_right, 0)
 			if(is_on_floor()):
+				if(!$PlayerSounds.playing && walk_sfx):
+					$PlayerSounds.set_stream(footsteps)
+					$PlayerSounds.set_autoplay(true)
+					$PlayerSounds.play()
+					walk_sfx = false;
+					get_tree().create_timer(0.45).timeout.connect(func(): walk_sfx = true)
 				pl_animations.travel("Walk")
 				default_anims.set("parameters/Walk/blend_position", face_dir)
 				if robot_parts[0] == 1:
@@ -101,6 +109,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.x += direction * speed
 		else:
+#			if($PlayerSounds.playing):
+#				$PlayerSounds.stop()
 			var face_dir = Vector2(facing_right, 0)
 			pl_animations.travel("Idle")
 			default_anims.set("parameters/Idle/blend_position", face_dir)

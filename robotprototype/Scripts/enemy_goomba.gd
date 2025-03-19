@@ -73,6 +73,7 @@ func is_player_in_front(player: Node2D) -> bool:
 	return player_left or player_right
 
 func take_damage(damage, knockback):
+	$SFX.play()
 	health -= damage
 	if health <= 0:
 		on_death.emit(energy)

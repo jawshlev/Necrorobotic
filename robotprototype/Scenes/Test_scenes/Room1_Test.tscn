@@ -1,8 +1,9 @@
-[gd_scene load_steps=53 format=4 uid="uid://wv8v3pi1jblc"]
+[gd_scene load_steps=67 format=4 uid="uid://wv8v3pi1jblc"]
 
 [ext_resource type="Script" path="res://Scripts/room_initialize.gd" id="1_gdvhm"]
 [ext_resource type="PackedScene" uid="uid://clbanbc2js845" path="res://Prefabs/UI.tscn" id="1_tpvie"]
 [ext_resource type="PackedScene" uid="uid://gu8mk30pud7b" path="res://Prefabs/player.tscn" id="2_4b4x4"]
+[ext_resource type="Script" path="res://Scenes/Test_scenes/narration.gd" id="2_einab"]
 [ext_resource type="Texture2D" uid="uid://c55gdnh76j7sy" path="res://Scenes/Test_scenes/Room1.png" id="2_vf8b4"]
 [ext_resource type="Texture2D" uid="uid://e5sxnwwqc1t8" path="res://Scenes/Test_scenes/Room2NCR.png" id="3_oq4b3"]
 [ext_resource type="Texture2D" uid="uid://bnqkg41k7662m" path="res://Scenes/Test_scenes/Room3NCR.png" id="4_6j0vr"]
@@ -30,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://sefxu641m6fi" path="res://Assets/171Tileset1.0.png" id="27_mtg52"]
 [ext_resource type="Texture2D" uid="uid://cgnlrsm37w7v2" path="res://Assets/Sprites/lava.png" id="28_cm6vj"]
 [ext_resource type="PackedScene" uid="uid://dpgmn0fqr38wb" path="res://Prefabs/head_pickup.tscn" id="29_3qgiv"]
+[ext_resource type="Script" path="res://Scenes/Test_scenes/tile_map.gd" id="29_p7ile"]
 [ext_resource type="PackedScene" uid="uid://cof414boiped" path="res://Prefabs/robo_boots.tscn" id="30_5tjka"]
 [ext_resource type="PackedScene" uid="uid://3rujtik5jmqh" path="res://Prefabs/orb.tscn" id="30_yhu4t"]
 [ext_resource type="PackedScene" uid="uid://ywwtble31omj" path="res://Prefabs/enemy_flying.tscn" id="32_ys2b6"]
@@ -41,10 +43,11 @@
 [ext_resource type="PackedScene" uid="uid://ca5is0ul7r07u" path="res://Scenes/health_pack.tscn" id="39_pwe8p"]
 [ext_resource type="Script" path="res://Scenes/Test_scenes/final_boss.gd" id="40_i10hy"]
 [ext_resource type="PackedScene" uid="uid://djyhx7tcw62dh" path="res://Scenes/respawn_capsule.tscn" id="40_l7f35"]
-[ext_resource type="Texture2D" uid="uid://eaw43utff46p" path="res://Textures/icon.svg" id="41_gw40o"]
 [ext_resource type="PackedScene" uid="uid://ddtejnc64ai2l" path="res://Prefabs/lightning.tscn" id="42_g4001"]
 [ext_resource type="PackedScene" uid="uid://cljmkcgo70b0e" path="res://Prefabs/save_station.tscn" id="43_amku2"]
+[ext_resource type="Texture2D" uid="uid://bsi12r3etx78j" path="res://Assets/Sprites/BossSprite.png" id="44_7bc8c"]
 [ext_resource type="AudioStream" uid="uid://d0txe05fictq7" path="res://Assets/Audio/factorysoundscape.mp3" id="45_npnhn"]
+[ext_resource type="Script" path="res://Scenes/Test_scenes/bgm.gd" id="46_rfp3g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pak5s"]
 texture = ExtResource("27_mtg52")
@@ -446,11 +449,92 @@ size = Vector2(1973, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn5xk"]
 size = Vector2(128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m32n"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kamry"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx8fn"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84d61"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmmv4"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srb8q"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkmg4"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgtgv"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7duqx"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_453b5"]
+atlas = ExtResource("44_7bc8c")
+region = Rect2(864, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tp6d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m32n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kamry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx8fn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84d61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmmv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srb8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkmg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgtgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7duqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_453b5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1k2q2"]
-size = Vector2(256, 20)
+size = Vector2(1871.5, 634)
 
 [node name="Room1Test" type="Node2D"]
 script = ExtResource("1_gdvhm")
+
+[node name="Narration" type="AudioStreamPlayer" parent="."]
+script = ExtResource("2_einab")
 
 [node name="UI" parent="." instance=ExtResource("1_tpvie")]
 
@@ -460,11 +544,6 @@ position = Vector2(0, 64)
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(0, -64)
 zoom = Vector2(2, 2)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
-position = Vector2(0, -64)
-stream = ExtResource("45_npnhn")
-autoplay = true
 
 [node name="AllRoomsDraft" type="Node2D" parent="."]
 visible = false
@@ -564,6 +643,7 @@ texture = ExtResource("25_68c3u")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_yd28x")
 format = 2
+script = ExtResource("29_p7ile")
 
 [node name="Layer1" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
@@ -1082,24 +1162,15 @@ position = Vector2(4975, 873)
 
 [node name="Respawns" type="Node2D" parent="."]
 
-[node name="RespawnCapsule2" parent="Respawns" instance=ExtResource("40_l7f35")]
-position = Vector2(10345, 1756)
-
-[node name="RespawnCapsule3" parent="Respawns" instance=ExtResource("40_l7f35")]
-position = Vector2(7365, 3673)
-
-[node name="RespawnCapsule4" parent="Respawns" instance=ExtResource("40_l7f35")]
-position = Vector2(5010, 3672)
-
 [node name="RespawnCapsule5" parent="Respawns" instance=ExtResource("40_l7f35")]
 position = Vector2(2984, 1993)
+
+[node name="SaveStation" parent="Respawns" instance=ExtResource("43_amku2")]
+position = Vector2(6239, 3661)
 
 [node name="Final Boss" type="CharacterBody2D" parent="." groups=["Enemy"]]
 position = Vector2(6208, 2944)
 script = ExtResource("40_i10hy")
-
-[node name="Sprite2D" type="Sprite2D" parent="Final Boss"]
-texture = ExtResource("41_gw40o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Final Boss"]
 shape = SubResource("RectangleShape2D_sn5xk")
@@ -1117,22 +1188,55 @@ scale = Vector2(1, 8.25)
 position = Vector2(910, -192)
 scale = Vector2(1, 8.25)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Final Boss"]
+position = Vector2(-3.62396e-05, 7.92444e-05)
+scale = Vector2(1.33333, 1.33333)
+sprite_frames = SubResource("SpriteFrames_6tp6d")
+frame_progress = 0.300097
+
 [node name="Boss Trigger" type="Area2D" parent="."]
 position = Vector2(6240, 3398)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss Trigger"]
+position = Vector2(-40.25, -329)
 shape = SubResource("RectangleShape2D_1k2q2")
 
 [node name="SaveStart" parent="." instance=ExtResource("43_amku2")]
-position = Vector2(-4, 47)
+position = Vector2(-1, 47)
 
 [node name="SaveStart2" parent="." instance=ExtResource("43_amku2")]
 position = Vector2(7104, -226)
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("45_npnhn")
+script = ExtResource("46_rfp3g")
+
+[node name="SaveStation" parent="." instance=ExtResource("43_amku2")]
+position = Vector2(10352, 1743)
+
+[node name="SaveStation2" parent="." instance=ExtResource("43_amku2")]
+position = Vector2(1983, 3951)
+
+[node name="SaveStation3" parent="." instance=ExtResource("43_amku2")]
+position = Vector2(18, 1487)
+
+[node name="SaveStation4" parent="." instance=ExtResource("43_amku2")]
+position = Vector2(8413, 1567)
+
+[node name="SaveStation5" parent="." instance=ExtResource("43_amku2")]
+position = Vector2(5010, 1983)
+
+[node name="SaveStation6" parent="." instance=ExtResource("43_amku2")]
+position = Vector2(7101, -1090)
 
 [connection signal="body_entered" from="LavaSections/Area2D2" to="LavaSections/Area2D2" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D5" to="LavaSections/Area2D5" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D3" to="LavaSections/Area2D3" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D4" to="LavaSections/Area2D4" method="_on_body_entered"]
 [connection signal="body_entered" from="LavaSections/Area2D" to="LavaSections/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Boss Trigger" to="Narration" method="_on_boss_trigger"]
+[connection signal="body_entered" from="Boss Trigger" to="TileMap" method="_on_boss_trigger"]
+[connection signal="body_entered" from="Boss Trigger" to="Final Boss" method="_on_boss_trigger"]
+[connection signal="body_entered" from="Boss Trigger" to="BGM" method="_on_boss_trigger"]
 
 [editable path="Enemies/enemy_flying21"]

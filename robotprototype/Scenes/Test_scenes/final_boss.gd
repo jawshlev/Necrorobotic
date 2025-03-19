@@ -97,6 +97,8 @@ func take_damage(damage, knockback):
 	player.enter_hurtbox(0, 50)
 
 
-func _on_boss_trigger(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_boss_trigger(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		var narra = get_node("/root/Room1Test/Narration")
+		await narra.boss_open
 		enabled = true;

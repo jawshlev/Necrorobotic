@@ -14,6 +14,14 @@ var altered_zoom = Vector2(0.65, 0.65)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Engine.time_scale = 0;
+	visible = false
+	$UI.visible = false
+	await $Narration.finished
+	Engine.time_scale = 1
+	visible = true
+	$UI.visible = true
+	$BGM.play()
 	player = get_node("Player")
 	default_camera_zoom = player.get_node("Camera2D").zoom
 	player.take_damage.connect(get_node("UI/Health Bar")._on_robot_drain)
@@ -23,14 +31,14 @@ func _ready() -> void:
 	load_game()
 
 func load_game():
-	if not FileAccess.file_exists("user://savegame.save"):
+	if not FileAccess.file_exists("user://Necrobotic/savegame.save"):
 		return # Error! We don't have a save to load.
 
 	# We need to revert the game state so we're not cloning objects
 	# during loading. This will vary wildly depending on the needs of a
 	# project, so take care with this step.
 	# For our example, we will accomplish this by deleting saveable objects.
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var save_file = FileAccess.open("user://Necrobotic/savegame.save", FileAccess.READ)
 	while save_file.get_position() < save_file.get_length():
 		var json_string = save_file.get_line()
 
@@ -47,11 +55,14 @@ func load_game():
 		var save_data = json.data
 		# Now we set the remaining variables.
 		for value in save_data.keys():
-			if value == "robot_parts":
-				player.robot_parts = value;
+			if value == "robot_part":
+				print(save_data[value])
+				player.robot_parts = save_data[value];
 			elif value == "locationID":
-				player.locationID == value
-				player.position = get_tree().get_node(value).position
+				player.locationID = save_data[value]
+				print(save_data[value])
+				var node = get_node(save_data[value])
+				player.position = node.position
 				
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

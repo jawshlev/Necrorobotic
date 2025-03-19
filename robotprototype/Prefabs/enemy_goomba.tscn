@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://y4ex0j8qakjk"]
+[gd_scene load_steps=11 format=3 uid="uid://y4ex0j8qakjk"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_goomba.gd" id="1_jxix4"]
 [ext_resource type="Texture2D" uid="uid://ca3hnus522dvf" path="res://Assets/Sprites/goomBot_SpriteSheet.png" id="2_6sq4x"]
+[ext_resource type="AudioStream" uid="uid://blpugs3nstoaw" path="res://Assets/Audio/171 Voice Overs/Goomba.mp3" id="3_py0co"]
 
 [sub_resource type="Animation" id="Animation_wqasx"]
 length = 0.001
@@ -85,6 +86,11 @@ shape = SubResource("RectangleShape2D_vuxoa")
 root_node = NodePath("../Sprite2D")
 tree_root = SubResource("AnimationNodeStateMachine_draaf")
 anim_player = NodePath("../Sprite2D/AnimationPlayer")
+
+[node name="GoombaVoice" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_py0co")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_hitbox_body_entered"]

@@ -71,6 +71,7 @@ func patrol():
 		direction *= -1
 
 func start_swoop():
+	$SFX.play()
 	is_swooping = true
 	is_returning = false
 	swoop_elapsed_time = 0.0

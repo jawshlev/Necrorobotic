@@ -28,6 +28,10 @@ func _ready() -> void:
 	player.lose_energy.connect(get_node("UI/Energy Bar")._on_robot_drain)
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
 		enemy.on_death.connect(player.gain_energy)
+	for trigger in get_tree().get_nodes_in_group("FactoryBGMTrigger"):
+		trigger.body_entered.connect($BGM.factory)
+	for trigger in get_tree().get_nodes_in_group("SewerBGMTrigger"):
+		trigger.body_entered.connect($BGM.sewer)
 	load_game()
 
 func load_game():

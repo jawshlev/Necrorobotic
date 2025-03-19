@@ -19,3 +19,14 @@ func _on_boss_trigger(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		set_stream(BGMBoss)
 		play()
+
+
+func factory(body: Node2D) -> void:
+	if body.is_in_group("Player") and get_stream() != BGMFactory:
+		set_stream(BGMFactory)
+		play()
+
+func sewer(body: Node2D) -> void:
+	if body.is_in_group("Player") and get_stream() != BGMSewer:
+		set_stream(BGMSewer)
+		play()
